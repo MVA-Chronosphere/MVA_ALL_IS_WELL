@@ -1410,7 +1410,7 @@ const HomePage = () => {
       <HealthPackages />
       
       {/* RECENT BLOG SECTION */}
-      <BlogSection />
+      <BlogSection maxBlogs={3} />
     </>
   );
 };

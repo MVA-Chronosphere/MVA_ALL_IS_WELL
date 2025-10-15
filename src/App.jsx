@@ -23,8 +23,44 @@ import TermsOfService from "./pages/TermsOfService";
 import BranchesPage from "./pages/BranchesPage";
 import BlogPage from "./pages/BlogPage";
 import BlogLoginPage from "./pages/BlogLoginPage";
+import ArticlePage from "./pages/ArticlePage";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+
+// CSS to make tawk.to widget bigger
+const tawkToStyles = `
+  [id*="tawk"] {
+    transform: scale(1.3) !important;
+    transform-origin: right bottom !important;
+    width: 65px !important;
+    height: 65px !important;
+  }
+  [id*="tawk"] * {
+    transform: scale(1.3) !important;
+    transform-origin: right bottom !important;
+    width: 65px !important;
+    height: 65px !important;
+  }
+  .tawk-widget, .tawk-display-button, .tawk-opened {
+    width: 65px !important;
+    height: 65px !important;
+    min-width: 65px !important;
+    min-height: 65px !important;
+  }
+  .tawk-chat-circle, .tawk-circle {
+    width: 65px !important;
+    height: 65px !important;
+  }
+  .tawk-chat-icon {
+    width: 40px !important;
+    height: 40px !important;
+    transform: scale(1.3) !important;
+ }
+  iframe[src*="tawk"] {
+    transform: scale(1.3) !important;
+    transform-origin: right bottom !important;
+ }
+`;
 
 // Branch pages
 import ShahpurBranch from "./pages/Branches/Shahpur";
@@ -68,9 +104,44 @@ function App() {
     s1.setAttribute("crossorigin", "*");
     s0.parentNode.insertBefore(s1, s0);
 
+    // Apply CSS to make tawk.to widget bigger
+    const style = document.createElement('style');
+    style.innerHTML = tawkToStyles;
+    document.head.appendChild(style);
+
+    // Set up a MutationObserver to reapply styles if tawk.to changes DOM elements
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === 1 && (node.id || node.className)) {
+              // Check if this is a tawk.to element and reapply styles
+              if (node.id && node.id.includes('tawk')) {
+                node.style.transform = 'scale(1.3)';
+                node.style.transformOrigin = 'right bottom';
+                node.style.width = '65px';
+                node.style.height = '65px';
+              }
+              if (node.className && node.className.includes('tawk')) {
+                node.style.transform = 'scale(1.3)';
+                node.style.transformOrigin = 'right bottom';
+                node.style.width = '65px';
+                node.style.height = '65px';
+              }
+            }
+          });
+        }
+      }
+    });
+
+    // Start observing the document body for changes
+    observer.observe(document.body, { childList: true, subtree: true });
+
     return () => {
       // Cleanup if needed
       if (s1.parentNode) s1.parentNode.removeChild(s1);
+      if (style.parentNode) style.parentNode.removeChild(style);
+      observer.disconnect(); // Stop observing when component unmounts
     };
   }, []);
 
@@ -96,6 +167,7 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/blog/login" element={<BlogLoginPage />} />
+            <Route path="/articles" element={<ArticlePage />} />
 
             {/* Branch Routes */}
             <Route path="/branches/shahpur" element={<ShahpurBranch />} />
@@ -128,10 +200,10 @@ function App() {
               href="https://wa.me/769774444"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 flex items-center justify-center"
+  className="p-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-60 transition-colors duration-300 flex items-center justify-center"
               title="Chat on WhatsApp"
             >
-              <Phone size={24} className="text-white" />
+              <Phone size={32} className="text-white" />
             </a>
           </div>
         </div>
