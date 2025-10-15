@@ -1,8 +1,9 @@
 // components/AppointmentFormModal.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { X,ChevronDown } from "lucide-react";
+import { indianStatesCities } from "../data/indianStatesCities";
 
-const AppointmentFormModal = ({ isOpen, onClose }) => {
+const AppointmentFormModal = ({ isOpen, onClose, department: initialDepartment = "", doctor = null, selectedDate = "", selectedTime = "" }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -13,18 +14,53 @@ const AppointmentFormModal = ({ isOpen, onClose }) => {
     address: "",
     country: "India",
     state: "",
-    city: "",
+    district: "",
     pincode: "",
     mobile: "",
     email: "",
-    department: "",
+    department: initialDepartment,
     illnessDescription: "",
   });
+
+  const [cities, setCities] = useState([]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "state") {
+      setCities(indianStatesCities[value] || []);
+      setFormData((prev) => ({ ...prev, district: "" })); // Reset district when state changes
+    }
   };
+
+  // Update department when initialDepartment prop changes or when doctor prop changes
+  useEffect(() => {
+    if (doctor) {
+      // Extract department/specialty from doctor's specialty string
+      const specialty = doctor.specialty;
+      const department = specialty.split(',')[0].split(' and ')[0].split(' & ')[0].trim();
+      setFormData(prev => ({
+        ...prev,
+        department: department
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        department: initialDepartment
+      }));
+    }
+  }, [initialDepartment, doctor]);
+
+  // Set the selected date and time if they are provided
+  useEffect(() => {
+    if (selectedDate) {
+      setFormData(prev => ({
+        ...prev,
+        date: selectedDate
+      }));
+    }
+  }, [selectedDate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +91,17 @@ const AppointmentFormModal = ({ isOpen, onClose }) => {
             Book an Appointment
           </h2>
           <div className="w-16 h-1 bg-primary-gold mx-auto my-4 rounded"></div>
-          <p className="text-xl font-serif text-[#444] italic">
+          {doctor && (
+            <div className="text-lg font-semibold text-[#444]">
+              With Dr. {doctor.name.replace("Dr. ", "")}
+            </div>
+          )}
+          {selectedTime && (
+            <div className="text-md font-medium text-[#666] mt-1">
+              Date: {new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} at {selectedTime}
+            </div>
+          )}
+          <p className="text-xl font-serif text-[#44] italic mt-2">
             Your Path to Better Health Starts Here
           </p>
         </div>
@@ -168,8 +214,7 @@ const AppointmentFormModal = ({ isOpen, onClose }) => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="India">India</option>
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
+            
                 {/* Add more countries as needed */}
               </select>
             </div>
@@ -186,25 +231,27 @@ const AppointmentFormModal = ({ isOpen, onClose }) => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select State</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Maharashtra">Maharashtra</option>
-                {/* Add more states */}
+                {Object.keys(indianStatesCities).map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
               </select>
             </div>
             <div>
               <select
-                name="city"
-                value={formData.city}
+                name="district"
+                value={formData.district}
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <option value="">Select Cities</option>
-                <option value="Kochi">Kochi</option>
-                <option value="Chennai">Chennai</option>
-                <option value="Mumbai">Mumbai</option>
-                {/* Add cities based on selected state */}
+                <option value="">Select District</option>
+                {cities.map((district) => (
+                  <option key={district} value={district}>
+                    {district}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -222,9 +269,9 @@ const AppointmentFormModal = ({ isOpen, onClose }) => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <div className="flex items-center border border-gray-300 rounded-md">
+            <div className="flex items-center border border-gray-30 rounded-md">
               <div className="px-3 py-2 bg-gray-50 border-r border-gray-300 flex items-center gap-1">
-                <img src="/india-flag.png" alt="India" className="w-5 h-5" /> {/* Replace with actual flag */}
+                <img src="/flag.jpg" alt="India" className="w-5 h-5" /> {/* Replace with actual flag */}
                 <span>+91</span>
                 <ChevronDown size={14} className="ml-1 text-gray-500" />
               </div>
@@ -267,6 +314,25 @@ const AppointmentFormModal = ({ isOpen, onClose }) => {
                 <option value="Neurology">Neurology</option>
                 <option value="Orthopedics">Orthopedics</option>
                 <option value="Pediatrics">Pediatrics</option>
+                <option value="Plastic and Reconstructive Surgery">Plastic and Reconstructive Surgery</option>
+                <option value="Urology">Urology</option>
+                <option value="Nephrology">Nephrology</option>
+                <option value="General Medicine">General Medicine</option>
+                <option value="Neuro and Spine Surgery">Neuro and Spine Surgery</option>
+                <option value="Surgical Oncology">Surgical Oncology</option>
+                <option value="Radiation Oncology">Radiation Oncology</option>
+                <option value="Internal Medicine">Internal Medicine</option>
+                <option value="ENT">ENT</option>
+                <option value="General and Minimal Access Surgery">General and Minimal Access Surgery</option>
+                <option value="Orthopaedic and Joint Replacement">Orthopaedic and Joint Replacement</option>
+                <option value="Obstetrics and Gynaecology">Obstetrics and Gynaecology</option>
+                <option value="Dermatology">Dermatology</option>
+                <option value="Psychiatry">Psychiatry</option>
+                <option value="Anaesthesia">Anaesthesia</option>
+                <option value="Radiology">Radiology</option>
+                <option value="Blood Bank and Pathology">Blood Bank and Pathology</option>
+                <option value="Dental">Dental</option>
+                <option value="Physiotherapy and Rehabilitation">Physiotherapy and Rehabilitation</option>
               </select>
             </div>
           </div>
@@ -283,10 +349,7 @@ const AppointmentFormModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Footer Note */}
-          <p className="text-sm text-gray-600 italic">
-            *Appointments are not available on Saturdays & Sundays / Public Holidays / September 27
-          </p>
+        
 
           {/* Submit Button */}
           <div className="pt-4">

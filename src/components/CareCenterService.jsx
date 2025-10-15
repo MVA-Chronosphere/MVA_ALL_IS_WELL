@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import CardComponent from './CardComponent';
 import PatientStoryCard from './PatientStoryCard'; // Import PatientStoryCard
 import { doctors } from '../pages/FindADoctorPage';
+import AppointmentFormModal from './AppointmentFormModal';
 
 
 const CareCenterService = () => {
   const { service } = useParams();
+  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
 
   // Helper to extract YouTube video ID
   const getYouTubeVideoId = (url) => {
@@ -36,212 +38,481 @@ const CareCenterService = () => {
 
   // --- NEW: Organized testimonials by service slug ---
   const serviceTestimonialsMap = {
-  ent: [
+ ent: [
     {
+      id: 1,
       url: "https://youtu.be/g170O5kK_PA?si=_mumLBPr0JTUV7f_",
       title: "Successful Tonsillectomy Recovery",
-      description: "Patient shares smooth recovery after ENT surgery at All Is Well Hospital"
+      description: "Patient shares smooth recovery after ENT surgery at All Is Well Hospital",
+      doctor: "Patient",
+      specialty: "ENT Surgery"
     },
     {
+      id: 2,
       url: "https://www.youtube.com/shorts/4s1PoTDpmZY",
       title: "Sinus Treatment Success Story",
-      description: "How modern ENT procedures relieved chronic sinus issues"
+      description: "How modern ENT procedures relieved chronic sinus issues",
+      doctor: "Patient",
+      specialty: "Sinus Treatment"
     },
     {
-      url: "https://www.youtube.com/shorts/v0_4J4h__3E",
+      id: 3,
+      url: "https://www.youtube.com/shorts/ti3QjQ50PhE",
       title: "Improved Hearing Experience",
-      description: "Patient shares life-changing hearing improvement journey"
+      description: "Patient shares life-changing hearing improvement journey",
+      doctor: "Patient",
+      specialty: "Hearing Treatment"
     }
   ],
 
   pediatrics: [
     {
+      id: 1,
       url: "https://youtu.be/VvLznqx21xs?si=I-UR7jGlb7u5hFm5",
       title: "Child Wellness Journey",
-      description: "Parents express gratitude for expert pediatric care"
+      description: "Parents express gratitude for expert pediatric care",
+      doctor: "Patient",
+      specialty: "Pediatric Care"
+    },
+    {
+      id: 2,
+      url: "https://www.youtube.com/shorts/RsJfmpqsYz8",
+      title: "Pediatric Care Success Story",
+      description: "How our specialized care helped a young patient recover",
+      doctor: "Patient",
+      specialty: "Pediatric Treatment"
+    },
+    {
+      id: 3,
+      url: "https://youtu.be/alx2afQSnns?si=FhffFriHDwLbeGCp",
+      title: "Child Health Management",
+      description: "Parents share their experience with our pediatric specialists",
+      doctor: "Patient",
+      specialty: "Child Health"
     }
   ],
 
   oncology: [
     {
+      id: 1,
       url: "https://www.youtube.com/shorts/ijDE0G7K8Zo",
       title: "Cancer Care Journey",
-      description: "Emotional testimonial from a patient who beat cancer"
+      description: "Emotional testimonial from a patient who beat cancer",
+      doctor: "Patient",
+      specialty: "Cancer Treatment"
     },
     {
-      url: "https://www.youtube.com/shorts/RsJfmpqsYz8",
+      id: 2,
+      url: "https://youtu.be/GF8b1KDp_rY?si=6v30lQitF-haqasu",
       title: "Strength During Chemotherapy",
-      description: "Patient’s story of hope and resilience during treatment"
+      description: "Patient's story of hope and resilience during treatment",
+      doctor: "Patient",
+      specialty: "Chemotherapy"
     },
     {
-      url: "https://www.youtube.com/shorts/ti3QjQ50PhE",
+      id: 3,
+      url: "https://youtu.be/jzbJbYKLtiw?si=ylsA2n2trWHzFdue",
       title: "Comprehensive Oncology Support",
-      description: "All-round support from the oncology care team"
-    },
-    {
-      url: "https://www.youtube.com/shorts/Oh4KBkDPc8I",
-      title: "Fighting Cancer with Courage",
-      description: "Patient discusses her journey through treatment and recovery"
-    },
-    {
-      url: "https://www.youtube.com/shorts/V0ylRPBx_Mg",
-      title: "Survivor Story: New Life After Cancer",
-      description: "Overcoming cancer with care and compassion"
-    },
-    {
-      url: "https://youtu.be/8VdI0sd_BbE?si=2cejECHAql28OXhi",
-      title: "Cancer Survivor’s Motivation",
-      description: "Hope-filled recovery story from our oncology department"
+      description: "All-round support from the oncology care team",
+      doctor: "Patient",
+      specialty: "Oncology Care"
     }
-  ],
+ ],
 
   orthopedic: [
     {
+      id: 1,
       url: "https://youtu.be/uZgO1ukJULk?si=dpSGtS8aF3YI5kqE",
       title: "Knee Replacement Recovery",
-      description: "Patient walks pain-free again after surgery"
+      description: "Patient walks pain-free again after surgery",
+      doctor: "Patient",
+      specialty: "Knee Replacement"
     },
     {
-      url: "https://youtu.be/GF8b1KDp_rY?si=6v30lQitF-haqasu",
+      id: 2,
+      url: "https://youtu.be/NNb7GEp1J3k?si=rPVu5RrvlkvVzK64",
       title: "Hip Surgery Success Story",
-      description: "A senior patient regains mobility after expert orthopedic care"
+      description: "A senior patient regains mobility after expert orthopedic care",
+      doctor: "Patient",
+      specialty: "Hip Surgery"
     },
     {
-      url: "https://youtu.be/alx2afQSnns?si=FhffFriHDwLbeGCp",
+      id: 3,
+      url: "https://youtube.com/shorts/sw7JJcR5Kl8?si=EdfqLbaDQENG9GP8",
       title: "Back Pain Relief Journey",
-      description: "Patient shares relief after spine treatment"
-    },
-    {
-      url: "https://youtu.be/sQ6yA1ns1b8?si=kIvlq1Y8KeFpU6RP",
-      title: "Fracture Recovery Experience",
-      description: "Swift healing under expert orthopedic supervision"
-    },
-    {
-      url: "https://youtu.be/87u6qeim6Ac?si=cbT3DloZzBA5cgfs",
-      title: "Sports Injury Rehabilitation",
-      description: "Athlete shares comeback story after injury treatment"
+      description: "Patient shares relief after spine treatment",
+      doctor: "Patient",
+      specialty: "Spine Treatment"
     }
-  ],
+ ],
 
   gynecology: [
     {
+      id: 1,
       url: "https://youtu.be/sPPxCGDMlDQ?si=qkxcAY6UbL6Hgy0N",
       title: "Safe and Happy Delivery Experience",
-      description: "Mother shares joyful childbirth story"
+      description: "Mother shares joyful childbirth story",
+      doctor: "Patient",
+      specialty: "Obstetrics"
     },
     {
-      url: "https://youtu.be/NNb7GEp1J3k?si=rPVu5RrvlkvVzK64",
-      title: "Women’s Health Awareness",
-      description: "Insights into gynecological wellness and preventive care"
+      id: 2,
+      url: "https://youtube.com/shorts/RQDde7P1z-8?si=8OZvNSfP75SyQTP9",
+      title: "Women's Health Awareness",
+      description: "Insights into gynecological wellness and preventive care",
+      doctor: "Patient",
+      specialty: "Gynecology"
     },
     {
-      url: "https://youtu.be/jzbJbYKLtiw?si=ylsA2n2trWHzFdue",
+      id: 3,
+      url: "https://www.youtube.com/shorts/Oh4KBkDPc8I",
       title: "Fertility and Motherhood Journey",
-      description: "Personal journey to becoming a parent with our fertility care"
-    },
-    {
-      url: "https://youtu.be/0L_61AqREVc?si=1zpSgVwQZD2UH0HE",
-      title: "Laparoscopic Surgery Story",
-      description: "Patient shares minimally invasive gynecology surgery experience"
+      description: "Personal journey to becoming a parent with our fertility care",
+      doctor: "Patient",
+      specialty: "Fertility Treatment"
     }
   ],
 
   criticalCare: [
     {
+      id: 1,
       url: "https://youtube.com/shorts/cm1lOXqutjw?si=gEdATYUeceyMGSyI",
       title: "ICU Recovery Success",
-      description: "Life saved in our advanced critical care unit"
+      description: "Life saved in our advanced critical care unit",
+      doctor: "Patient",
+      specialty: "Critical Care"
     },
     {
-      url: "https://youtube.com/shorts/RQDde7P1z-8?si=8OZvNSfP75SyQTP9",
+      id: 2,
+      url: "https://www.facebook.com/reel/1129123309099418",
       title: "Pulmonology Excellence",
-      description: "Patient breathes easy again after respiratory crisis"
+      description: "Patient breathes easy again after respiratory crisis",
+      doctor: "Patient",
+      specialty: "Pulmonology"
+    },
+    {
+      id: 3,
+      url: "https://youtu.be/sQ6yA1ns1b8?si=kIvlq1Y8KeFpU6RP",
+      title: "Critical Care Recovery Story",
+      description: "Recovery journey in our advanced critical care unit",
+      doctor: "Patient",
+      specialty: "Critical Care"
     }
   ],
 
   bloodBank: [
     {
+      id: 1,
       url: "https://www.youtube.com/shorts/NGidRgd3XFE",
       title: "Blood Donation Awareness",
-      description: "Encouraging voluntary blood donations at our hospital"
+      description: "Encouraging voluntary blood donations at our hospital",
+      doctor: "Patient",
+      specialty: "Blood Donation"
+    },
+    {
+      id: 2,
+      url: "https://www.youtube.com/shorts/VcNfze5Go20",
+      title: "Life-Saving Blood Transfusion",
+      description: "How blood donation saved a patient's life",
+      doctor: "Patient",
+      specialty: "Blood Transfusion"
+    },
+    {
+      id: 3,
+      url: "https://youtu.be/0L_61AqREVc?si=1zpSgVwQZD2UH0HE",
+      title: "Importance of Blood Donation",
+      description: "Patient shares gratitude for life-saving blood transfusion",
+      doctor: "Patient",
+      specialty: "Blood Donation"
     }
   ],
 
   pathology: [
     {
+      id: 1,
       url: "https://youtu.be/mPtWU2aaLfY?si=uzV0KU33k-ZjWeRk",
       title: "Accurate Diagnostic Reports",
-      description: "Behind the scenes of our pathology lab’s precision"
+      description: "Behind the scenes of our pathology lab's precision",
+      doctor: "Patient",
+      specialty: "Pathology"
     },
     {
-      url: "https://www.facebook.com/reel/1129123309099418",
+      id: 2,
+      url: "https://youtu.be/BIT8M5VF0m8?si=GKzlAxQbocJfCUWl",
       title: "Pathology Department Highlights",
-      description: "Technology-driven diagnostics for better outcomes"
+      description: "Technology-driven diagnostics for better outcomes",
+      doctor: "Patient",
+      specialty: "Pathology"
+    },
+    {
+      id: 3,
+      url: "https://youtu.be/DxNa8HCsvJQ?si=Xpf7Xtg6qBQOtvQ4",
+      title: "Advanced Laboratory Testing",
+      description: "How our pathology department ensures accurate results",
+      doctor: "Patient",
+      specialty: "Laboratory Testing"
     }
   ],
 
   dietitian: [
     {
+      id: 1,
       url: "https://www.youtube.com/shorts/zZg11xXWWzA",
       title: "Healthy Lifestyle Transformation",
-      description: "Patient shares diet plan success with our dietitian"
+      description: "Patient shares diet plan success with our dietitian",
+      doctor: "Patient",
+      specialty: "Nutrition & Dietetics"
     },
     {
-      url: "https://www.youtube.com/shorts/VcNfze5Go20",
+      id: 2,
+      url: "https://youtu.be/ysoS6vpwLXU?si=_QQ_hjsyfT2lUCr3",
       title: "Nutrition Tips for Wellness",
-      description: "Expert advice on balanced diets and healthy eating"
+      description: "Expert advice on balanced diets and healthy eating",
+      doctor: "Patient",
+      specialty: "Nutrition"
+    },
+    {
+      id: 3,
+      url: "https://www.youtube.com/shorts/V0ylRPBx_Mg",
+      title: "Personalized Diet Plan Success",
+      description: "How our dietitian helped transform a patient's health",
+      doctor: "Patient",
+      specialty: "Dietetics"
     }
-  ],
+ ],
 
   ambulance: [
     {
+      id: 1,
       url: "https://youtu.be/oc0YnKVnz64?si=tj_IzhWCvHStOFX4",
       title: "Emergency Response in Action",
-      description: "How our ambulance team saves lives in golden hour"
+      description: "How our ambulance team saves lives in golden hour",
+      doctor: "Patient",
+      specialty: "Emergency Services"
     },
     {
-      url: "https://youtu.be/BIT8M5VF0m8?si=GKzlAxQbocJfCUWl",
+      id: 2,
+      url: "https://youtu.be/87u6qeim6Ac?si=cbT3DloZzBA5cgfs",
       title: "Swift Medical Transport",
-      description: "Real-time look at our 24/7 emergency ambulance service"
+      description: "Real-time look at our 24/7 emergency ambulance service",
+      doctor: "Patient",
+      specialty: "Ambulance Services"
     }
-  ],
+ ],
 
   eye: [
     {
+      id: 1,
       url: "https://youtu.be/NZ6yz2YU3qI?si=VsAm6h4QtJDMQJC0",
       title: "Cataract Surgery Success",
-      description: "Clear vision restored after cataract surgery"
+      description: "Clear vision restored after cataract surgery",
+      doctor: "Patient",
+      specialty: "Ophthalmology"
     },
     {
-      url: "https://youtu.be/ysoS6vpwLXU?si=_QQ_hjsyfT2lUCr3",
-      title: "LASIK Vision Correction Journey",
-      description: "Patient enjoys glasses-free life after LASIK"
+      id: 2,
+      url: "https://youtu.be/8VdI0sd_BbE?si=2cejECHAql28OXhi",
+      title: "Vision Correction Journey",
+      description: "Patient shares life-changing vision improvement",
+      doctor: "Patient",
+      specialty: "Vision Correction"
     }
-  ],
+ ],
 
   dentistry: [
     {
+      id: 1,
       url: "https://youtube.com/shorts/Xq4_EOngswU?si=RL3A1Lv6NS9SXeFK",
       title: "Smile Makeover Experience",
-      description: "Patient shares confidence boost after dental treatment"
+      description: "Patient shares confidence boost after dental treatment",
+      doctor: "Patient",
+      specialty: "Dental Care"
     }
   ],
 
   tpa: [
     {
+      id: 1,
       url: "https://youtube.com/shorts/mB18n0ESGv8?si=voYynwd1q_LpGRl2",
       title: "TPA Service Guide",
-      description: "Understanding our seamless cashless insurance process"
+      description: "Understanding our seamless cashless insurance process",
+      doctor: "Patient",
+      specialty: "TPA Services"
     }
   ],
 
   dermatology: [
     {
+      id: 1,
       url: "https://youtube.com/shorts/1kpFngsBeNI?si=TiQiigtY3UkZvNUS",
       title: "Skin Glow Treatment Result",
-      description: "Patient shares glowing skin transformation story"
+      description: "Patient shares glowing skin transformation story",
+      doctor: "Patient",
+      specialty: "Dermatology"
     }
-  ]
+  ],
+
+  neurology: [
+    {
+      id: 1,
+      url: "https://youtube.com/shorts/lH9zzjYaDJg?si=sD9-AOsrrnx3BB-W",
+      title: "Neurological Treatment Success",
+      description: "Patient shares recovery story after neurological treatment",
+      doctor: "Patient",
+      specialty: "Neurology"
+    },
+    {
+      id: 2,
+      url: "https://youtube.com/shorts/4x0d5HbtJP4?si=Kk47_bCsWerK_-D5",
+      title: "Brain Health Journey",
+      description: "How our neurology team helped with brain health issues",
+      doctor: "Patient",
+      specialty: "Neurology"
+    },
+    {
+      id: 3,
+      url: "https://youtube.com/shorts/Nkjb7U4wNSQ?si=TZfG5LewI6lSRX3l",
+      title: "Neurological Disorder Management",
+      description: "Patient shares experience with neurological condition treatment",
+      doctor: "Patient",
+      specialty: "Neurology"
+    }
+  ],
+
+  cardiology: [
+    {
+      id: 1,
+      url: "https://www.youtube.com/shorts/vUoCGKB9qj8",
+      title: "Heart Surgery Recovery",
+      description: "Patient shares successful heart surgery recovery experience",
+      doctor: "Patient",
+      specialty: "Cardiology"
+    },
+    {
+      id: 2,
+      url: "https://www.youtube.com/watch?v=O5ToZk1NMe8",
+      title: "Cardiac Care Success Story",
+      description: "How our cardiology team saved a patient's life",
+      doctor: "Patient",
+      specialty: "Cardiology"
+    },
+    {
+      id: 3,
+      url: "https://www.youtube.com/shorts/lM5GWwXSNCk",
+      title: "Heart Health Management",
+      description: "Patient shares journey of managing heart condition",
+      doctor: "Patient",
+      specialty: "Cardiology"
+    }
+ ],
+
+  "general-surgery": [
+    {
+      id: 1,
+      url: "https://youtu.be/sCjGoLtDcAA?si=ISjC6H12rfucKxf",
+      title: "General Surgery Success",
+      description: "Patient shares positive experience after general surgery",
+      doctor: "Patient",
+      specialty: "General Surgery"
+    },
+    {
+      id: 2,
+      url: "https://youtu.be/uiE-nvWI0iU?si=PNEPozzg9jo56O80",
+      title: "Surgical Recovery Journey",
+      description: "Recovery story after minimally invasive general surgery",
+      doctor: "Patient",
+      specialty: "Surgery"
+    },
+    {
+      id: 3,
+      url: "https://youtu.be/iwQp3hjugkM?si=HiNzPmO_vrocJILx",
+      title: "Surgical Care Excellence",
+      description: "Patient testimonial on quality of surgical care received",
+      doctor: "Patient",
+      specialty: "Surgery"
+    }
+  ],
+
+  "plastic-surgery": [
+    {
+      id: 1,
+      url: "https://www.youtube.com/watch?v=l-5qvHMwHa8",
+      title: "Plastic Surgery Transformation",
+      description: "Patient shares remarkable transformation after plastic surgery",
+      doctor: "Patient",
+      specialty: "Plastic Surgery"
+    },
+    {
+      id: 2,
+      url: "https://www.youtube.com/shorts/dka0ctsGtLU",
+      title: "Reconstructive Surgery Success",
+      description: "How reconstructive surgery changed a patient's life",
+      doctor: "Patient",
+      specialty: "Reconstructive Surgery"
+    },
+    {
+      id: 3,
+      url: "https://youtu.be/pRz5HwINj-0?si=bq58xAypvx1l7tn-",
+      title: "Confidence After Surgery",
+      description: "Patient shares renewed confidence after plastic surgery",
+      doctor: "Patient",
+      specialty: "Plastic Surgery"
+    }
+  ],
+
+  "general-medicine": [
+    {
+      id: 1,
+      url: "https://youtu.be/efJxymqY_0g?si=X9qjLSaH5LGLnWeW",
+      title: "General Medicine Care",
+      description: "Patient shares positive experience with general medicine treatment",
+      doctor: "Patient",
+      specialty: "General Medicine"
+    },
+    {
+      id: 2,
+      url: "https://youtu.be/LyZj1kCT_8E?si=K83EXC52mrFoJ7CS",
+      title: "Internal Medicine Success",
+      description: "How our general medicine team helped with chronic condition",
+      doctor: "Patient",
+      specialty: "General Medicine"
+    },
+    {
+      id: 3,
+      url: "https://www.youtube.com/shorts/v0_4J4h__3E",
+      title: "Comprehensive Care Experience",
+      description: "Patient testimonial on general medicine services",
+      doctor: "Patient",
+      specialty: "General Medicine"
+    }
+  ],
+
+  urology: [
+    {
+      id: 1,
+      url: "https://youtube.com/shorts/NTnhjzafJX0?si=JPjC_1yRwd7rcjfS",
+      title: "Urology Treatment Success",
+      description: "Patient shares positive outcome after urology treatment",
+      doctor: "Patient",
+      specialty: "Urology"
+    },
+    {
+      id: 2,
+      url: "https://youtu.be/t5Edi_E1zTE?si=nJKYxi6gR8QW0zDs",
+      title: "Kidney Stone Treatment",
+      description: "How our urology team helped with kidney stone removal",
+      doctor: "Patient",
+      specialty: "Urology"
+    },
+    {
+      id: 3,
+      url: "https://youtu.be/qW6iMZgxUAo?si=QEaBfy931FzM4Bao",
+      title: "Urological Health Recovery",
+      description: "Patient shares recovery journey after urology procedure",
+      doctor: "Patient",
+      specialty: "Urology"
+    }
+ ]
 };
 
 
@@ -309,6 +580,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   const serviceDetails = {
     "neuro-spine-surgery": {
       title: "Neuro and Spine Surgery Treatments",
+      image: "/Serviceimages/Neuro and spine surgery.jpeg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/neuro and spine surgery.jpg",
       heroContent: [
         { 
           title: "Brain Tumor Surgery", 
@@ -351,6 +624,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     },
     cardiology: {
       title: "Treatments Available in Cardiology",
+      image: "/Serviceimages/Cardiology.jpeg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/Cardiology.jpg",
       heroContent: [
         { 
           title: "Angioplasty", 
@@ -392,6 +667,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     },
     "cardio-thoracic-surgery": {
       title: "Treatments Available in Thoracic Surgery",
+      image: "/Serviceimages/Cardiovascular.jpeg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/cardiovascular thoracic surgery.jpg",
       heroContent: [
         { 
           title: "Lobectomy", 
@@ -433,6 +710,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     },
     "plastic-surgery": {
       title: "Treatments Available in Plastic and Reconstructive",
+      image: "/Serviceimages/plastic and reconstructive.jpeg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/plastic and reconstructive surgery.jpg",
       heroContent: [
         { 
           title: "Rhinoplasty", 
@@ -474,6 +753,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     },
     urology: {
       title: "Treatments Available in Urology",
+      image: "/Serviceimages/urology.jpeg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/urology treatment.jpg",
       heroContent: [
         { 
           title: "Kidney Stone Removal", 
@@ -516,6 +797,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
   oncology: {
     title: "Treatments Available in Oncology",
+    image: "/Serviceimages/oncology.jpeg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/oncology.jpg",
     heroContent: [
       { 
         title: "Chemotherapy", 
@@ -557,6 +840,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   gastroenterology: {
     title: "Treatments Available in Gastroenterology",
+    image: "/Serviceimages/radiology_and_imaging.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/gastroenterology.jpg",
     heroContent: [
       { 
         title: "Endoscopy", 
@@ -598,10 +883,12 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   endocrinology: {
     title: "Treatments Available in Endocrinology",
+    image: "/Serviceimages/endocrine.jpeg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/endocrionology.jpg",
     heroContent: [
       { 
         title: "Diabetes Management", 
-        description: "Comprehensive care for Type 1, Type 2, and gestational diabetes with medication and lifestyle plans."
+        description: "Comprehensive care plans to monitor and control blood sugar levels effectively."
       },
       { 
         title: "Thyroid Disorder Treatment", 
@@ -639,6 +926,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   rheumatology: {
     title: "Treatments Available in Rheumatology",
+    image: "/Serviceimages/rheumatology.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/rheumatology.jpg",
     heroContent: [
       { 
         title: "Rheumatoid Arthritis Management", 
@@ -669,59 +958,63 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     additionalInfo: {
       title: "Supporting Joint and Autoimmune Health",
       description: "Rheumatological conditions like arthritis and autoimmune diseases can impact daily life. Early intervention and proper care can improve mobility and quality of life.",
-      listItems: [
-        "Engage in low-impact exercise to maintain joint flexibility",
-        "Follow an anti-inflammatory diet rich in whole foods",
-        "Take medications as prescribed to manage symptoms",
-        "Get regular checkups to monitor disease progression",
-        "Incorporate stress-reducing activities like yoga or meditation"
-      ]
-    }
-  },
-  radiology: {
-    title: "Treatments Available in Radiology",
-    heroContent: [
-      { 
-        title: "X-Ray", 
-        description: "Quick and painless imaging to examine bones, lungs, and other internal structures."
-      },
-      { 
-        title: "Ultrasound", 
-        description: "Safe, non-invasive imaging using sound waves to view organs and soft tissues."
-      },
-      { 
-        title: "MRI Scan", 
-        description: "Detailed imaging technique to visualize organs, joints, and tissues using magnetic fields."
-      },
-      { 
-        title: "CT Scan", 
-        description: "Advanced cross-sectional imaging for detecting diseases, injuries, and internal abnormalities."
-      },
-      { 
-        title: "Mammography", 
-        description: "Specialized X-ray for early detection and diagnosis of breast conditions."
-      },
-      { 
-        title: "Fluoroscopy", 
-        description: "Real-time moving X-ray imaging to observe internal organs during diagnostic or therapeutic procedures."
+        listItems: [
+          "Engage in low-impact exercise to maintain joint flexibility",
+          "Follow an anti-inflammatory diet rich in whole foods",
+          "Take medications as prescribed to manage symptoms",
+          "Get regular checkups to monitor disease progression",
+          "Incorporate stress-reducing activities like yoga or meditation"
+        ]
       }
-    ],
-    doctorIds: [4], // Dr. Shweta Narwade
-    additionalInfo: {
-      title: "Importance of Radiology & Imaging",
-      description: "Radiology plays a crucial role in modern healthcare by allowing accurate diagnosis and monitoring of various medical conditions through advanced imaging techniques.",
-      listItems: [
-        "Detect internal injuries and fractures quickly",
-        "Identify tumors and abnormal growths",
-        "Examine brain and spinal cord conditions",
-        "Guide minimally invasive procedures",
-        "Support early detection and timely treatment"
-      ]
-    }
-  },
+    },
+    radiology: {
+      title: "Treatments Available in Radiology",
+      image: "/Serviceimages/radiology and imaging.jpeg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/radiology.jpg",
+      heroContent: [
+        { 
+          title: "X-Ray", 
+          description: "Quick and painless imaging to examine bones, lungs, and other internal structures."
+        },
+        { 
+          title: "Ultrasound", 
+          description: "Safe, non-invasive imaging using sound waves to view organs and soft tissues."
+        },
+        { 
+          title: "MRI Scan", 
+          description: "Detailed imaging technique to visualize organs, joints, and tissues using magnetic fields."
+        },
+        { 
+          title: "CT Scan", 
+          description: "Advanced cross-sectional imaging for detecting diseases, injuries, and internal abnormalities."
+        },
+        { 
+          title: "Mammography", 
+          description: "Specialized X-ray for early detection and diagnosis of breast conditions."
+        },
+        { 
+          title: "Fluoroscopy", 
+          description: "Real-time moving X-ray imaging to observe internal organs during diagnostic or therapeutic procedures."
+        }
+      ],
+      doctorIds: [4], // Dr. Shweta Narwade
+      additionalInfo: {
+        title: "Importance of Radiology & Imaging",
+        description: "Radiology plays a crucial role in modern healthcare by allowing accurate diagnosis and monitoring of various medical conditions through advanced imaging techniques.",
+        listItems: [
+          "Detect internal injuries and fractures quickly",
+          "Identify tumors and abnormal growths",
+          "Examine brain and spinal cord conditions",
+          "Guide minimally invasive procedures",
+          "Support early detection and timely treatment"
+        ]
+      }
+    },
 
   "critical-care": {
     title: "Treatments Available in Critical Care Medicine",
+    image: "/Serviceimages/critical_care_medicine.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/criticalcaremedicine.jpg",
     heroContent: [
       { 
         title: "Intensive Care Unit (ICU)", 
@@ -763,6 +1056,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "anaesthesia": {
     title: "Treatments Available in Anaesthesia and Pain",
+    image: "/Serviceimages/anesthesia.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/anaesthesia.jpg",
     heroContent: [
       { 
         title: "Preoperative Assessment", 
@@ -804,6 +1099,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "general-and-minimal-invasive-surgery": {
     title: "Treatments Available in General and Minimal Invasive Surgery",
+    image: "/Serviceimages/general and minimal.png",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/general and minimal invasive surgery.jpg",
     heroContent: [
       { 
         title: "Laparoscopic Appendectomy", 
@@ -845,6 +1142,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "general-medicine": {
     title: "Treatments Available in General Medicine",
+    image: "/Serviceimages/general medicine.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/general medicine.jpg",
     heroContent: [
       { 
         title: "Diabetes Management", 
@@ -886,6 +1185,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "internal-medicine": {
     title: "Treatments Available in Internal Medicine",
+    image: "/Serviceimages/internal medicine.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/internal medicine.jpg",
     heroContent: [
       { 
         title: "Diabetes Care", 
@@ -928,6 +1229,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
   "obstetrics-and-gynaecology": {
     title: "Treatments Available in Obstetrics and Gynaecology",
+    image: "/Serviceimages/obstetrics and gynaecology.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/obstetrics and gynaecology .jpg",
     heroContent: [
       { 
         title: "Antenatal Care", 
@@ -969,6 +1272,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   orthopaedics: {
     title: "Treatments Available in Orthopaedics",
+    image: "/Serviceimages/orthopedics.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/orthopedics treatment.jpg",
     heroContent: [
       { 
         title: "Arthroscopy", 
@@ -1010,6 +1315,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   pathology: {
     title: "Treatments Available in Pathology",
+    image: "/Serviceimages/pathology.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/pathology.jpg",
     heroContent: [
       { 
         title: "Complete Blood Count (CBC)", 
@@ -1051,6 +1358,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   haematology: {
     title: "Treatments Available in Haematology",
+    image: "/Serviceimages/hematology.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/hematology.jpg",
     heroContent: [
       { 
         title: "Blood Transfusion", 
@@ -1092,6 +1401,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "blood-bank": {
     title: "Treatments Available in Blood Bank",
+    image: "/Serviceimages/blood_bank_components.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/bloodbank.jpg",
     heroContent: [
       { 
         title: "Blood Donation", 
@@ -1134,6 +1445,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
   ent: {
     title: "Treatments Available in ENT",
+    image: "/Serviceimages/ent_hospital_examination.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/ear nose throat.jpg",
     heroContent: [
       { 
         title: "Tonsillectomy", 
@@ -1175,6 +1488,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   ophthalmology: {
     title: "Treatments Available in Ophthalmology",
+    image: "/Serviceimages/ophthalmology.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/ophthalmology.jpg",
     heroContent: [
       { 
         title: "Cataract Surgery", 
@@ -1216,6 +1531,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   dermatology: {
     title: "Treatments Available in Dermatology",
+    image: "/Serviceimages/dermatology.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/dermatology.jpg",
     heroContent: [
       { 
         title: "Acne Treatment", 
@@ -1257,6 +1574,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   psychiatry: {
     title: "Treatments Available in Psychiatry",
+    image: "/Serviceimages/psychiatry.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/psychiatry.jpg",
     heroContent: [
       { 
         title: "Depression Treatment", 
@@ -1298,6 +1617,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   dental: {
     title: "Treatments Available in Dental",
+    image: "/Serviceimages/dental_services.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/dental.jpg",
     heroContent: [
       { 
         title: "Dental Check-Up", 
@@ -1340,6 +1661,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
   yoga: {
     title: "Treatments Available in Yoga",
+    image: "/Serviceimages/yoga.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/yoga.jpg",
     heroContent: [
       { 
         title: "Hatha Yoga", 
@@ -1381,6 +1704,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   physiotherapy: {
     title: "Treatments Available in Physiotherapy",
+    image: "/Serviceimages/physiotherapy.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/physiotherapy.jpg", // Assuming a physiotherapy banner exists or using a generic one
     heroContent: [
       { 
         title: "Manual Therapy", 
@@ -1422,6 +1747,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "nutrition-and-diet": {
     title: "Treatments Available in Nutrition and Diet",
+    image: "/Serviceimages/nutrition_and_dietetics.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/nutrition and dietetics.jpg",
     heroContent: [
       { 
         title: "Personalized Meal Planning", 
@@ -1488,6 +1815,15 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
   return (
     <div className="min-h-screen bg-white text-gray-700 font-sans">
+      {/* Banner Section */}
+      <div className="relative w-full min-h-[200px] max-h-[400px] overflow-hidden">
+        <img
+          src={currentService.bannerImage || currentService.image}
+          alt={`${currentService.title} Banner`}
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
+
       {/* Hero Section */}
       <div className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -1551,11 +1887,17 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
               </div>
             </div>
           </div>
-          <div className="flex justify-center mt-8 space-x-4">
-            <button className="bg-primary-gold text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-gold/90 transition duration-300">
+            <div className="flex justify-center mt-8 space-x-4">
+            <button 
+              className="bg-primary-gold text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-gold/90 transition duration-300"
+              onClick={() => window.location.href = "tel:+917697744444"}
+            >
               Call Now
             </button>
-            <button className="bg-[#002d72] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#001d52] transition duration-300">
+            <button 
+              className="bg-[#002d72] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#001d52] transition duration-300"
+              onClick={() => setIsAppointmentModalOpen(true)}
+            >
               Book Appointment
             </button>
           </div>
@@ -1568,7 +1910,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
           <div className="flex flex-col lg:flex-row items-center gap-8">
             <div className="lg:w-1/2">
               <img 
-                src="/hero/hospitaldesign.png"
+                src={currentService.image}
                 alt={currentService.title}
                 className="w-full h-auto rounded-lg shadow-md max-w-full"
               />
@@ -1591,41 +1933,80 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
         </div>
       </div>
       
-      {/* Patient Stories Carousel */}
+      {/* Patient Stories Grid */}
 <div className="py-12 bg-[#f9f9f9]">
   <div className="max-w-7xl mx-auto px-6 md:px-12">
-    <h2 className="text-3xl font-serif font-bold text-[#002d72] text-center mb-8">
-      Patient Stories
-    </h2>
-
-    {currentTestimonials.length > 0 ? (
-      <div className="flex overflow-x-auto gap-6 pb-4 scrollbar-hide">
-        {currentTestimonials.map((testimonial, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 w-[300px] md:w-[400px] bg-white rounded-xl shadow-md overflow-hidden"
-          >
-            <a
-              href={testimonial.videoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+    <div className="text-center mb-8 sm:mb-12">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 font-serif mb-2">
+        Patient Stories
+      </h2>
+      <p className="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
+        Hear from our patients about their healing journey with us
+      </p>
+    </div>
+    {currentTestimonialData.length > 0 ? (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {currentTestimonialData.map((feedback, index) => {
+          const videoId = getYouTubeVideoId(feedback.url);
+          const thumbnail = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : 'https://placehold.co/600x400/eee/31343C?text=No+Video';
+          return (
+            <div
+              key={`feedback-${feedback.id}`}
+              className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-white border-gray-10"
             >
-              <img
-                src={testimonial.image}
-                alt={testimonial.title}
-                className="w-full h-48 object-cover max-w-full"
-              />
-              <div className="p-4">
-                <h3 className="font-serif font-bold text-[#002d72] text-lg">
-                  {testimonial.title}
-                </h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  {testimonial.description}
-                </p>
+              {/* Video Thumbnail */}
+              <div className="relative aspect-video bg-gray-200">
+                <img
+                  src={thumbnail}
+                  alt={feedback.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-opacity">
+                  <button
+                    onClick={() => window.open(feedback.url, "_blank")}
+                    className="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition transform group-hover:scale-110"
+                    aria-label={`Watch video: ${feedback.title}`}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                  </button>
+                </div>
               </div>
-            </a>
-          </div>
-        ))}
+              {/* Video Info */}
+              <div className="p-4 sm:p-5">
+                <h3 className="font-semibold text-gray-800 line-clamp-2 sm:line-clamp-3 mb-2 sm:mb-3 text-base sm:text-lg">
+                  {feedback.title}
+                </h3>
+                <div className="flex items-center gap-2 text-xs text-gray-500 mb-1 sm:mb-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+                  Admitted Under
+                </div>
+                <div className="font-medium text-blue-700 mb-1 text-sm sm:text-base">
+                  {feedback.doctor}
+                </div>
+                <div className="text-xs sm:text-sm text-gray-600 leading-tight mb-2 sm:mb-3">
+                  {feedback.specialty}
+                </div>
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 24 24"
+                      fill={i < 5 ? "#fbbf24" : "#d1d5db"}
+                      stroke={i < 5 ? "#fbbf24" : "#d1d5db"}
+                      className="lucide lucide-star"
+                    >
+                      <polygon points="12 2 15.09 8.26 2 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     ) : (
       <div className="text-center py-8">
@@ -1634,6 +2015,11 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     )}
   </div>
 </div>
+      <AppointmentFormModal 
+        isOpen={isAppointmentModalOpen} 
+        onClose={() => setIsAppointmentModalOpen(false)} 
+        department={currentService.title}
+      />
     </div>
   );
 };

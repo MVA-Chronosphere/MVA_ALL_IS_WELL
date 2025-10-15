@@ -191,7 +191,7 @@ const AboutUs = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {/* Board Member 1 */}
             <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
+              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
                 <img 
                   src="board/Manjusha.jpg" 
                   alt="Manjusha Chouksey"
@@ -204,7 +204,7 @@ const AboutUs = () => {
 
             {/* Board Member 2 */}
             <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
+              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
                 <img 
                   src="board/sudhir.jpg" 
                   alt="Sudhir Mahajan"
@@ -217,7 +217,7 @@ const AboutUs = () => {
 
             {/* Board Member 3 */}
             <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
+              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
                 <img 
                   src="board/Anand.webp" 
                   alt="Anand Prakash Chouksey"
@@ -230,7 +230,7 @@ const AboutUs = () => {
 
             {/* Board Member 4 */}
             <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
+              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
                 <img 
                   src="board/vandana.jpg" 
                   alt="Vandana Patel"
@@ -243,7 +243,7 @@ const AboutUs = () => {
 
             {/* Board Member 5 */}
             <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
+              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
                 <img 
                   src="board/kabir.jpg" 
                   alt="Kabir Chouksey"
@@ -251,12 +251,12 @@ const AboutUs = () => {
                 />
               </div>
               <h3 className="text-xl font-serif font-bold text-[#002d72] mb-1">Kabir Chouksey</h3>
-              <p className="text-[#444] font-sans">Treasurer</p>
+              <p className="text-[#44] font-sans">Treasurer</p>
             </div>
 
             {/* Board Member 6 */}
             <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
+              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
                 <img 
                   src="board/antra.jpg" 
                   alt="Antra Chouksey"
@@ -269,7 +269,7 @@ const AboutUs = () => {
 
             {/* Board Member 7 */}
             <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
+              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
                 <img 
                   src="board/devanshi.jpg" 
                   alt="Devanshi Chouksey"

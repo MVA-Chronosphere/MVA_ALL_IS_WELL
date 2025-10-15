@@ -5,8 +5,9 @@ import { Search, ChevronDown, ChevronUp } from 'lucide-react';
 import FindDoctorCard from '../components/FindDoctorCard';
 
 const FindADoctorPage = () => {
-  const [searchParams] = useSearchParams();
+   const [searchParams] = useSearchParams();
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLetter, setSelectedLetter] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState(searchParams.get('department') || '');
@@ -250,7 +251,7 @@ const FindADoctorPage = () => {
 
           {/* Doctors Listing */}
           <div className="lg:col-span-3">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {doctors
                 .filter((doctor) => {
                   // Filter by search query
@@ -306,7 +307,10 @@ const FindADoctorPage = () => {
                 <FindDoctorCard
                   key={doctor.id}
                   doctor={doctor}
-                  onBookAppointment={() => setIsAppointmentModalOpen(true)}
+                  onBookAppointment={(selectedDoc) => {
+                    setSelectedDoctor(selectedDoc);
+                    setIsAppointmentModalOpen(true);
+                  }}
                 />
               ))}
             </div>
@@ -317,7 +321,11 @@ const FindADoctorPage = () => {
       {/* Appointment Modal */}
       <AppointmentFormModal 
         isOpen={isAppointmentModalOpen} 
-        onClose={() => setIsAppointmentModalOpen(false)} 
+        onClose={() => {
+          setIsAppointmentModalOpen(false);
+          setSelectedDoctor(null);
+        }}
+        doctor={selectedDoctor}
       />
     </div>
   );
@@ -538,7 +546,7 @@ export const doctors = [
       id: 31,
       name: "DR. Nazma",
       specialty: "Certified Yoga Instructor, Certified Dietitian & Nutritionist",
-      image: "/placeholders/doctor-placeholder.jpg",
+      image: "/Doctorphotos/Nazma Maam.png",
       location: "All Is Well Super Clinic Burhanpur",
     },
   ];

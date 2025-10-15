@@ -3,6 +3,9 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Slider from "react-slick";
 import AppointmentFormModal from '../components/AppointmentFormModal';
 import DoctorInfoCard from '../components/DoctorInfoCard';
+import DepartmentsSection from '../components/DepartmentsSection';
+import HealthPackages from '../components/HealthPackages';
+import BlogSection from '../components/BlogSection';
 import {
   ArrowRight,
   Search,
@@ -280,7 +283,6 @@ const HomePage = () => {
   {
     type: 'video',
     video: "/Anandprakashchokseyexplanation.mp4",
-    poster: "/hero/fullhospital.webp", // Updated poster path
     title: "Trustworthy Medical Expertise",
     buttonLabel: "Book Appointment",
     buttonIcon: <Calendar size={18} />,
@@ -291,20 +293,18 @@ const HomePage = () => {
   {
     type: 'video',
     video: "/Explainervide.mp4",
-    poster: "/hero/hospital2.jpg", // Updated poster path
     title: "Quality Healthcare in Central India",
-    buttonLabel: "Watch Video",
+    buttonLabel: "Explore Services",
     buttonIcon: <Play size={18} />,
     buttonStyle: "primary",
-    buttonLink: "#",
+    buttonLink: "/care-center",
     overlay: true,
   },
   {
     type: 'video',
     video: "/kidtestimonial.mp4",
-    poster: "/hero/ward.jpg", // Updated poster path
     title: "The Start of Your Healing Journey",
-    buttonLabel: "Watch Video",
+    buttonLabel: "Watch Testimonials",
     buttonIcon: <Play size={18} />,
     buttonStyle: "primary",
     buttonLink: "#",
@@ -486,6 +486,7 @@ const HomePage = () => {
   const doctorSliderRef = useRef(null);
   const [progress, setProgress] = useState(0);
   const [currentDoctorIndex, setCurrentDoctorIndex] = useState(0);
+  const [currentDepartmentIndex, setCurrentDepartmentIndex] = useState(0);
   const [doctorsPerView, setDoctorsPerView] = useState(4); // Default to desktop view
 
   useEffect(() => {
@@ -722,7 +723,7 @@ const HomePage = () => {
       },
       afterChange: (index) => setCurrentIndex(index),
     }}
-    className="h-full"
+    className="h-full relative z-0"
     ref={heroSliderRef}
   >
     {slides.map((slide, index) => (
@@ -737,8 +738,7 @@ const HomePage = () => {
               loop
               playsInline
               muted={isMuted}
-              preload="none" // Prevent downloading until needed
-              poster={slide.poster} // Placeholder image
+              preload="metadata" // Load metadata for faster playback
               className="w-full h-full object-cover min-h-full"
               style={{
                 objectPosition:
@@ -757,10 +757,8 @@ const HomePage = () => {
                 }
               }}
             >
-              {/* Only load src if it's the current slide OR has been observed in viewport */}
-              {(index === currentIndex || loadedVideos.has(index)) && (
-                <source src={slide.video} type="video/mp4" />
-              )}
+              {/* Load all video sources immediately for faster access */}
+              <source src={slide.video} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
@@ -812,6 +810,8 @@ const HomePage = () => {
                 onClick={() => {
                   if (slide.buttonLabel === "Book Appointment") {
                     setIsAppointmentModalOpen(true);
+                  } else if (slide.buttonLabel === "Watch Testimonials") {
+                    document.getElementById('patient-feedback-section')?.scrollIntoView({ behavior: 'smooth' });
                   } else if (slide.buttonLink) {
                     window.location.href = slide.buttonLink;
                   }
@@ -831,6 +831,41 @@ const HomePage = () => {
           </div>
         </div>
 
+        {/* Navigation Buttons - visible on desktop - only show on active slide */}
+        {index === currentIndex && (
+          <>
+            <button
+              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-30 bg-black bg-opacity-50 text-white p-2 sm:p-3 rounded-full hover:bg-opacity-70 transition-all duration-300 hidden sm:block"
+              onClick={() => heroSliderRef.current?.slickPrev()}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+            <button
+              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-30 bg-black bg-opacity-50 text-white p-2 sm:p-3 rounded-full hover:bg-opacity-70 transition-all duration-300 hidden sm:block"
+              onClick={() => heroSliderRef.current?.slickNext()}
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+
+            {/* Navigation Buttons - visible on mobile */}
+            <button
+              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-30 bg-black bg-opacity-50 text-white p-2 sm:p-3 rounded-full hover:bg-opacity-70 transition-all duration-300 sm:hidden"
+              onClick={() => heroSliderRef.current?.slickPrev()}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+            <button
+              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-30 bg-black bg-opacity-50 text-white p-2 sm:p-3 rounded-full hover:bg-opacity-70 transition-all duration-300 sm:hidden"
+              onClick={() => heroSliderRef.current?.slickNext()}
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+          </>
+        )}
       </div>
     ))}
   </Slider>
@@ -861,6 +896,8 @@ const HomePage = () => {
               onClick={() => {
                 if (slide.buttonLabel === "Book Appointment") {
                   setIsAppointmentModalOpen(true);
+                } else if (slide.buttonLabel === "Watch Testimonials") {
+                  document.getElementById('patient-feedback-section')?.scrollIntoView({ behavior: 'smooth' });
                 } else if (slide.buttonLink) {
                   window.location.href = slide.buttonLink;
                 }
@@ -869,8 +906,8 @@ const HomePage = () => {
                 slide.buttonStyle === "primary"
                   ? "bg-yellow-60 text-[#002d72] hover:bg-yellow-50"
                   : slide.buttonStyle === "secondary"
-                  ? "bg-blue-700 text-[#002d72] hover:bg-blue-60"
-                  : "bg-white text-[#002d72] hover:bg-gray-100"
+                  ? "bg-blue-70 text-[#002d72] hover:bg-blue-60"
+                  : "bg-white text-[#002d72] hover:bg-gray-10"
               }`}
             >
               {slide.buttonIcon}
@@ -881,38 +918,6 @@ const HomePage = () => {
       )
     ))}
   </div>
-
-  {/* Navigation Buttons - visible on desktop */}
-  <button
-    className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white p-2 sm:p-3 rounded-full hover:bg-opacity-70 transition-all duration-300 hidden sm:block"
-    onClick={() => heroSliderRef.current?.slickPrev()}
-    aria-label="Previous slide"
-  >
-    <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-  </button>
-  <button
-    className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white p-2 sm:p-3 rounded-full hover:bg-opacity-70 transition-all duration-300 hidden sm:block"
-    onClick={() => heroSliderRef.current?.slickNext()}
-    aria-label="Next slide"
-  >
-    <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-  </button>
-
-  {/* Navigation Buttons - visible on mobile */}
-  <button
-    className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white p-2 sm:p-3 rounded-full hover:bg-opacity-70 transition-all duration-300 sm:hidden"
-    onClick={() => heroSliderRef.current?.slickPrev()}
-    aria-label="Previous slide"
-  >
-    <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-  </button>
-  <button
-    className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white p-2 sm:p-3 rounded-full hover:bg-opacity-70 transition-all duration-300 sm:hidden"
-    onClick={() => heroSliderRef.current?.slickNext()}
-    aria-label="Next slide"
-  >
-    <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-  </button>
 </div>
 
 
@@ -1226,93 +1231,8 @@ const HomePage = () => {
         </div>
       </motion.section>
 
-      {/* VIDEO SECTION */}
-      <motion.section
-        className="py-16 sm:py-20 bg-black relative overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="hidden md:block absolute inset-0">
-          <iframe
-            src="https://www.youtube.com/embed/K-46tUaICYI"
-            title="All Is Well Hospital - Our Story"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full object-cover"
-          ></iframe>
-        </div>
-        <div className="md:hidden relative">
-          <img
-            src="/images/video-thumbnail.jpg"
-            alt="Watch Our Story"
-            className="w-full h-auto rounded-lg"
-            loading="lazy"
-          />
-          <div
-            className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center cursor-pointer"
-            onClick={() =>
-              window.open("https://www.youtube.com/watch?v=UvVG9_ETGgU", "_blank")
-            }
-          >
-            <motion.div
-              className="w-12 h-12 sm:w-16 sm:h-16 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              animate={{
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            >
-              <Play size={20} className="text-white" />
-            </motion.div>
-          </div>
-        </div>
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0.9))",
-          }}
-        ></div>
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-12 text-center text-white">
-          <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 font-serif"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Experience the All Is Well Difference
-          </motion.h2>
-          <motion.p
-            className="text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto font-sans"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            Watch our story — where compassion meets cutting-edge medicine. See
-            how we transform lives every day.
-          </motion.p>
-          <motion.button
-            whileHover={{ scale: 1.05, backgroundColor: "#FFD700" }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() =>
-              window.open("https://www.youtube.com/watch?v=UvVG9_ETGgU", "_blank")
-            }
-            className="bg-yellow-600 text-white px-6 py-3 rounded-full font-medium hover:bg-yellow-500 transition flex items-center gap-2 mx-auto font-sans text-base sm:text-lg"
-          >
-            <Play size={20} />
-            Watch Full Video
-          </motion.button>
-        </div>
-      </motion.section>
+      {/* OUR DEPARTMENTS SECTION */}
+      <DepartmentsSection />
 
       {/* MEET OUR SPECIALISTS SECTION */}
       <motion.section
@@ -1405,43 +1325,7 @@ const HomePage = () => {
           background: "linear-gradient(135deg, #f8fafc 0%, #ffffff 100%)",
         }}
       >
-        {/* OPD TIMING SECTION */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={sectionVariants}
-          className="container mx-auto px-4 sm:px-6 lg:px-12 mb-12 sm:mb-16"
-        >
-          <div className="text-center mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 font-serif mb-2">
-              OPD Timing
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
-              Our Outpatient Department is open to serve you with the highest quality care
-            </p>
-          </div>
-          <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100 max-w-2xl mx-auto">
-            <div className="p-4 sm:p-6">
-              {opdTimings.map((item, index) => (
-                <div
-                  key={index}
-                  className={`flex justify-between py-3 sm:py-4 border-b ${
-                    index === opdTimings.length - 1
-                      ? "border-b-0"
-                      : "border-gray-200"
-                  } ${item.special ? "text-yellow-600 font-medium" : ""}`}
-                >
-                  <span className="font-medium text-blue-700 flex items-center gap-2 text-sm sm:text-base">
-                    {item.special && <Clock size={16} />}
-                    {item.day}
-                  </span>
-                  <span className="text-gray-70 text-sm sm:text-base">{item.time}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+        
 
         {/* PATIENT FEEDBACK SECTION */}
         <motion.div
@@ -1521,6 +1405,12 @@ const HomePage = () => {
           </div>
         </motion.div>
       </section>
+
+      {/* HEALTH PACKAGES SECTION */}
+      <HealthPackages />
+      
+      {/* RECENT BLOG SECTION */}
+      <BlogSection />
     </>
   );
 };

@@ -1,33 +1,71 @@
 // Footer.jsx
 import React from "react";
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock, Youtube } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const quickLinks = [
-    { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
-    { label: "Care Center", href: "/care-center" },
-    { label: "Find a Doctor", href: "/find-doctor" },
-    { label: "Academic", href: "/academic" },
-    { label: "Our Branches", href: "/branches" },
-    { label: "Professionals", href: "/professionals" },
-    { label: "Certifications", href: "/certifications" },
+    { label: "Home", path: "/" },
+    { label: "About Us", path: "/about" },
+    { label: "Find a Doctor", path: "/find-doctor" },
+    { label: "Academics", path: "/academics" },
+    { label: "Our Branches", path: "/branches" },
+    { label: "Community Services", path: "/community-services" },
+    { label: "Certifications", path: "/certification" },
+    { label: "Contact Us", path: "/contact-us" },
   ];
-  const services = [
-    "Emergency Care",
-    "Pediatrics",
+  // Function to convert service name to URL slug
+  const serviceNameToSlug = (serviceName) => {
+    return serviceName
+      .toLowerCase()
+      .replace(/ and /g, '-')
+      .replace(/ /g, '-')
+      .replace(/,/g, '')
+      .replace(/\./g, '')
+      .replace(/\(/g, '')
+      .replace(/\)/g, '');
+  };
+
+  // All available services from CareCenterService component
+  const allServices = [
+    "Neuro and Spine Surgery",
     "Cardiology",
-    "Neurology",
-    "Orthopedics",
-    "Maternity",
-    "Diagnostics",
-    "Telemedicine",
+    "Cardio Thoracic Surgery",
+    "Plastic Surgery",
+    "Urology",
+    "Oncology",
+    "Gastroenterology",
+    "Endocrinology",
+    "Rheumatology",
+    "Radiology",
+    "Critical Care",
+    "Anaesthesia and Pain",
+    "General and Minimal Invasive Surgery",
+    "General Medicine",
+    "Internal Medicine",
+    "Obstetrics and Gynaecology",
+    "Orthopaedics",
+    "Pathology",
+    "Haematology",
+    "Blood Bank",
+    "ENT",
+    "Ophthalmology",
+    "Dermatology",
+    "Psychiatry",
+    "Dental",
+    "Yoga",
+    "Physiotherapy",
+    "Nutrition and Diet",
   ];
+
+  // Randomly select 6 services
+  const shuffledServices = [...allServices].sort(() => 0.5 - Math.random());
+  const services = shuffledServices.slice(0, 6);
   const contactInfo = {
     address: "Near Macro Vision Academy, Burhanpur, Madhya Pradesh, 450331",
-    phone: "+91 7089055888  +91 7089944888",
-    email: "frontdesk@alliswellhospital.com",
+    phone: "+91 7697744444  +91 7089099888",
+    email: "digitalmarketing@mvaburhanpur.com",
     hours: "Mon - Fri: 8:00 AM - 8:00 PM | Sat - Sun: 9:00 AM - 6:00 PM",
   };
 
@@ -47,16 +85,16 @@ const Footer = () => {
             Providing compassionate, cutting-edge healthcare services with integrity and innovation since 1998.
           </p>
           <div className="flex gap-4 mt-6">
-            <a href="#" aria-label="Facebook" className="text-gray-400 hover:text-yellow-400 transition-colors">
+            <a href="https://www.facebook.com/alliswellhospital" aria-label="Facebook" className="text-gray-400 hover:text-yellow-400 transition-colors">
               <Facebook size={20} />
             </a>
-            <a href="#" aria-label="Twitter" className="text-gray-400 hover:text-yellow-400 transition-colors">
-              <Twitter size={20} />
+            <a href="https://www.youtube.com/channel/UC2cT5DGcklfeITPogxehADw" aria-label="Twitter" className="text-gray-400 hover:text-yellow-400 transition-colors">
+              <Youtube size={20} />
             </a>
-            <a href="#" aria-label="Instagram" className="text-gray-400 hover:text-yellow-400 transition-colors">
+            <a href="https://www.instagram.com/all.is.well.hospital/" aria-label="Instagram" className="text-gray-400 hover:text-yellow-400 transition-colors">
               <Instagram size={20} />
             </a>
-            <a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-yellow-400 transition-colors">
+            <a href="https://www.linkedin.com/company/alliswellhospital/" aria-label="LinkedIn" className="text-gray-400 hover:text-yellow-400 transition-colors">
               <Linkedin size={20} />
             </a>
           </div>
@@ -67,12 +105,12 @@ const Footer = () => {
           <ul className="space-y-2">
             {quickLinks.map((link, index) => (
               <li key={index}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.path}
                   className="text-gray-300 hover:text-yellow-400 transition-colors text-sm"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -83,12 +121,12 @@ const Footer = () => {
           <ul className="space-y-2">
             {services.map((service, index) => (
               <li key={index}>
-                <a
-                  href="#"
+                <Link
+                  to={`/care-center/${serviceNameToSlug(service)}`}
                   className="text-gray-300 hover:text-yellow-400 transition-colors text-sm"
                 >
                   {service}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -120,13 +158,13 @@ const Footer = () => {
       <div className="border-t border-gray-800 py-6 text-center text-gray-400 text-sm">
         <p>
           © {currentYear} All Is WEll Hospital. All rights reserved. |{" "}
-          <a href="/privacy" className="hover:text-yellow-400 transition-colors">
+          <Link to="/privacy" className="hover:text-yellow-400 transition-colors">
             Privacy Policy
-          </a>{" "}
+          </Link>{" "}
           |{" "}
-          <a href="/terms" className="hover:text-yellow-400 transition-colors">
+          <Link to="/terms" className="hover:text-yellow-400 transition-colors">
             Terms of Service
-          </a>
+          </Link>
         </p>
       </div>
     </footer>

@@ -14,13 +14,13 @@ const Header = () => {
   const mobileMenuRef = useRef(null);
 
   const navItems = [
-    { label: "About Us", href: "#", hasDropdown: true },
-    { label: "Care Center", href: "#", hasDropdown: true },
+    { label: "Care Center", href: "/care-center", hasDropdown: true },
     { label: "Find a Doctor", href: "/find-doctor" },
+    { label: "About Us", href: "#", hasDropdown: true },
+    { label: "Our Branches", href: "/branches", hasDropdown: true },
     { label: "Academics", href: "/academics"},
+    { label: "Careers", href: "/careers"},
     { label: "More", href: "#", hasDropdown: true },
-    { label: "Our Branches", href: "#", hasDropdown: true },
-    { label: "certifications", href: "/certification"},
   ];
 
   const careCenterData = {
@@ -40,20 +40,17 @@ const Header = () => {
     "DIAGNOSTIC SERVICES": [
       { label: "Radiology and Imaging", href: "/care-center/radiology" },
       { label: "Pathology", href: "/care-center/pathology" },
-      { label: "Microbiology", href: "/care-center/microbiology" },
       { label: "Blood Bank with Components", href: "/care-center/blood-bank" },
     ],
     "SUPPORT SERVICES": [
       { label: "Physiotherapy", href: "/care-center/physiotherapy" },
       { label: "Yoga", href: "/care-center/yoga" },
       { label: "Nutrition and Dietetics", href: "/care-center/nutrition-and-diet" },
-      { label: "Pharmacy", href: "/care-center/pharmacy" },
     ],
     "PRIMARY CARE": [
       { label: "General Medicine", href: "/care-center/general-medicine" },
       { label: "Internal Medicine", href: "/care-center/internal-medicine" },
-      { label: "Family Medicine", href: "/care-center/family-medicine" },
-      { label: "General Practice", href: "/care-center/general-practice" },
+  
     ],
     "SPECIALITY": [
       { label: "Ear Nose Throat", href: "/care-center/ent" },
@@ -83,6 +80,8 @@ const Header = () => {
     "More": [
       { label: "Community Services", href: "/community-services" },
       { label: "Contact Us", href: "/contact-us" },
+      { label: "Certifications", href: "/certification" },
+      { label: "Blog", href: "/blog" },
     ],
     "Our Branches": [
       { label: "All Is Well Super Clinic Shahpur", href: "/branches/shahpur" },
@@ -247,7 +246,7 @@ const Header = () => {
       className="w-full bg-white text-[#003366] sticky top-0 z-50 transition-all duration-300 shadow-sm"
     >
       {/* Desktop Navigation (md and up) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hidden md:flex items-center justify-evenly h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hidden md:flex items-center justify-between h-24">
         <div className="flex items-center flex-shrink-0">
           <Link to="/" className="flex-shrink-0">
             <img
@@ -259,7 +258,7 @@ const Header = () => {
           </Link>
         </div>
 
-        <nav className="flex items-center space-x-2 lg:space-x-4 xl:space-x-6">
+        <nav className="flex items-center space-x-2 lg:space-x-4 xl:space-x-6 mx-8 flex-grow justify-center">
           {navItems.map((item, index) => {
             if (!item.hasDropdown) {
               return (
@@ -293,15 +292,30 @@ const Header = () => {
                   }
                 }}
               >
-                <button 
+                <Link
+                  to={item.href}
                   className={`flex items-center text-xs sm:text-sm font-medium py-2 transition-all duration-200 whitespace-nowrap ${
                     openDropdown === item.label ? 'font-bold' : ''
                   }`}
+                  onClick={(e) => {
+                    // For "Care Center" and "Our Branches", allow navigation to main page
+                    if (item.label === "Care Center" || item.label === "Our Branches") {
+                      // If dropdown is already open, prevent navigation and just close the dropdown
+                      if (openDropdown === item.label) {
+                        e.preventDefault();
+                        setOpenDropdown(null);
+                      }
+                      // Otherwise, allow navigation to the page
+                    } else if (item.label === "About Us" || item.label === "More") {
+                      e.preventDefault(); // Prevent navigation when dropdown is clicked for these items
+                      setOpenDropdown(item.label === openDropdown ? null : item.label);
+                    }
+                  }}
                   aria-expanded={openDropdown === item.label}
                   aria-haspopup="true"
                 >
                   {item.label} <ChevronDown size={14} className="ml-1" />
-                </button>
+                </Link>
 
                 {openDropdown === item.label && (
                   <div
@@ -334,10 +348,10 @@ const Header = () => {
           })}
         </nav>
 
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 ml-1">
           <button
             onClick={() => setIsAppointmentModalOpen(true)}
-            className="bg-[#003366] text-white px-3 py-1 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-medium hover:bg-white hover:text-[#003366] border border-[#003366] transition whitespace-nowrap"
+            className="bg-[#003366] text-white px-3 py-1 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-medium hover:bg-white hover:text-[#003366] border-[#003366] transition whitespace-nowrap"
           >
             Book Appointment
           </button>
@@ -346,7 +360,7 @@ const Header = () => {
 
       {/* Mobile/Tablet Navigation (md:hidden) */}
       <div className="md:hidden max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           <div className="flex items-center flex-shrink-0">
             <Link to="/" className="flex-shrink-0">
               <img
@@ -360,7 +374,7 @@ const Header = () => {
           <div className="flex items-center space-x-3">
             <button 
               onClick={() => setIsAppointmentModalOpen(true)}
-              className="bg-[#003366] text-white px-2.5 py-1 rounded-full text-xs font-medium hover:bg-white hover:text-[#003366] border border-[#003366] transition whitespace-nowrap"
+              className="bg-[#003366] text-white px-2.5 py-1 rounded-full text-xs font-medium hover:bg-white hover:text-[#003366] border-[#003366] transition whitespace-nowrap"
             >
               Book
             </button>
@@ -420,20 +434,40 @@ const Header = () => {
 
                     return (
                       <div key={item.label} className="border-b border-gray-200 py-3">
-                        <button 
+                        <Link
+                          to={item.href}
                           className="flex justify-between items-center w-full text-left text-base font-medium text-[#003366]"
-                          onClick={() => {
-                            const currentOpen = openDropdown === item.label ? null : item.label;
-                            setOpenDropdown(currentOpen);
-                            if (item.label === "Care Center") {
-                              setIsMobileSubOpen(null);
+                          onClick={(e) => {
+                            if (item.label === "Care Center" || item.label === "Our Branches") {
+                              // For Care Center and Our Branches, allow navigation to main page but also toggle dropdown
+                              if (openDropdown === item.label) {
+                                e.preventDefault();
+                                setOpenDropdown(null);
+                                setIsMobileSubOpen(null);
+                              } else {
+                                e.preventDefault();
+                                const currentOpen = openDropdown === item.label ? null : item.label;
+                                setOpenDropdown(currentOpen);
+                                if (item.label === "Care Center") {
+                                  setIsMobileSubOpen(null);
+                                }
+                              }
+                            } else if (item.label === "About Us" || item.label === "More") {
+                              e.preventDefault(); // Prevent navigation when dropdown is clicked for these items
+                              const currentOpen = openDropdown === item.label ? null : item.label;
+                              setOpenDropdown(currentOpen);
+                              if (item.label === "Care Center") {
+                                setIsMobileSubOpen(null);
+                              }
+                            } else {
+                              setIsMobileMenuOpen(false);
                             }
                           }}
                           aria-expanded={openDropdown === item.label}
                         >
                           {item.label}
                           <ChevronDown size={18} className={`transform transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`} />
-                        </button>
+                        </Link>
                         
                         {openDropdown === item.label && (
                           <div className="mt-2">
