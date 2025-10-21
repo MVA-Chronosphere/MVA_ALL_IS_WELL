@@ -6,6 +6,7 @@ import DoctorInfoCard from '../components/DoctorInfoCard';
 import DepartmentsSection from '../components/DepartmentsSection';
 import HealthPackages from '../components/HealthPackages';
 import BlogSection from '../components/BlogSection';
+import { doctors } from './FindADoctorPage'; // Import doctors from FindADoctorPage
 import {
   ArrowRight,
   Search,
@@ -312,176 +313,6 @@ const HomePage = () => {
   },
 ];
 
-  const doctors = [
-    {
-      id: 1,
-      name: "Dr. Abhishek Sharma",
-      specialty: "Consultant Cosmetic & Plastic Surgeon, Micro-Vascular Surgery (TMC MUMBAI), Specialized Training Cleft Lip/Palate Surgery (Smile Train Surgeon) From USA, Medical Superintendent",
-      image: "/Doctorphotos/Dr_Abhishek_Sharma.png",
-    },
-    {
-      id: 2,
-      name: "Dr. Prashant Khairnar",
-      specialty: "Consultant Urologist & Andrologist, Deputy Medical Superintendent",
-      image: "/Doctorphotos/Dr_Prashant_Khairnar.png",
-    },
-    {
-      id: 3,
-      name: "Dr. Nikhil Tharkade",
-      specialty: "Consultant Urologist",
-      image: "/Doctorphotos/Nikhil Sir.png",
-    },
-    {
-      id: 4,
-      name: "Dr. Shweta Narwade",
-      specialty: "Consultant Radiologist",
-      image: "/Doctorphotos/Dr_Shweta_Narwade.png",
-    },
-    {
-      id: 5,
-      name: "Dr. Lokendra Singh Thakur",
-      specialty: "Consultant Interventional Cardiologist",
-      image: "/Doctorphotos/Dr_Lokendra_Singh_Thakur.png",
-    },
-    {
-      id: 6,
-      name: "Dr. Basheeruddin Ansari",
-      specialty: "Consultant Interventional Cardiologist",
-      image: "/Doctorphotos/Bashiruddin Sir.png",
-    },
-    {
-      id: 7,
-      name: "Dr. Pravin R. Borde",
-      specialty: "Consultant Neuro and Spine Surgery",
-      image: "/Doctorphotos/Dr_Pravin_R._Borde.png",
-    },
-    {
-      id: 8,
-      name: "Dr. Ravnik R. Bansod",
-      specialty: "Fellowship in Conventional & Robotics Assisted Joint Replacement Surgery (FRJRS)",
-      image: "/Doctorphotos/Dr_Ravnik_R._Bansod.png",
-    },
-    {
-      id: 9,
-      name: "Dr. Rahul Khandekar",
-      specialty: "ENT Specialist",
-      image: "/Doctorphotos/Dr_Rahul_Chandrakant_Khandekar.png",
-    },
-    {
-      id: 10,
-      name: "Dr. Divyesh Lad",
-      specialty: "Consultant General Medicine",
-      image: "/Doctorphotos/Dr_Divyesh_Lad.png",
-    },
-    {
-      id: 11,
-      name: "Dr. Jayesh Dubey",
-      specialty: "Consultant General Medicine",
-      image: "/Doctorphotos/Dr_Jayesh_Brijbhushan_Dubey.png",
-    },
-    {
-      id: 12,
-      name: "Dr. Gaurav Singh Pardesi",
-      specialty: "Consultant General & Minimal Access Surgery",
-      image: "/Doctorphotos/Dr_Gaurav_Singh_Pardesi.png",
-    },
-    {
-      id: 13,
-      name: "DR. KIMAYA SALI MEDSHIKAR",
-      specialty: "Consultant Obstetrician & Gynaecologist",
-      image: "/Doctorphotos/KIMAYA SALI MEDSHIKAR.png",
-    },
-    {
-      id: 14,
-      name: "Dr. Monish Gupta",
-      specialty: "Consultant Obstetrician, Gynaecologist & Genetics Specialist",
-      image: "/Doctorphotos/Monish Sir.png",
-    },
-    {
-      id: 15,
-      name: "Dr. Rashi Gupta",
-      specialty: "Consultant Pathologist",
-      image: "/Doctorphotos/Rashi Gupta.png",
-    },
-    {
-      id: 16,
-      name: "Dr. Harshada Bhangale",
-      specialty: "Consultant Pathologist",
-      image: "/Doctorphotos/Dr_Harshada_Bhangale.png",
-    },
-    {
-      id: 17,
-      name: "Dr. Peeyush Suryawanshi",
-      specialty: "Consultant Pediatrician & Neonatologist",
-      image: "/Doctorphotos/Peeyush Sir.png",
-    },
-    {
-      id: 18,
-      name: "Dr. Apurva Yadav",
-      specialty: "Consultant Ophthalmologist & Cataract Surgeon",
-      image: "/Doctorphotos/Apurva Yadav.png",
-    },
-    {
-      id: 19,
-      name: "Dr. Shubham Verma",
-      specialty: "Pulmonary Medicine & Critical Care",
-      image: "/Doctorphotos/Shubham Sir.png",
-    },
-    {
-      id: 20,
-      name: "Dr. Rakesh Mahawar",
-      specialty: "Radiation Oncology",
-      image: "/Doctorphotos/Rakesh Mahawar.png",
-    },
-    {
-      id: 21,
-      name: "Dr. Deepak K. Bhojwani",
-      specialty: "Consultant Oncologist",
-      image: "/Doctorphotos/Dr_Deepak_Kumar_Bhojwani.png",
-    },
-    {
-      id: 22,
-      name: "Dr. Bhushan Chopde",
-      specialty: "Consultant Gastroenterology & Hepatology",
-      image: "/Doctorphotos/Bhushan Sir.png",
-    },
-    {
-      id: 23,
-      name: "Dr. Yash Mahajan",
-      specialty: "Psychiatry",
-      image: "/Doctorphotos/Dr_Yash_Mahajan.png",
-    },
-    {
-      id: 24,
-      name: "Dr. Chimu Chinte Chopde",
-      specialty: "Endocrinology",
-      image: "/placeholders/doctor-placeholder.jpg",
-    },
-    {
-      id: 25,
-      name: "Dr. Nikita Andhalkar",
-      specialty: "Dermatologist and Venereologist",
-      image: "/Doctorphotos/Dr_Nikita_Andhalkar_Bagul.png",
-    },
-    {
-      id: 26,
-      name: "Dr. Anita Chouksey",
-      specialty: "Sr. Consultant Nephrologist (Shalby Hospital, Indore)",
-      image: "/Doctorphotos/Anita Chouksey.png",
-    },
-    {
-      id: 27,
-      name: "Dr. Abhey Joshi",
-      specialty: "Sr. Consultant Nephrologist (Shalby Hospital, Indore)",
-      image: "/placeholders/doctor-placeholder.jpg",
-    },
-    {
-      id: 28,
-      name: "Dr. Hiteshi Bais",
-      specialty: "Consultant - Anesthesiologist",
-      image: "/Doctorphotos/Dr_Hiteshi.png",
-    },
-  ];
 
   const doctorSliderRef = useRef(null);
   const [progress, setProgress] = useState(0);
@@ -508,13 +339,8 @@ const HomePage = () => {
 
   const handleAfterChange = (current) => {
     const total = doctors.length;
-    // Determine visible slides based on the new responsive settings (matching breakpoints in doctorSettings)
-    let visible = 4; // Default for desktop
-    if (window.innerWidth < 768 && window.innerWidth >= 480) {
-      visible = 1; // Tablets and small devices (matching the 768 breakpoint)
-    } else if (window.innerWidth < 480) { // Mobile
-      visible = 1; // Mobile (matching the 480 breakpoint)
-    }
+    // Determine visible slides based on the responsive settings
+    let visible = doctorsPerView; // Use the state variable for visible doctors
 
     const maxIndex = Math.max(0, total - visible);
     const progressValue = maxIndex > 0 ? (current / maxIndex) * 100 : 0;
@@ -594,6 +420,16 @@ const HomePage = () => {
       if (!video) return;
 
       if (idx === currentIndex) {
+        // Load video source if not already loaded for current slide
+        if (!loadedVideos.has(idx)) {
+          const source = video.querySelector('source[data-src]');
+          if (source) {
+            source.src = source.dataset.src;
+            source.removeAttribute('data-src');
+            video.load(); // Load the video with the new source
+          }
+        }
+
         // Only attempt to play if the video source has been loaded
         if (loadedVideos.has(idx)) {
           video.muted = isMuted;
@@ -730,15 +566,14 @@ const HomePage = () => {
       <div key={index} className="relative h-full">
         {slide.type === "video" ? (
           <>
-            {/* Only render and play the active video */}
-            {/* Render video element for all video slides, but lazy load src */}
+            {/* Video element with optimized loading */}
             <video
               ref={(el) => (videoRefs.current[index] = el)}
               autoPlay={index === currentIndex} // Autoplay only if it's the current slide
               loop
               playsInline
               muted={isMuted}
-              preload="metadata" // Load metadata for faster playback
+              preload={index === currentIndex ? "auto" : "none"} // Only preload current and adjacent slides
               className="w-full h-full object-cover min-h-full"
               style={{
                 objectPosition:
@@ -756,9 +591,17 @@ const HomePage = () => {
                   setShouldPauseSlider(false);
                 }
               }}
+              // Add loading optimization attributes
+              loading="lazy"
             >
-              {/* Load all video sources immediately for faster access */}
-              <source src={slide.video} type="video/mp4" />
+              {/* Conditionally load video source based on visibility - account for slider loop */}
+              {index === currentIndex || 
+               index === (currentIndex - 1 + slides.length) % slides.length || 
+               index === (currentIndex + 1) % slides.length ? (
+                <source src={slide.video} type="video/mp4" />
+              ) : (
+                <source data-src={slide.video} type="video/mp4" />
+              )}
               Your browser does not support the video tag.
             </video>
 
@@ -1258,24 +1101,24 @@ const HomePage = () => {
             {/* Custom Navigation Arrows */}
             <button
               onClick={() => setCurrentDoctorIndex(prev => Math.max(prev - 1, 0))}
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-yellow-600 shadow-lg rounded-full p-2 sm:p-3 hover:bg-yellow-70 z-10 transition-all duration-300"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 sm:p-3 hover:bg-gray-100 z-10 transition-all duration-300 border border-gray-200"
               aria-label="Previous doctor"
               disabled={currentDoctorIndex === 0}
             >
-              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-[#002d72]" />
             </button>
             <button
-              onClick={() => setCurrentDoctorIndex(prev => Math.min(prev + 1, Math.max(0, Math.ceil(doctors.length / doctorsPerView) - 1)))}
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-yellow-600 shadow-lg rounded-full p-2 sm:p-3 hover:bg-yellow-70 z-10 transition-all duration-300"
+              onClick={() => setCurrentDoctorIndex(prev => Math.min(prev + 1, Math.max(0, doctors.length - doctorsPerView)))}
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 sm:p-3 hover:bg-gray-100 z-10 transition-all duration-300 border border-gray-200"
               aria-label="Next doctor"
-              disabled={currentDoctorIndex >= Math.ceil(doctors.length / doctorsPerView) - 1}
+              disabled={currentDoctorIndex >= Math.max(0, doctors.length - doctorsPerView)}
             >
-              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#002d72]" />
             </button>
 
             {/* Custom Carousel */}
-            <div className="relative overflow-hidden">
-              <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentDoctorIndex * (100 / doctorsPerView)}%)` }}>
+            <div className="relative overflow-hidden rounded-xl bg-white p-4 shadow-sm border border-gray-100">
+              <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentDoctorIndex * (100 / doctorsPerView)}%)` }}>
                 {doctors.map((doctor, index) => (
                   <div 
                     key={doctor.id} 
@@ -1287,10 +1130,13 @@ const HomePage = () => {
                   >
                     <motion.div
                       className="h-full"
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.05 }}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ 
+                        duration: 0.6, 
+                        ease: "easeOut",
+                        delay: index * 0.05 
+                      }}
                     >
                       <div className="h-full flex justify-center">
                         <DoctorInfoCard
@@ -1307,11 +1153,11 @@ const HomePage = () => {
             </div>
 
             {/* Progress Seeker Bar */}
-            <div className="mt-6 sm:mt-8 h-1 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div className="mt-6 sm:mt-8 h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
               <motion.div
-                className="h-1 bg-yellow-600 rounded-full"
+                className="h-1.5 bg-[#02d72] rounded-full"
                 initial={{ width: "0%" }}
-                animate={{ width: `${((currentDoctorIndex + 1) / Math.max(1, Math.ceil(doctors.length / doctorsPerView))) * 100}%` }}
+                animate={{ width: `${doctors.length > doctorsPerView ? (currentDoctorIndex / (doctors.length - doctorsPerView)) * 100 : 100}%` }}
                 transition={{ ease: "easeOut", duration: 0.5 }}
               />
             </div>

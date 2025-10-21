@@ -7,7 +7,7 @@ const CardComponent = ({ items }) => {
       {items.map((item, index) => (
         <div 
           key={index} 
-          className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-primary-gold border border-primary-gold hover:shadow-md transition duration-300"
+          className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-primary-gold border border-primary-gold hover:shadow-md transition duration-300 flex flex-col h-full"
         >
           {item.image && (
             <div className="mb-4 w-full h-48 overflow-hidden rounded-lg">
@@ -18,9 +18,9 @@ const CardComponent = ({ items }) => {
               />
             </div>
           )}
-          <h3 className="text-xl font-serif font-bold text-[#002d72] mb-3">{item.title}</h3>
+          <h3 className="text-xl font-serif font-bold text-[#002d72] mb-3 break-words">{item.title}</h3>
           <div className="w-full h-px bg-primary-gold mb-3"></div>
-          <p className="font-sans text-[#444]">{item.description}</p>
+          <p className="font-sans text-[#444] flex-grow break-words">{item.description}</p>
         </div>
       ))}
     </div>

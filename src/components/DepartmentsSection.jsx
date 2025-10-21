@@ -243,30 +243,30 @@ const DepartmentsSection = () => {
                         slideIndex * itemsPerSlide + itemsPerSlide
                       )
                       .map((dept) => (
-                        <motion.div
-                          key={dept.id}
-                          className="bg-white rounded-xl shadow-md border border-[#d4af37]/60 hover:shadow-lg transition-transform duration-300 flex flex-col p-4 sm:p-6 h-[320px]"
-                          whileHover={{ y: -5 }}
-                        >
-                          <div className="flex flex-col items-center text-center flex-grow">
-                            <div className="mb-3 text-[#002d72]">
-                              {React.createElement(dept.icon, { size: 36 })}
+                          <motion.div
+                            key={dept.id}
+                            className="bg-white rounded-xl shadow-md border border-[#d4af37]/60 hover:shadow-lg transition-transform duration-300 flex flex-col p-4 sm:p-6 min-h-[320px]"
+                            whileHover={{ y: -5 }}
+                          >
+                            <div className="flex flex-col items-center text-center flex-grow">
+                              <div className="mb-3 text-[#002d72]">
+                                {React.createElement(dept.icon, { size: 36 })}
+                              </div>
+                              <h3 className="text-lg sm:text-xl font-serif font-semibold text-[#002d72] mb-2 text-center break-words">
+                                {dept.title}
+                              </h3>
+                              <p className="text-sm sm:text-base text-[#444] mb-4 flex-grow text-center overflow-hidden line-clamp-3 sm:line-clamp-4">
+                                {dept.description}
+                              </p>
+                              <Link
+                                to={`/department/${dept.id}`}
+                                className="text-[#002d72] hover:text-[#d4af37] text-sm font-medium flex items-center justify-center gap-1 transition-colors duration-300 mt-auto"
+                              >
+                                Learn More
+                                <ArrowRight size={12} />
+                              </Link>
                             </div>
-                            <h3 className="text-lg sm:text-xl font-serif font-semibold text-[#002d72] mb-2 text-center">
-                              {dept.title}
-                            </h3>
-                            <p className="text-sm sm:text-base text-[#444] mb-4 flex-grow text-center overflow-hidden">
-                              {dept.description}
-                            </p>
-                            <Link
-                              to={`/department/${dept.id}`}
-                              className="text-[#002d72] hover:text-[#d4af37] text-sm font-medium flex items-center justify-center gap-1 transition-colors duration-300 mt-auto"
-                            >
-                              Learn More
-                              <ArrowRight size={12} />
-                            </Link>
-                          </div>
-                        </motion.div>
+                          </motion.div>
                       ))}
                   </div>
                 </div>
