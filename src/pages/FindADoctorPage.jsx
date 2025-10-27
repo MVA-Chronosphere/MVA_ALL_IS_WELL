@@ -497,7 +497,7 @@ export const doctors = [
       id: 24,
       name: "Dr. Chimu Chinte Chopde",
       specialty: "Endocrinology",
-      image: "/placeholders/doctor-placeholder.jpg",
+      image: "/Doctorphotos/Dr_Chimu_chinte_chopde.png",
       location: "All Is Well Super Clinic Burhanpur",
     },
     {

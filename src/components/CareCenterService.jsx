@@ -92,6 +92,33 @@ const CareCenterService = () => {
     }
   ],
 
+  "pediatrics-and-neonatology": [
+    {
+      id: 1,
+      url: "https://youtu.be/VvLznqx21xs?si=I-UR7jGlb7u5hFm5",
+      title: "Child Wellness Journey",
+      description: "Parents express gratitude for expert pediatric care",
+      doctor: "Patient",
+      specialty: "Pediatric Care"
+    },
+    {
+      id: 2,
+      url: "https://www.youtube.com/shorts/RsJfmpqsYz8",
+      title: "Pediatric Care Success Story",
+      description: "How our specialized care helped a young patient recover",
+      doctor: "Patient",
+      specialty: "Pediatric Treatment"
+    },
+    {
+      id: 3,
+      url: "https://youtu.be/alx2afQSnns?si=FhffFriHDwLbeGCp",
+      title: "Child Health Management",
+      description: "Parents share their experience with our pediatric specialists",
+      doctor: "Patient",
+      specialty: "Child Health"
+    }
+  ],
+
   oncology: [
     {
       id: 1,
@@ -1787,7 +1814,52 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
         "Consult a dietitian for personalized advice"
       ]
     }
-  }
+  },
+
+  "pediatrics-and-neonatology": {
+    title: "Treatments Available for Pediatrics & Neonatology",
+    image: "/Serviceimages/pediatrics_neonatology.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/pediatrics and neonatology.jpg",
+    heroContent: [
+      { 
+        title: "NICU – Neonatal Intensive Care Unit", 
+        description: "Intensive care and expert monitoring for premature and critically ill newborns."
+      },
+      { 
+        title: "PICU – Pediatric Intensive Care Unit", 
+        description: "Specialized, intensive care with compassion for ill or injured children of all ages."
+      },
+      { 
+        title: "Preterm & Low Birth Weight (ELBW/VLBW) Care", 
+        description: "Specialized medical and developmental support to improve survival and long-term outcomes for our infants, especially weight."
+      },
+      { 
+        title: "Vaccination Services", 
+        description: "Complete immunization to protect children from infectious diseases from birth through adolescence."
+      },
+      { 
+        title: "Growth & Nutrition Monitoring", 
+        description: "Regular measurement of a child's physical growth helps your child grow strong and healthy."
+      },
+      { 
+        title: "Adolescent Vaccination & Counseling", 
+        description: "Guidance and vaccines to protect teenagers from preventable diseases and promote healthy lifestyle choices."
+      }
+    ],
+    doctorIds: [17], // Dr. Peeyush Suryawanshi
+    additionalInfo: {
+      title: "Meet our expert of Pediatrics & Neonatology",
+      description: "Our Experts are compassionate and highly skilled Consultant Pediatricians and Neonatologists with over a decade of dedicated experience in child and newborn care. Their mission is simple yet profound - to help every baby, child, and teenager grow up healthy, strong, and full of potential. ",
+      listItems: [
+        "NICU – Neonatal Intensive Care Unit",
+        "PICU – Pediatric Intensive Care Unit",
+        "Preterm & Low Birth Weight (ELBW/VLBW) Care",
+        "Vaccination Services",
+        "Growth & Nutrition Monitoring",
+        "Adolescent Vaccination & Counseling"
+      ]
+    }
+ }
 
     
   };
