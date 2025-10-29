@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import AppointmentFormModal from '../components/AppointmentFormModal';
 import DoctorInfoCard from '../components/DoctorInfoCard';
 import DepartmentsSection from '../components/DepartmentsSection';
+import EmergencyServicesCarousel from '../components/EmergencyServicesCarousel';
 import HealthPackages from '../components/HealthPackages';
 import BlogSection from '../components/BlogSection';
 import { doctors } from './FindADoctorPage'; // Import doctors from FindADoctorPage
@@ -328,7 +329,7 @@ const HomePage = () => {
       } else if (width < 1024) { // Tablet
         setDoctorsPerView(2);
       } else { // Desktop
-        setDoctorsPerView(4);
+        setDoctorsPerView(4); // Changed back to 4 cards as requested
       }
     };
 
@@ -766,7 +767,7 @@ const HomePage = () => {
 
       {/* SEARCH SECTION */}
       <motion.section
-        className="py-4 sm:py-6 border-b border-gray-100 bg-white"
+        className="py-1 sm:py-2 border-b border-gray-100 bg-white"
         initial="hidden"
         animate="visible"
         variants={sectionVariants}
@@ -774,7 +775,7 @@ const HomePage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           {/* Tabs */}
           <div className="flex flex-col md:flex-row gap-4 mb-6 sm:mb-8">
-            <div className="flex-1 text-center border-b-2 border-yellow-600 pb-2 font-serif text-base sm:text-lg text-gray-800">
+            <div className="flex-1 text-center border-b-2 border-yellow-600 pb-2 font-serif text-base sm:text-lg text-gray-80">
               Find Department & Doctors
             </div>
             <div 
@@ -952,21 +953,21 @@ const HomePage = () => {
 
       {/* WHY SECTION */}
       <motion.section
-        className="py-12 sm:py-16 bg-white"
+        className="py-4 sm:py-6 bg-[#f9f9f9]"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={sectionVariants}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-80 font-serif mb-2">
-              Welcome to All Is Well Hospital
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
-              Providing exceptional healthcare services with compassion and cutting-edge technology
-            </p>
-          </div>
+          {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-[#002d72] leading-tight">
+            Welcome to All Is Well Hospital
+          </h1>
+          <div className="w-16 h-1 bg-[#d4af37] mx-auto mt-4 rounded"></div>
+          
+        </div>
 
           <motion.div
             className="flex flex-col lg:flex-row gap-8 sm:gap-12 items-center mb-12 sm:mb-16"
@@ -1079,7 +1080,7 @@ const HomePage = () => {
 
       {/* MEET OUR SPECIALISTS SECTION */}
       <motion.section
-        className="py-12 sm:py-16 bg-gray-50 overflow-hidden"
+        className="py-4 bg-[#f9f9f9] overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -1093,7 +1094,13 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
+            <div className="text-center mb-8">
+          <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#002d72] leading-tight">
             Meet Our Specialists
+          </h1>
+          <div className="w-16 h-1 bg-[#d4af37] mx-auto mt-4 rounded"></div>
+          
+        </div>
           </motion.h2>
 
           {/* Doctor Carousel Wrapper */}
@@ -1101,7 +1108,7 @@ const HomePage = () => {
             {/* Custom Navigation Arrows */}
             <button
               onClick={() => setCurrentDoctorIndex(prev => Math.max(prev - 1, 0))}
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 sm:p-3 hover:bg-gray-100 z-10 transition-all duration-300 border border-gray-200"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-1.5 sm:p-2 hover:bg-gray-100 z-10 transition-all duration-300 border border-gray-200"
               aria-label="Previous doctor"
               disabled={currentDoctorIndex === 0}
             >
@@ -1109,7 +1116,7 @@ const HomePage = () => {
             </button>
             <button
               onClick={() => setCurrentDoctorIndex(prev => Math.min(prev + 1, Math.max(0, doctors.length - doctorsPerView)))}
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 sm:p-3 hover:bg-gray-100 z-10 transition-all duration-300 border border-gray-200"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-1.5 sm:p-2 hover:bg-gray-10 z-10 transition-all duration-300 border border-gray-200"
               aria-label="Next doctor"
               disabled={currentDoctorIndex >= Math.max(0, doctors.length - doctorsPerView)}
             >
@@ -1117,15 +1124,16 @@ const HomePage = () => {
             </button>
 
             {/* Custom Carousel */}
-            <div className="relative overflow-hidden rounded-xl bg-white p-4 shadow-sm border border-gray-100">
+            <div className="relative overflow-hidden rounded-lg bg-white p-3 shadow-sm border border-gray-100">
               <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentDoctorIndex * (100 / doctorsPerView)}%)` }}>
                 {doctors.map((doctor, index) => (
                   <div 
                     key={doctor.id} 
-                    className={`flex-shrink-0 px-1 sm:px-2 ${
+                    className={`flex-shrink-0 px-1 sm:px-1.5 ${
                       doctorsPerView === 1 ? 'w-full' : 
                       doctorsPerView === 2 ? 'w-1/2' : 
-                      'w-1/4'
+                      doctorsPerView === 4 ? 'w-1/4' : // Show 4 cards when doctorsPerView is 4
+                      'w-1/3'
                     }`}
                   >
                     <motion.div
@@ -1153,9 +1161,9 @@ const HomePage = () => {
             </div>
 
             {/* Progress Seeker Bar */}
-            <div className="mt-6 sm:mt-8 h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div className="mt-4 sm:mt-6 h-1 w-full bg-gray-200 rounded-full overflow-hidden">
               <motion.div
-                className="h-1.5 bg-[#02d72] rounded-full"
+                className="h-1 bg-[#02d72] rounded-full"
                 initial={{ width: "0%" }}
                 animate={{ width: `${doctors.length > doctorsPerView ? (currentDoctorIndex / (doctors.length - doctorsPerView)) * 100 : 100}%` }}
                 transition={{ ease: "easeOut", duration: 0.5 }}
@@ -1166,97 +1174,112 @@ const HomePage = () => {
       </motion.section>
 
       <section
-        className="py-12 sm:py-16 bg-white"
-        style={{
-          background: "linear-gradient(135deg, #f8fafc 0%, #ffffff 100%)",
-        }}
+        className="py-4 sm:py-6 bg-[#f9f9f9]"
       >
         
 
         {/* PATIENT FEEDBACK SECTION */}
-        <motion.div
-          id="patient-feedback-section"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={sectionVariants}
-          transition={{ delay: 0.2 }}
-          className="container mx-auto px-4 sm:px-6 lg:px-12"
-        >
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-80 font-serif mb-2">
-              Patient Feedback
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
-              Hear from our patients about their healing journey with us
-            </p>
+        <section id="patient-feedback-section" className="py-12 bg-[#f9f9f9]">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <div className="text-center mb-12">
+              <h1 className="text-5xl md:text-6xl font-serif font-bold text-[#002d72] leading-tight">
+                Patient Feedback
+              </h1>
+              <div className="w-16 h-1 bg-[#d4af37] mx-auto mb-8 rounded"></div>
+              <p className="text-xl md:text-2xl font-serif text-[#444] mt-3 italic max-w-2xl mx-auto">
+                Hear from our patients about their healing journey with us
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {patientFeedbacks.map((feedback, index) => (
+                <motion.div
+                  key={`feedback-${feedback.id}`}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  className="group relative rounded-lg overflow-hidden shadow-sm border border-[#d4af37] bg-white p-6"
+                >
+                  {/* Video Thumbnail */}
+                  <div className="relative aspect-video bg-gray-200 mb-4 rounded">
+                    <img
+                      src={feedback.thumbnail}
+                      alt={feedback.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-opacity rounded">
+                      <button
+                        onClick={() => window.open(feedback.videoUrl, "_blank")}
+                        className="bg-red-600 hover:bg-red-70 text-white p-3 rounded-full transition transform group-hover:scale-110"
+                        aria-label={`Watch video: ${feedback.title}`}
+                      >
+                        <Play size={24} />
+                      </button>
+                    </div>
+                  </div>
+                  {/* Video Info */}
+                  <div>
+                    <h3 className="font-serif font-bold text-[#002d72] mb-3 text-lg leading-tight line-clamp-2 sm:line-clamp-3">
+                      {feedback.title}
+                    </h3>
+                    <div className="flex items-center gap-2 text-xs text-[#44] mb-2 font-sans">
+                      <Calendar size={14} />
+                      Admitted Under
+                    </div>
+                    <div className="font-sans font-medium text-[#02d72] mb-2 text-base">
+                      {feedback.doctor}
+                    </div>
+                    <div className="font-sans text-[#444] text-sm leading-tight mb-3">
+                      {feedback.specialty}
+                    </div>
+                    <div className="flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={14}
+                          className={`${
+                            i < 5 ? "text-[#d4af37] fill-[#d4af37]" : "text-gray-300"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {patientFeedbacks.map((feedback, index) => (
-              <motion.div
-                key={`feedback-${feedback.id}`}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-white border-gray-10"
-              >
-                {/* Video Thumbnail */}
-                <div className="relative aspect-video bg-gray-200">
-                  <img
-                    src={feedback.thumbnail}
-                    alt={feedback.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-opacity">
-                    <button
-                      onClick={() => window.open(feedback.videoUrl, "_blank")}
-                      className="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition transform group-hover:scale-110"
-                      aria-label={`Watch video: ${feedback.title}`}
-                    >
-                      <Play size={24} />
-                    </button>
-                  </div>
-                </div>
-                {/* Video Info */}
-                <div className="p-4 sm:p-5">
-                  <h3 className="font-semibold text-gray-800 line-clamp-2 sm:line-clamp-3 mb-2 sm:mb-3 text-base sm:text-lg">
-                    {feedback.title}
-                  </h3>
-                  <div className="flex items-center gap-2 text-xs text-gray-500 mb-1 sm:mb-2">
-                    <Calendar size={14} />
-                    Admitted Under
-                  </div>
-                  <div className="font-medium text-blue-700 mb-1 text-sm sm:text-base">
-                    {feedback.doctor}
-                  </div>
-                  <div className="text-xs sm:text-sm text-gray-600 leading-tight mb-2 sm:mb-3">
-                    {feedback.specialty}
-                  </div>
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={14}
-                        className={`${
-                          i < 5 ? "text-yellow-500 fill-yellow-500" : "text-gray-300"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        </section>
       </section>
 
-      {/* HEALTH PACKAGES SECTION */}
-      <HealthPackages />
+    
       
+      {/* EMERGENCY SERVICES SECTION */}
+      <motion.section
+        className="py-4 sm:py-6 bg-[#f9f9f9]"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={sectionVariants}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#002d72] leading-tight">
+              Emergency & Diagnostic Services
+            </h1>
+            <div className="w-16 h-1 bg-[#d4af37] mx-auto mt-4 rounded"></div>
+          </div>
+          
+          <div className="flex justify-center items-center">
+            <EmergencyServicesCarousel />
+          </div>
+        </div>
+      </motion.section>
+
       {/* RECENT BLOG SECTION */}
-      <BlogSection maxBlogs={3} />
+      <div className="py-8 sm:py-10 bg-[#f9f9f9]">
+        <BlogSection maxBlogs={3} />
+      </div>
     </>
   );
 };

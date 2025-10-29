@@ -3,7 +3,7 @@ import React from 'react';
 
 const DoctorInfoCard = ({ image, title, description, onBookClick }) => {
   return (
-    <div className="bg-white rounded-lg shadow-sm border-l-4 border-primary-gold border border-primary-gold hover:shadow-md transition duration-300 flex flex-col h-full w-full max-w-xs mx-auto overflow-hidden">
+    <div className="bg-white rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 flex-col h-full w-full max-w-[280px] mx-auto overflow-hidden">
       {/* Responsive image container with fixed aspect ratio */}
       <div className="w-full aspect-square overflow-hidden">
         <img
@@ -18,18 +18,18 @@ const DoctorInfoCard = ({ image, title, description, onBookClick }) => {
       </div>
 
       {/* Content area with consistent padding */}
-      <div className="p-3 sm:p-4 flex flex-col flex-grow overflow-hidden">
-        <h3 className="text-sm sm:text-base md:text-lg font-serif font-bold text-[#002d72] mb-1 sm:mb-2 line-clamp-1">
+      <div className="p-3 flex flex-col flex-grow overflow-hidden">
+        <h3 className="text-sm font-serif font-bold text-[#002d72] mb-1 line-clamp-1">
           {title}
         </h3>
-        <div className="w-full h-px bg-primary-gold mb-1 sm:mb-2"></div>
-        <p className="font-sans text-[#444] text-xs sm:text-sm flex-grow line-clamp-2 sm:line-clamp-3 overflow-hidden mb-2 sm:mb-3">
+        <div className="w-full h-px bg-[#d4af37] mb-1"></div>
+        <p className="font-sans text-[#444] text-xs flex-grow line-clamp-2 overflow-hidden mb-2">
           {description}
         </p>
         {onBookClick && (
           <button
             onClick={onBookClick}
-            className="mt-2 sm:mt-3 bg-primary-gold hover:bg-primary-gold/90 text-white px-2 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition"
+            className="mt-1 bg-[#d4af37] hover:bg-[#c0992a] text-white px-2 py-1 rounded-full text-xs font-medium transition"
           >
             Book
           </button>

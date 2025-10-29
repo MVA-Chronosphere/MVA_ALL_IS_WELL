@@ -1,7 +1,18 @@
 import React from 'react';
 import ReadMoreSection from '../components/ReadMoreSection';
+import BoardMemberCard from '../components/BoardMemberCard';
 
 const AboutUs = () => {
+  const boardMembers = [
+    { name: 'Manjusha Chouksey', position: 'President', image: 'board/Manjusha.jpg', alt: 'Manjusha Chouksey' },
+    { name: 'Sudhir Mahajan', position: 'Vice President', image: 'board/sudhir.jpg', alt: 'Sudhir Mahajan' },
+    { name: 'Anand Prakash Chouksey', position: 'Secretary', image: 'board/Anand.jpg', alt: 'Anand Prakash Chouksey' },
+    { name: 'Vandana Patel', position: 'Joint Secretary', image: 'board/vandana.jpg', alt: 'Vandana Patel' },
+    { name: 'Kabir Chouksey', position: 'Treasurer', image: 'board/kabir.jpg', alt: 'Kabir Chouksey' },
+    { name: 'Antra Chouksey', position: 'Member', image: 'board/antra.jpg', alt: 'Antra Chouksey' },
+    { name: 'Devanshi Chouksey', position: 'Member', image: 'board/devanshi.jpg', alt: 'Devanshi Chouksey' }
+  ];
+
   return (
     <div className="min-h-screen bg-white text-gray-700 font-sans">
       {/* Section 1: Mission & Vision - White Background */}
@@ -30,7 +41,7 @@ const AboutUs = () => {
             </div>
 
             {/* Vision Column */}
-            <div className="bg-white p-8 rounded-lg shadow-sm border-l-4 border-[#d4af37] border border-[#d4af37]">
+            <div className="bg-white p-8 rounded-lg shadow-sm border-l-4 border-[#d4af37] border-[#d4af37]">
               <h2 className="text-3xl font-serif font-bold text-[#002d72] mb-4">Vision</h2>
               <h3 className="text-xl font-serif font-semibold text-[#444] mb-4">
                 Transforming Lives Through World-Class Healthcare
@@ -46,8 +57,8 @@ const AboutUs = () => {
             <h2 className="text-3xl font-serif font-bold text-[#002d72] text-center mb-8">Core Values</h2>
             <div className="w-16 h-1 bg-[#d4af37] mx-auto mb-8 rounded"></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#d4af37] border border-[#d4af37]">
-                <h3 className="text-xl font-serif font-semibold text-[#002d72] mb-3">Compassionate Care</h3>
+              <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#d4af37] border-[#d4af37]">
+                <h3 className="text-xl font-serif font-semibold text-[#02d72] mb-3">Compassionate Care</h3>
                 <p className="font-sans text-[#444]">
                   We treat every patient with empathy, dignity, and respect.
                 </p>
@@ -83,7 +94,7 @@ const AboutUs = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <div className="text-center p-6 rounded bg-white shadow-sm border border-[#d4af37]">
               <p className="text-3xl font-bold text-[#d4af37]">360+</p>
-              <p className="text-[#002d72]">Beds</p>
+              <p className="text-[#02d72]">Beds</p>
             </div>
             <div className="text-center p-6 rounded bg-white shadow-sm border border-[#d4af37]">
               <p className="text-3xl font-bold text-[#d4af37]">100</p>
@@ -189,96 +200,15 @@ const AboutUs = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {/* Board Member 1 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src="board/Manjusha.jpg" 
-                  alt="Manjusha Chouksey"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-[#002d72] mb-1">Manjusha Chouksey</h3>
-              <p className="text-[#444] font-sans">President</p>
-            </div>
-
-            {/* Board Member 2 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src="board/sudhir.jpg" 
-                  alt="Sudhir Mahajan"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-[#002d72] mb-1">Sudhir Mahajan</h3>
-              <p className="text-[#444] font-sans">Vice President</p>
-            </div>
-
-            {/* Board Member 3 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src="board/Anand.webp" 
-                  alt="Anand Prakash Chouksey"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-[#002d72] mb-1">Anand Prakash Chouksey</h3>
-              <p className="text-[#444] font-sans">Secretary</p>
-            </div>
-
-            {/* Board Member 4 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src="board/vandana.jpg" 
-                  alt="Vandana Patel"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-[#002d72] mb-1">Vandana Patel</h3>
-              <p className="text-[#444] font-sans">Joint Secretary</p>
-            </div>
-
-            {/* Board Member 5 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src="board/kabir.jpg" 
-                  alt="Kabir Chouksey"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-[#002d72] mb-1">Kabir Chouksey</h3>
-              <p className="text-[#44] font-sans">Treasurer</p>
-            </div>
-
-            {/* Board Member 6 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src="board/antra.jpg" 
-                  alt="Antra Chouksey"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-[#002d72] mb-1">Antra Chouksey</h3>
-              <p className="text-[#444] font-sans">Member</p>
-            </div>
-
-            {/* Board Member 7 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-              <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src="board/devanshi.jpg" 
-                  alt="Devanshi Chouksey"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-[#002d72] mb-1">Devanshi Chouksey</h3>
-              <p className="text-[#444] font-sans">Member</p>
-            </div>
+            {boardMembers.map((member, index) => (
+              <BoardMemberCard
+                key={index}
+                name={member.name}
+                position={member.position}
+                image={member.image}
+                alt={member.alt}
+              />
+            ))}
           </div>
         </div>
       </section>

@@ -4,6 +4,7 @@ import CardComponent from './CardComponent';
 import PatientStoryCard from './PatientStoryCard'; // Import PatientStoryCard
 import { doctors } from '../pages/FindADoctorPage';
 import AppointmentFormModal from './AppointmentFormModal';
+import {Star} from "lucide-react";
 
 
 const CareCenterService = () => {
@@ -2024,56 +2025,51 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
                 return (
                   <div
                     key={`feedback-${feedback.id}`}
-                    className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-white border-gray-10"
+                    className="group relative rounded-lg overflow-hidden shadow-sm border border-[#d4af37] bg-white p-6"
                   >
                     {/* Video Thumbnail */}
-                    <div className="relative aspect-video bg-gray-200">
+                    <div className="relative aspect-video bg-gray-200 mb-4 rounded">
                       <img
                         src={thumbnail}
                         alt={feedback.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-opacity">
+                      <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-opacity rounded">
                         <button
                           onClick={() => window.open(feedback.url, "_blank")}
                           className="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition transform group-hover:scale-110"
                           aria-label={`Watch video: ${feedback.title}`}
                         >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
                         </button>
                       </div>
                     </div>
                     {/* Video Info */}
-                    <div className="p-4 sm:p-5">
-                      <h3 className="font-semibold text-gray-800 line-clamp-2 sm:line-clamp-3 mb-2 sm:mb-3 text-base sm:text-lg">
+                    <div>
+                      <h3 className="font-serif font-bold text-[#002d72] mb-3 text-lg leading-tight line-clamp-2 sm:line-clamp-3">
                         {feedback.title}
                       </h3>
-                      <div className="flex items-center gap-2 text-xs text-gray-500 mb-1 sm:mb-2">
+                      <div className="flex items-center gap-2 text-xs text-[#444] mb-2 font-sans">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
                         Admitted Under
                       </div>
-                      <div className="font-medium text-blue-700 mb-1 text-sm sm:text-base">
+                      <div className="font-sans font-medium text-[#02d72] mb-2 text-base">
                         {feedback.doctor}
                       </div>
-                      <div className="text-xs sm:text-sm text-gray-600 leading-tight mb-2 sm:mb-3">
+                      <div className="font-sans text-[#444] text-sm leading-tight mb-3">
                         {feedback.specialty}
                       </div>
                       <div className="flex items-center gap-1">
                         {[...Array(5)].map((_, i) => (
-                          <svg
-                            key={i}
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="14"
-                            height="14"
-                            viewBox="0 24 24"
-                            fill={i < 5 ? "#fbbf24" : "#d1d5db"}
-                            stroke={i < 5 ? "#fbbf24" : "#d1d5db"}
-                            className="lucide lucide-star"
-                          >
-                            <polygon points="12 2 15.09 8.26 2 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                          </svg>
-                        ))}
+                        <Star
+                          key={i}
+                          size={14}
+                          className={`${
+                            i < 5 ? "text-[#d4af37] fill-[#d4af37]" : "text-gray-300"
+                          }`}
+                        />
+                      ))}
                       </div>
                     </div>
                   </div>

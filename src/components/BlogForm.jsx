@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, User, Trash2 } from 'lucide-react';
+import sampleBlogs from '../data/sampleBlogs';
 
 const BlogForm = () => {
   const [formData, setFormData] = useState({
@@ -45,7 +46,13 @@ const BlogForm = () => {
   // Load blog posts when component mounts
   useEffect(() => {
     const storedBlogs = JSON.parse(localStorage.getItem('blogPosts')) || [];
-    setBlogPosts(storedBlogs);
+    // If no blogs in localStorage, initialize with sample blogs
+    if (storedBlogs.length === 0) {
+      localStorage.setItem('blogPosts', JSON.stringify(sampleBlogs));
+      setBlogPosts(sampleBlogs);
+    } else {
+      setBlogPosts(storedBlogs);
+    }
   }, []);
 
  const handleChange = (e) => {

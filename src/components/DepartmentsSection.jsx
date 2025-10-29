@@ -164,8 +164,28 @@ const DepartmentsSection = () => {
     setCurrentSlideIndex((prev) => Math.min(prev + 1, slidesCount - 1));
   };
 
+  // Mapping between department names and service slugs
+  const departmentToServiceMap = {
+    "Anesthesiology and Critical Care": "anaesthesia",
+    "Cardiac Sciences": "cardiology",
+    "Neuro Sciences": "neuro-spine-surgery",
+    "Dental Sciences": "dental",
+    "Obstetrics and Gynaecology": "obstetrics-and-gynaecology",
+    "Ophthalmology": "ophthalmology",
+    "ENT": "ent",
+    "General Medicine": "general-medicine",
+    "Advanced Cardiac Care Center": "cardiology",
+    "Cancer Care Center": "oncology",
+    "Orthopaedic and Joint Replacement Center": "orthopaedics",
+    "Neurosciences Center": "neuro-spine-surgery",
+    "Maternity and Child Care Center": "obstetrics-and-gynaecology",
+    "Dental Care Center": "dental",
+    "Eye Care Center": "ophthalmology",
+    "ENT Care Center": "ent"
+  };
+
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-[#f9f9f9]">
       <div className="max-w-7xl mx-auto px-4 md:px-10">
         {/* Header */}
         <div className="text-center mb-12">
@@ -242,10 +262,14 @@ const DepartmentsSection = () => {
                         slideIndex * itemsPerSlide,
                         slideIndex * itemsPerSlide + itemsPerSlide
                       )
-                      .map((dept) => (
+                      .map((dept) => {
+                        // Find the corresponding service slug
+                        const serviceSlug = departmentToServiceMap[dept.title] || dept.title.toLowerCase().replace(/\s+/g, '-');
+                        
+                        return (
                           <motion.div
                             key={dept.id}
-                            className="bg-white rounded-xl shadow-md border border-[#d4af37]/60 hover:shadow-lg transition-transform duration-300 flex flex-col p-4 sm:p-6 min-h-[320px]"
+                            className="bg-white rounded-xl shadow-md border border-[#d4af37]/60 hover:shadow-lg transition-transform duration-30 flex flex-col p-4 sm:p-6 min-h-[320px]"
                             whileHover={{ y: -5 }}
                           >
                             <div className="flex flex-col items-center text-center flex-grow">
@@ -259,7 +283,7 @@ const DepartmentsSection = () => {
                                 {dept.description}
                               </p>
                               <Link
-                                to={`/department/${dept.id}`}
+                                to={`/care-center/${serviceSlug}`}
                                 className="text-[#002d72] hover:text-[#d4af37] text-sm font-medium flex items-center justify-center gap-1 transition-colors duration-300 mt-auto"
                               >
                                 Learn More
@@ -267,7 +291,8 @@ const DepartmentsSection = () => {
                               </Link>
                             </div>
                           </motion.div>
-                      ))}
+                        );
+                      })}
                   </div>
                 </div>
               ))}

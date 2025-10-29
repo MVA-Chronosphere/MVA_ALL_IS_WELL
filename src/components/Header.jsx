@@ -19,7 +19,6 @@ const Header = () => {
     { label: "About Us", href: "#", hasDropdown: true },
     { label: "Our Branches", href: "/branches", hasDropdown: true },
     { label: "Academics", href: "/academics"},
-    { label: "Careers", href: "/careers"},
     { label: "More", href: "#", hasDropdown: true },
   ];
 
@@ -81,7 +80,7 @@ const Header = () => {
       { label: "Community Services", href: "/community-services" },
       { label: "Contact Us", href: "/contact-us" },
       { label: "Certifications", href: "/certification" },
-      { label: "Blog", href: "/blog" },
+      
     ],
     "Our Branches": [
       { label: "All Is Well Super Clinic Shahpur", href: "/branches/shahpur" },

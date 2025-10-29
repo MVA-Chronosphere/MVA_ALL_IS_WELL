@@ -56,8 +56,8 @@ const FindADoctorPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white font-sans">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-8">
         {/* Breadcrumb */}
         <div className="mb-8">
           <div className="flex items-center space-x-2 text-sm">
@@ -69,11 +69,10 @@ const FindADoctorPage = () => {
 
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#002d72]">Our Medical Experts</h1>
-          <div className="w-24 h-1 bg-[#d4af37] mx-auto mt-4 mb-6"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <div className="w-16 h-1 bg-[#d4af37] mx-auto mt-4 mb-6 rounded"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto text-[#444] font-sans">
             Find the right doctor who's perfect for your needs. Use our advanced search filters to find specialists by name, specialty, or location.
           </p>
-
         </div>
 
         {/* Filters and Results */}

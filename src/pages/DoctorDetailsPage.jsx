@@ -684,6 +684,124 @@ const DoctorDetailsPage = () => {
         ],
         otherExperience: "Dr. Marathe believes in a patient-centered approach that integrates hands-on techniques with exercise science and holistic wellness. Her goal is to empower patients to regain independence, manage pain effectively, and prevent future injuries through education and guided therapy. She focuses on personalized rehabilitation plans that restore mobility, strength, and quality of life."
       };
+    } else if (doctor.name.includes("Peeyush Suryawanshi")) {
+      return {
+        about: "Dr. Peeyush Suryawanshi is a Consultant Pediatrician at All Is Well Multispecialty Hospital, Burhanpur. He is a specialized healthcare professional with excellent clinical expertise and has served in reputed hospitals across Madhya Pradesh.",
+        experience: "Dr. Peeyush Suryawanshi is a Consultant Pediatrician at All Is Well Multispecialty Hospital, Burhanpur. He is a specialized healthcare professional with excellent clinical expertise and has served in reputed hospitals across Madhya Pradesh. He has completed a Diploma in Child Health and Pediatrics from SSMC and GMH, Rewa. He has extensive experience in newborn care, having worked with UNICEF and NRHM to develop special newborn care units. During his academic career, he was awarded first position in oral paper presentation competitions in Madhya Pradesh.",
+        specializations: [
+          "Newborn and Infant Care",
+          "General Pediatrics",
+          "Advanced Pediatric Procedures"
+        ],
+        expertise: [
+          "Expert in fundamental and advanced pediatric procedures such as arterial and venous line insertions, intraosseous access, central line insertions, intubations, and lumbar punctures"
+        ],
+        accreditations: [
+          "Diploma in Child Health (DCh)",
+          "Member of Pediatric Society of India",
+          "Recognized for excellence in newborn and pediatric care"
+        ],
+        otherExperience: ""
+      };
+    } else if (doctor.name.includes("Apurva Yadav")) {
+      return {
+        about: "Dr. Apurva Yadav is a Consultant Ophthalmologist and Cataract Surgeon at All Is Well Multispecialty Hospital, Burhanpur. She has performed numerous cataract surgeries, including phacoemulsification, with excellent outcomes.",
+        experience: "Dr. Apurva Yadav is a Consultant Ophthalmologist and Cataract Surgeon at All Is Well Multispecialty Hospital, Burhanpur. She has performed numerous cataract surgeries, including phacoemulsification, with excellent outcomes. Her key areas of expertise include advanced surgical techniques for corneal transplantation, corneal tear repair, scleral tear repair, and pterygium surgeries. She specializes in the diagnosis and management of corneal diseases and ocular surface disorders. She is skilled in innovative treatments such as corneal collagen cross-linking and lamellar keratoplasty. She has hands-on experience in intravitreal anti-VEGF therapy and oculoplasty procedures including cyst excision, DCT, evisceration, and enucleation. She has conducted and assisted various diagnostic procedures, including gonioscopy, Schiotz and applanation tonometry, direct and indirect ophthalmoscopy, 78D and 90D slit lamp examination, ROP screening and laser assistance, corneal topography, OCT anterior segment imaging, automated perimetry, and fundus fluorescein angiography. She has managed ophthalmic emergencies such as chemical and thermal injuries, lid tear repairs, and other urgent ocular conditions. She has a keen interest in clinical research and actively participates in interdisciplinary collaboration.",
+        specializations: [
+          "Cataract Surgery & Phacoemulsification",
+          "Corneal Surgery - Corneal Transplantation, Tear Repair, Lamellar Keratoplasty, Pterygium Surgery",
+          "Oculoplasty - Cyst Excision, DCT, Evisceration, Enucleation",
+          "Diagnosis & Management of Corneal & Ocular Surface Disorders",
+          "Intravitreal Therapy & Ophthalmic Emergencies"
+        ],
+        expertise: [
+          "Advanced surgical techniques for corneal transplantation, corneal tear repair, scleral tear repair, and pterygium surgeries",
+          "Skilled in innovative treatments such as corneal collagen cross-linking and lamellar keratoplasty",
+          "Hands-on experience intravitreal anti-VEGF therapy and oculoplasty procedures including cyst excision, DCT, evisceration, and enucleation"
+        ],
+        accreditations: [
+          "DOMS (Diploma in Ophthalmology & Microsurgery)",
+          "Member of All India Ophthalmological Society (AIOS)",
+          "Recognized for excellence in cataract, corneal, and oculoplasty procedures"
+        ],
+        otherExperience: "She has conducted and assisted various diagnostic procedures, including gonioscopy, Schiotz and applanation tonometry, direct and indirect ophthalmoscopy, 78D and 90D slit lamp examination, ROP screening and laser assistance, corneal topography, OCT anterior segment imaging, automated perimetry, and fundus fluorescein angiography. She has managed ophthalmic emergencies such as chemical and thermal injuries, lid tear repairs, and other urgent ocular conditions. She has a keen interest in clinical research and actively participates in interdisciplinary collaboration."
+      };
+    } else if (doctor.name.includes("Shubham Verma")) {
+      return {
+        about: "Dr. Shubham Verma is a Pulmonologist and Critical Care Specialist with extensive experience in managing acute and chronic respiratory illnesses.",
+        experience: "Dr. Shubham Verma is a Pulmonologist and Critical Care Specialist with extensive experience in managing acute and chronic respiratory illnesses. He completed his MD in Pulmonary Medicine from Sri Aurobindo Medical College and Post Graduate Institute (SAMC & PGI), Indore, and his MBBS from Gajra Raja Medical College. He has trained in bronchoscopy, thoracoscopy, and critical care at SAIMS Hospital, Indore, gaining exposure to a wide range of respiratory cases. He is skilled in managing patients with asthma, COPD, tuberculosis, interstitial lung disease, and acute respiratory failure. He performs pulmonary function tests, sleep studies, and other diagnostic procedures to assess the severity of lung diseases. He is experienced in performing complex procedures such as intercostal tube insertion, pleurodesis, bronchoscopy interventions (TBLB, TBNA, removal of secretions, polyps, or growths), and invasive and non-invasive mechanical ventilation. He has hands-on expertise in managing respiratory ICU patients and has worked for three years in a dedicated 10-bedded respiratory ICU during his residency. He actively participates in academic activities, clinical discussions, and attends continuing medical education to stay updated on advances in pulmonary medicine.",
+        specializations: [
+          "Respiratory Diseases Management - Asthma, COPD, TB, Interstitial Lung Disease",
+          "Critical Care & Respiratory ICU Management",
+          "Bronchoscopy, Thoracoscopy & Interventional Pulmonology",
+          "Pulmonary Function Tests & Sleep Disorder Management",
+          "Emergency Airway Management & Complex Intubations"
+        ],
+        expertise: [
+          "Managing patients with asthma, COPD, tuberculosis, interstitial lung disease, and acute respiratory failure",
+          "Performing complex procedures such as intercostal tube insertion, pleurodesis, bronchoscopy interventions (TBLB, TBNA, removal of secretions, polyps, or growths), and invasive and non-invasive mechanical ventilation"
+        ],
+        accreditations: [
+          "ACLS and BLS Certified",
+          "BCBR Certificate Course - ICMR Certified (September 2023)",
+          "Presented oral and poster papers in TESCON 2024, BRONCHOCON 2023, and other conferences",
+          "Two publications in the European Journal of Cardiovascular Medicine",
+          "Third prize in postgraduate quiz competitions on respiratory diseases conducted under the National College of Chest Physicians",
+          "Regular participant in national and international conferences and workshops on pulmonary medicine and critical care"
+        ],
+        otherExperience: ""
+      };
+    } else if (doctor.name.includes("Abhey Joshi")) {
+      return {
+        about: "Dr. Abhay Bhanudas Joshi is the first full-time nephrologist in Jalgaon district and has been providing specialized kidney care since 2012. He is the founder and lead consultant at Nephron Kidney & Dialysis Center, Jalgaon.",
+        experience: "Dr. Abhay Bhanudas Joshi is the first full-time nephrologist in Jalgaon district and has been providing specialized kidney care since 2012. He is the founder and lead consultant at Nephron Kidney & Dialysis Center, Jalgaon. He has conducted numerous social initiatives, health camps, and visiting OPDs for kidney patients. He served as Assistant Professor of Nephrology at UP Medical College, Jalgaon. He has extensive experience performing interventional nephrology procedures including native and graft kidney biopsies, temporary and permanent tunneled cuffed catheters, live and cadaveric kidney transplants, plasmapheresis, and peritoneal dialysis. He was a member of the COVID Task Force of Jalgaon district. He actively participates in national and international conferences, presenting papers at the Indian Society of Nephrology Annual Conference and the International Society of Hemodialysis Annual Conference.",
+        specializations: [
+          "Kidney Disease Management - Chronic Kidney Disease, Acute Kidney Injury, Dialysis",
+          "Interventional Nephrology - Kidney Biopsies, Catheter Insertions, Plasmapheresis",
+          "Kidney Transplantation - Live & Cadaveric Transplants",
+          "Peritoneal Dialysis & Hemodialysis",
+          "Critical Care Nephrology"
+        ],
+        expertise: [
+          "Extensive experience performing interventional nephrology procedures including native and graft kidney biopsies, temporary and permanent tunneled cuffed catheters, live and cadaveric kidney transplants, plasmapheresis, and peritoneal dialysis"
+        ],
+        accreditations: [
+          "MNAMS - Member, National Academy of Medical Sciences",
+          "FASN - Fellow, American Society of Nephrology (2015)",
+          "Member, Indian Society of Nephrology",
+          "Member, Indian Society of Organ Transplantation",
+          "Member, Indian Society of Nephrology - West Zone",
+          "Member, Indian Society of Critical Care Medicine",
+          "Member, Association of Physicians of India",
+          "Member, Indian Medical Association",
+          "Member, American Society of Nephrology"
+        ],
+        otherExperience: ""
+      };
+    } else if (doctor.name.includes("Rashi Gupta")) {
+      return {
+        about: "Dr. Rashi Gupta is a Pathologist with expertise in hematology, cytopathology, and histopathology. She completed her MD in Pathology from Mahatma Gandhi Memorial Medical College, Indore, and her MBBS from Gajra Raja Medical College, Gwalior.",
+        experience: "Dr. Rashi Gupta is a Pathologist with expertise in hematology, cytopathology, and histopathology. She completed her MD in Pathology from Mahatma Gandhi Memorial Medical College, Indore, and her MBBS from Gajra Raja Medical College, Gwalior. She has extensive experience in preliminary evaluation, slide screening, and reporting of hematological disorders including leukemia, lymphoma, and benign conditions. She is trained in gross examination and histopathology of surgically resected specimens, as well as fine needle aspiration cytology and cytopathology. She is proficient in laboratory operations, quality control, blood banking, and various serologic and microbiologic techniques. She actively participates in academic discussions, CMEs, and workshops to stay updated with advances in pathology. Her research work includes a thesis on the significance of serum markers (AFP, beta HCG, LDH) in reporting testicular tumors, in accordance with CAP guidelines. She has also contributed to teaching and volunteering, including work with the organization “Make a Difference,” Gwalior.",
+        specializations: [
+          "Hematology - Diagnosis and management of blood disorders",
+          "Histopathology - Grossing and microscopic evaluation of specimens",
+          "Cytopathology - Fine needle aspiration and cytology of various tissues",
+          "Laboratory Operations - Quality control, blood banking, and serologic/microbiologic testing",
+          "Clinical Research & Academic Contribution"
+        ],
+        expertise: [
+          "Extensive experience in preliminary evaluation, slide screening, and reporting of hematological disorders including leukemia, lymphoma, and benign conditions",
+          "Trained in gross examination and histopathology of surgically resected specimens, as well as fine needle aspiration cytology and cytopathology"
+        ],
+        accreditations: [
+          "BCBR Certificate Course - ICMR Certified (September 2023)",
+          "Second prize in oral paper presentation at 14th MP-PATHCON 2024",
+          "Publications in European Journal of Cardiovascular Medicine, International Journal of Pharmaceutical and Clinical Research, and Indian Journal of Basic and Applied Medical Research",
+          "Participant and awardee in various pathology workshops, CMEs, and hematology summits",
+          "Active contributor in academic, cultural, and voluntary initiatives"
+        ],
+        otherExperience: ""
+      };
     } else {
       // Default content for other doctors
       return {
@@ -826,60 +944,7 @@ const DoctorDetailsPage = () => {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Appointment Scheduling */}
-            <div className="bg-white p-8 rounded-lg shadow-sm border-l-4 border-[#d4af37] border border-[#d4af37]">
-              <h3 className="text-xl font-serif font-bold text-[#002d72] mb-4">Schedule Appointment</h3>
-              
-              <div className="mb-4">
-                <h4 className="font-medium text-[#002d72] mb-2">Select Date</h4>
-                <div className="grid grid-cols-2 gap-2">
-                  {nextDays.map((day, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedDate(day.toISOString().split('T')[0])}
-                      className={`py-2 px-2 text-sm rounded border transition-colors ${
-                        selectedDate === day.toISOString().split('T')[0]
-                          ? 'bg-[#002d72] text-white border-[#002d72]'
-                          : 'border-[#d4af37] hover:bg-gray-50 text-[#002d72]'
-                      }`}
-                    >
-                      {day.toLocaleDateString('en-US', { weekday: 'short' })} {day.getDate()}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <h4 className="font-medium text-[#002d72] mb-2">Select Time</h4>
-                <div className="grid grid-cols-2 gap-2">
-                  {availabilityTimes.map((time, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedTime(time)}
-                      className={`py-2 px-2 text-sm rounded border transition-colors ${
-                        selectedTime === time
-                          ? 'bg-[#002d72] text-white border-[#002d72]'
-                          : 'border-[#d4af37] hover:bg-gray-50 text-[#002d72]'
-                      }`}
-                    >
-                      {time}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <button
-                onClick={() => setIsAppointmentModalOpen(true)}
-                disabled={!selectedDate || !selectedTime}
-                className={`w-full py-3 px-4 rounded font-medium transition-colors ${
-                  selectedDate && selectedTime
-                    ? 'bg-[#002d72] text-white hover:bg-[#001d4d]'
-                    : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                }`}
-              >
-                Book Appointment
-              </button>
-            </div>
+            
 
             {/* Additional Info */}
             <div className="bg-white p-8 rounded-lg shadow-sm border-l-4 border-[#d4af37] border border-[#d4af37]">

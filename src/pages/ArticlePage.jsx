@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, User, X } from "lucide-react";
+import sampleBlogs from "../data/sampleBlogs";
 
 const ArticlePage = () => {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -9,8 +10,10 @@ const ArticlePage = () => {
   useEffect(() => {
     // Load blog posts from localStorage
     const storedBlogs = JSON.parse(localStorage.getItem('blogPosts')) || [];
+    // If no blogs in localStorage, use sample blogs as fallback
+    const blogsToUse = storedBlogs.length > 0 ? storedBlogs : sampleBlogs;
     // Sort by date to show most recent first
-    const sortedBlogs = storedBlogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const sortedBlogs = blogsToUse.sort((a, b) => new Date(b.date) - new Date(a.date));
     setBlogPosts(sortedBlogs);
   }, []);
 
