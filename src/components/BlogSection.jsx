@@ -11,7 +11,12 @@ const BlogSection = ({ maxBlogs = null, showViewAllButton = true }) => {
     // Load blog posts from localStorage
     const storedBlogs = JSON.parse(localStorage.getItem('blogPosts')) || [];
     // If no blogs in localStorage, use sample blogs as fallback
-    const blogsToUse = storedBlogs.length > 0 ? storedBlogs : sampleBlogs;
+    let blogsToUse = storedBlogs.length > 0 ? storedBlogs : sampleBlogs;
+    // Ensure all blog posts have correct image paths (for sample blogs specifically)
+    blogsToUse = blogsToUse.map(blog => ({
+      ...blog,
+      image: blog.image.startsWith('/') ? blog.image : `/${blog.image}`
+    }));
     // Sort by date to show most recent first, then apply maxBlogs limit if specified
     const sortedBlogs = blogsToUse.sort((a, b) => new Date(b.date) - new Date(a.date));
     const limitedBlogs = maxBlogs ? sortedBlogs.slice(0, maxBlogs) : sortedBlogs;

@@ -6,7 +6,8 @@ import path from 'path';
 const videoFiles = [
   'public/Anandprakashchokseyexplanation.mp4',
   'public/Explainervide.mp4',
-  'public/kidtestimonial.mp4'
+  'public/kidtestimonial.mp4',
+  'public/whysection/Explainervide.mp4'
 ];
 
 // Define the path to the ffmpeg binary if it's not in your system PATH

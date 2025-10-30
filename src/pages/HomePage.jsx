@@ -284,7 +284,7 @@ const HomePage = () => {
   const slides = [
   {
     type: 'video',
-    video: "/Anandprakashchokseyexplanation.mp4",
+    video: "/Anandprakashchokseyexplanation.webm",
     title: "Trustworthy Medical Expertise",
     buttonLabel: "Book Appointment",
     buttonIcon: <Calendar size={18} />,
@@ -294,7 +294,7 @@ const HomePage = () => {
   },
   {
     type: 'video',
-    video: "/Explainervide.mp4",
+    video: "/Explainervide.webm",
     title: "Quality Healthcare in Central India",
     buttonLabel: "Explore Services",
     buttonIcon: <Play size={18} />,
@@ -304,7 +304,7 @@ const HomePage = () => {
   },
   {
     type: 'video',
-    video: "/kidtestimonial.mp4",
+    video: "/kidtestimonial.webm",
     title: "The Start of Your Healing Journey",
     buttonLabel: "Watch Testimonials",
     buttonIcon: <Play size={18} />,
@@ -421,118 +421,23 @@ const HomePage = () => {
       if (!video) return;
 
       if (idx === currentIndex) {
-        // Load video source if not already loaded for current slide
-        if (!loadedVideos.has(idx)) {
-          const source = video.querySelector('source[data-src]');
-          if (source) {
-            source.src = source.dataset.src;
-            source.removeAttribute('data-src');
-            video.load(); // Load the video with the new source
-          }
-        }
-
-        // Only attempt to play if the video source has been loaded
-        if (loadedVideos.has(idx)) {
-          video.muted = isMuted;
+        // Play the current slide video
+        video.muted = isMuted;
+        // Ensure the video is not paused at the start
+        if (video.paused) {
           video.play().catch(e => {
             console.warn(`Autoplay blocked for video ${idx}:`, e);
           });
         }
       } else {
         // Pause and reset inactive videos
-        video.pause();
+        if (!video.paused) {
+          video.pause();
+        }
         video.currentTime = 0;
       }
     });
-  }, [currentIndex, isMuted, loadedVideos]);
-
-  // Intersection Observer for lazy loading video sources
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const videoIndex = parseInt(entry.target.dataset.videoIndex, 10);
-          if (entry.isIntersecting) {
-            // If video enters viewport, mark it as loaded
-            setLoadedVideos(prev => {
-              if (!prev.has(videoIndex)) {
-                const newSet = new Set(prev);
-                newSet.add(videoIndex);
-                return newSet;
-              }
-              return prev;
-            });
-          } else {
-            // If video leaves viewport, pause and reset it
-            const video = videoRefs.current[videoIndex];
-            if (video) {
-              video.pause();
-              video.currentTime = 0;
-            }
-          }
-        });
-      },
-      {
-        root: null, // viewport
-        rootMargin: '0px',
-        threshold: 0.5, // Trigger when 50% of the video is visible
-      }
-    );
-
-    // Observe all video elements
-    videoRefs.current.forEach((video, idx) => {
-      if (video) {
-        video.dataset.videoIndex = idx; // Store index for observer callback
-        observer.observe(video);
-      }
-    });
-
-    return () => {
-      videoRefs.current.forEach(video => {
-        if (video) {
-          observer.unobserve(video);
-        }
-      });
-    };
-  }, [loadedVideos]); // Re-run if loadedVideos changes to observe new elements if any
-
-  // Intersection Observer for the entire hero section to play video when hero is viewed
-  useEffect(() => {
-    if (!heroSectionRef.current) return;
-
-    const heroObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setHeroSectionInView(true);
-            // When hero section comes into view, ensure the current video plays
-            const currentVideo = videoRefs.current[currentIndex];
-            if (currentVideo && loadedVideos.has(currentIndex)) {
-              currentVideo.muted = isMuted;
-              currentVideo.play().catch(e => {
-                console.warn(`Autoplay blocked for current video:`, e);
-              });
-            }
-          } else {
-            setHeroSectionInView(false);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1, // Trigger when 10% of hero section is visible
-      }
-    );
-
-    heroObserver.observe(heroSectionRef.current);
-
-    return () => {
-      if (heroSectionRef.current) {
-        heroObserver.unobserve(heroSectionRef.current);
-      }
-    };
-  }, [currentIndex, isMuted, loadedVideos]);
+  }, [currentIndex, isMuted]);
 
 
       return (
@@ -571,7 +476,6 @@ const HomePage = () => {
             <video
               ref={(el) => (videoRefs.current[index] = el)}
               autoPlay={index === currentIndex} // Autoplay only if it's the current slide
-              loop
               playsInline
               muted={isMuted}
               preload={index === currentIndex ? "auto" : "none"} // Only preload current and adjacent slides
@@ -586,27 +490,18 @@ const HomePage = () => {
                   e.target.play().catch(err => console.warn(`Autoplay prevented for video ${index}:`, err));
                 }
               }}
-              onEnded={() => {
+              onEnded={(e) => {
+                // Loop the video by resetting to start and playing again
+                e.target.currentTime = 0;
+                e.target.play().catch(err => console.warn(`Loop play prevented for video:`, err));
+                
                 // When video ends, resume the slider if it was paused due to unmuted video
                 if (shouldPauseSlider) {
                   setShouldPauseSlider(false);
                 }
               }}
             >
-              {/* Conditionally load video source based on visibility - account for slider loop */}
-              {index === currentIndex || 
-               index === (currentIndex - 1 + slides.length) % slides.length || 
-               index === (currentIndex + 1) % slides.length ? (
-                <>
-                  <source src={slide.video.replace('.mp4', '.webm')} type="video/webm" />
-                  <source src={slide.video} type="video/mp4" />
-                </>
-              ) : (
-                <>
-                  <source data-src={slide.video.replace('.mp4', '.webm')} type="video/webm" />
-                  <source data-src={slide.video} type="video/mp4" />
-                </>
-              )}
+              <source src={slide.video} type="video/webm" />
               Your browser does not support the video tag.
             </video>
 

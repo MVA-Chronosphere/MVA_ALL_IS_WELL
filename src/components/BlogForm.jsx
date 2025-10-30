@@ -43,13 +43,22 @@ const BlogForm = () => {
     'Minimally Invasive',
   ];
 
-  // Load blog posts when component mounts
+   // Load blog posts when component mounts
   useEffect(() => {
     const storedBlogs = JSON.parse(localStorage.getItem('blogPosts')) || [];
-    // If no blogs in localStorage, initialize with sample blogs
-    if (storedBlogs.length === 0) {
-      localStorage.setItem('blogPosts', JSON.stringify(sampleBlogs));
-      setBlogPosts(sampleBlogs);
+    // Check if we need to reset the blog data (e.g., if image paths are incorrect)
+    const needsReset = storedBlogs.length > 0 && storedBlogs.some(blog => 
+      blog.image && !blog.image.startsWith('/') && !blog.image.startsWith('data:image')
+    );
+    
+    if (storedBlogs.length === 0 || needsReset) {
+      // Initialize with sample blogs with correct image paths
+      const formattedSampleBlogs = sampleBlogs.map(blog => ({
+        ...blog,
+        image: blog.image.startsWith('/') ? blog.image : `/${blog.image}`
+      }));
+      localStorage.setItem('blogPosts', JSON.stringify(formattedSampleBlogs));
+      setBlogPosts(formattedSampleBlogs);
     } else {
       setBlogPosts(storedBlogs);
     }
