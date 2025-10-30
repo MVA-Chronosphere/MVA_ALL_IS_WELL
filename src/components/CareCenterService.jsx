@@ -609,7 +609,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     "neuro-spine-surgery": {
       title: "Neuro and Spine Surgery Treatments",
       image: "/Serviceimages/Neuro and spine surgery.jpeg",
-      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/neuro and spine surgery.jpg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/neuro and spine surgery.webp",
       heroContent: [
         { 
           title: "Brain Tumor Surgery", 
@@ -653,7 +653,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     cardiology: {
       title: "Treatments Available in Cardiology",
       image: "/Serviceimages/Cardiology.jpeg",
-      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/Cardiology.jpg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/Cardiology.webp",
       heroContent: [
         { 
           title: "Angioplasty", 
@@ -696,7 +696,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     "cardio-thoracic-surgery": {
       title: "Treatments Available in Thoracic Surgery",
       image: "/Serviceimages/Cardiovascular.jpeg",
-      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/cardiovascular thoracic surgery.jpg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/cardiovascular thoracic surgery.webp",
       heroContent: [
         { 
           title: "Lobectomy", 
@@ -739,7 +739,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     "plastic-surgery": {
       title: "Treatments Available in Plastic and Reconstructive",
       image: "/Serviceimages/plastic and reconstructive.jpeg",
-      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/plastic and reconstructive surgery.jpg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/plastic and reconstructive surgery.webp",
       heroContent: [
         { 
           title: "Rhinoplasty", 
@@ -782,7 +782,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     urology: {
       title: "Treatments Available in Urology",
       image: "/Serviceimages/urology.jpeg",
-      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/urology treatment.jpg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/urology treatment.webp",
       heroContent: [
         { 
           title: "Kidney Stone Removal", 
@@ -826,7 +826,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   oncology: {
     title: "Treatments Available in Oncology",
     image: "/Serviceimages/oncology.jpeg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/oncology.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/oncology.webp",
     heroContent: [
       { 
         title: "Chemotherapy", 
@@ -868,8 +868,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   gastroenterology: {
     title: "Treatments Available in Gastroenterology",
-    image: "/Serviceimages/radiology_and_imaging.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/gastroenterology.jpg",
+    image: "/Serviceimages/radiology_and_imaging.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/gastroenterology.webp",
     heroContent: [
       { 
         title: "Endoscopy", 
@@ -912,7 +912,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   endocrinology: {
     title: "Treatments Available in Endocrinology",
     image: "/Serviceimages/endocrine.jpeg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/endocrionology.jpg",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/endocrionology.webp",
     heroContent: [
       { 
         title: "Diabetes Management", 
@@ -954,8 +954,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   rheumatology: {
     title: "Treatments Available in Rheumatology",
-    image: "/Serviceimages/rheumatology.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/rheumatology.jpg",
+    image: "/Serviceimages/rheumatology.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/rheumatology.webp",
     heroContent: [
       { 
         title: "Rheumatoid Arthritis Management", 
@@ -998,7 +998,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
     radiology: {
       title: "Treatments Available in Radiology",
       image: "/Serviceimages/radiology and imaging.jpeg",
-      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/radiology.jpg",
+      bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/radiology.webp",
       heroContent: [
         { 
           title: "X-Ray", 
@@ -1041,8 +1041,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
   "critical-care": {
     title: "Treatments Available in Critical Care Medicine",
-    image: "/Serviceimages/critical_care_medicine.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/criticalcaremedicine.jpg",
+    image: "/Serviceimages/critical_care_medicine.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/criticalcaremedicine.webp",
     heroContent: [
       { 
         title: "Intensive Care Unit (ICU)", 
@@ -1084,8 +1084,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "anaesthesia": {
     title: "Treatments Available in Anaesthesia and Pain",
-    image: "/Serviceimages/anesthesia.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/anaesthesia.jpg",
+    image: "/Serviceimages/anesthesia.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/anaesthesia.webp",
     heroContent: [
       { 
         title: "Preoperative Assessment", 
@@ -1127,8 +1127,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "general-and-minimal-invasive-surgery": {
     title: "Treatments Available in General and Minimal Invasive Surgery",
-    image: "/Serviceimages/general and minimal.png",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/general and minimal invasive surgery.jpg",
+    image: "/Serviceimages/general and minimal.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/general and minimal invasive surgery.webp",
     heroContent: [
       { 
         title: "Laparoscopic Appendectomy", 
@@ -1170,8 +1170,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "general-medicine": {
     title: "Treatments Available in General Medicine",
-    image: "/Serviceimages/general medicine.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/general medicine.jpg",
+    image: "/Serviceimages/general medicine.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/general medicine.webp",
     heroContent: [
       { 
         title: "Diabetes Management", 
@@ -1213,8 +1213,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "internal-medicine": {
     title: "Treatments Available in Internal Medicine",
-    image: "/Serviceimages/internal medicine.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/internal medicine.jpg",
+    image: "/Serviceimages/internal medicine.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/internal medicine.webp",
     heroContent: [
       { 
         title: "Diabetes Care", 
@@ -1257,8 +1257,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
   "obstetrics-and-gynaecology": {
     title: "Treatments Available in Obstetrics and Gynaecology",
-    image: "/Serviceimages/obstetrics and gynaecology.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/obstetrics and gynaecology .jpg",
+    image: "/Serviceimages/obstetrics and gynaecology.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/obstetrics and gynaecology .webp",
     heroContent: [
       { 
         title: "Antenatal Care", 
@@ -1300,8 +1300,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   orthopaedics: {
     title: "Treatments Available in Orthopaedics",
-    image: "/Serviceimages/orthopedics.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/orthopedics treatment.jpg",
+    image: "/Serviceimages/orthopedics.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/orthopedics treatment.webp",
     heroContent: [
       { 
         title: "Arthroscopy", 
@@ -1343,8 +1343,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   pathology: {
     title: "Treatments Available in Pathology",
-    image: "/Serviceimages/pathology.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/pathology.jpg",
+    image: "/Serviceimages/pathology.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/pathology.webp",
     heroContent: [
       { 
         title: "Complete Blood Count (CBC)", 
@@ -1386,8 +1386,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   haematology: {
     title: "Treatments Available in Haematology",
-    image: "/Serviceimages/hematology.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/hematology.jpg",
+    image: "/Serviceimages/hematology.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/hematology.webp",
     heroContent: [
       { 
         title: "Blood Transfusion", 
@@ -1429,8 +1429,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "blood-bank": {
     title: "Treatments Available in Blood Bank",
-    image: "/Serviceimages/blood_bank_components.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/bloodbank.jpg",
+    image: "/Serviceimages/blood_bank_components.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/bloodbank.webp",
     heroContent: [
       { 
         title: "Blood Donation", 
@@ -1473,8 +1473,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
   ent: {
     title: "Treatments Available in ENT",
-    image: "/Serviceimages/ent_hospital_examination.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/ear nose throat.jpg",
+    image: "/Serviceimages/ent_hospital_examination.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/ear nose throat.webp",
     heroContent: [
       { 
         title: "Tonsillectomy", 
@@ -1516,8 +1516,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   ophthalmology: {
     title: "Treatments Available in Ophthalmology",
-    image: "/Serviceimages/ophthalmology.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/ophthalmology.jpg",
+    image: "/Serviceimages/ophthalmology.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/ophthalmology.webp",
     heroContent: [
       { 
         title: "Cataract Surgery", 
@@ -1559,8 +1559,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   dermatology: {
     title: "Treatments Available in Dermatology",
-    image: "/Serviceimages/dermatology.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/dermatology.jpg",
+    image: "/Serviceimages/dermatology.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/dermatology.webp",
     heroContent: [
       { 
         title: "Acne Treatment", 
@@ -1602,8 +1602,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   psychiatry: {
     title: "Treatments Available in Psychiatry",
-    image: "/Serviceimages/psychiatry.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/psychiatry.jpg",
+    image: "/Serviceimages/psychiatry.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/psychiatry.webp",
     heroContent: [
       { 
         title: "Depression Treatment", 
@@ -1645,8 +1645,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   dental: {
     title: "Treatments Available in Dental",
-    image: "/Serviceimages/dental_services.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/dental.jpg",
+    image: "/Serviceimages/dental_services.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/dental.webp",
     heroContent: [
       { 
         title: "Dental Check-Up", 
@@ -1689,8 +1689,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
   yoga: {
     title: "Treatments Available in Yoga",
-    image: "/Serviceimages/yoga.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/yoga.jpg",
+    image: "/Serviceimages/yoga.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/yoga.webp",
     heroContent: [
       { 
         title: "Hatha Yoga", 
@@ -1732,8 +1732,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   physiotherapy: {
     title: "Treatments Available in Physiotherapy",
-    image: "/Serviceimages/physiotherapy.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/Physiotherapy.jpg", // Assuming a physiotherapy banner exists or using a generic one
+    image: "/Serviceimages/physiotherapy.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/Physiotherapy.webp", // Assuming a physiotherapy banner exists or using a generic one
     heroContent: [
       { 
         title: "Manual Therapy", 
@@ -1775,8 +1775,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   },
   "nutrition-and-diet": {
     title: "Treatments Available in Nutrition and Diet",
-    image: "/Serviceimages/nutrition_and_dietetics.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/nutrition and dietetics.jpg",
+    image: "/Serviceimages/nutrition_and_dietetics.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/nutrition and dietetics.webp",
     heroContent: [
       { 
         title: "Personalized Meal Planning", 
@@ -1819,8 +1819,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
   "pediatrics-and-neonatology": {
     title: "Treatments Available for Pediatrics & Neonatology",
-    image: "/Serviceimages/pediatrics_neonatology.jpg",
-    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/pediatrics and neonatology.jpg",
+    image: "/Serviceimages/pediatrics_neonatology.webp",
+    bannerImage: "/banners/ALL IS WELL WEB SITE SLIDER/pediatrics and neonatology.webp",
     heroContent: [
       { 
         title: "NICU – Neonatal Intensive Care Unit", 
@@ -1889,7 +1889,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   return (
     <div className="min-h-screen bg-white text-gray-700 font-sans">
       {/* Banner Section */}
-      <div className="relative w-full min-h-[200px] max-h-[400px] overflow-hidden">
+      <div className="relative w-full min-h-[200px] max-h-[400px] overflow-hidden care-center-banner-mobile-hidden">
         <img
           src={currentService.bannerImage || currentService.image}
           alt={`${currentService.title} Banner`}

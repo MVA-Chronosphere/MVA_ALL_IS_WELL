@@ -13,10 +13,10 @@ const RaverBranch = () => {
         hours: "Monday - Saturday: 10:00 AM - 8:00 PM"
       }}
       galleryImages={[
-        '/branches/raver/Raver-branch-1.jpg',
-        '/branches/raver/Raver-branch-2.jpg',
-        '/branches/raver/Raver-branch-3.jpg',
-        '/branches/raver/Raver-branch-4.jpg'
+        '/branches/raver/Raver-branch-1.webp',
+        '/branches/raver/Raver-branch-2.webp',
+        '/branches/raver/Raver-branch-3.webp',
+        '/branches/raver/Raver-branch-4.webp'
       ]}
       
       mapLocation="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.7934901374347!2d76.0308135750057!3d21.240036080488924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd9b57f56986d3f%3A0x43f5940f09d67931!2sAll%20is%20Well%20Super%20Clinic%20Raver!5e0!3m2!1sen!2sin!4v1729516111725!5m2!1sen!2sin"

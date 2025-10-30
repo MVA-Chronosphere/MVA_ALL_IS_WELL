@@ -26,7 +26,7 @@ When it comes to lung cancer, smoking is the usual suspect — but it’s far fr
 ### In Conclusion
 Lung cancer isn’t just a smoker’s disease — it’s a condition that can affect anyone.
 `,
-    image: "/blogpictures/lung-cancer.jpg",
+    image: "/blogpictures/lung-cancer.webp",
     department: "Pulmonology",
     date: "October 2025",
     doctorName: "Dr. Priya Sharma",
@@ -63,7 +63,7 @@ A heart attack happens when blood flow to the heart suddenly stops, usually due 
 ### Conclusion
 Heart attacks are increasingly common in young adults due to stress and lifestyle factors.
 `,
-    image: "/blogpictures/heart-attack.jpg",
+    image: "/blogpictures/heart-attack.webp",
     department: "Cardiology",
     date: "October 2025",
     doctorName: "Dr. Rajesh Mehta",
@@ -102,7 +102,7 @@ Drink plenty of water, avoid heavy work for a week, and follow up for stent remo
 ### Conclusion
 RIRS surgery offers a safe, precise, and minimally invasive way to treat kidney stones.
 `,
-    image: "/blogpictures/rirs-surgery.jpg",
+    image: "/blogpictures/rirs-surgery.webp",
     department: "Urology",
     date: "October 2025",
     doctorName: "Dr. Neha Patel",

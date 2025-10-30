@@ -12,7 +12,7 @@ const DoctorInfoCard = ({ image, title, description, onBookClick }) => {
           className="w-full h-full object-cover max-w-full"
           loading="lazy"
           onError={(e) => {
-            e.target.src = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
+            e.target.src = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.webp";
           }}
         />
       </div>

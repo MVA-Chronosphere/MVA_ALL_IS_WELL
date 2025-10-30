@@ -4,6 +4,226 @@ import AppointmentFormModal from '../components/AppointmentFormModal';
 import { Search, ChevronDown, ChevronUp } from 'lucide-react';
 import FindDoctorCard from '../components/FindDoctorCard';
 
+export const doctors = [
+    {
+      id: 1,
+      name: "Dr. Abhishek Sharma",
+      specialty: "Consultant Cosmetic & Plastic Surgeon, Micro-Vascular Surgery (TMC MUMBAI), Specialized Training Cleft Lip/Palate Surgery (Smile Train Surgeon) From USA, Medical Superintendent",
+      image: "/Doctorphotos/Dr_Abhishek_Sharma.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 2,
+      name: "Dr. Prashant Khairnar",
+      specialty: "Consultant Urologist & Andrologist, Deputy Medical Superintendent",
+      image: "/Doctorphotos/Dr_Prashant_Khairnar.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 3,
+      name: "Dr. Nikhil Tharkade",
+      specialty: "Consultant Urologist",
+      image: "/Doctorphotos/Nikhil Sir.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 4,
+      name: "Dr. Shweta Narwade",
+      specialty: "Consultant Radiologist",
+      image: "/Doctorphotos/Dr_Shweta_Narwade.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 5,
+      name: "Dr. Lokendra Singh Thakur",
+      specialty: "Consultant Interventional Cardiologist",
+      image: "/Doctorphotos/Dr_Lokendra_Singh_Thakur.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 6,
+      name: "Dr. Basheeruddin Ansari",
+      specialty: "Consultant Interventional Cardiologist",
+      image: "/Doctorphotos/Bashiruddin Sir.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 7,
+      name: "Dr. Pravin R. Borde",
+      specialty: "Consultant Neuro and Spine Surgery",
+      image: "/Doctorphotos/Dr_Pravin_R._Borde.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 8,
+      name: "Dr. Ravnik R. Bansod",
+      specialty: "Fellowship in Conventional & Robotics Assisted Joint Replacement Surgery (FRJRS)",
+      image: "/Doctorphotos/Dr_Ravnik_R._Bansod.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 9,
+      name: "Dr. Rahul Khandekar",
+      specialty: "ENT Specialist",
+      image: "/Doctorphotos/Dr_Rahul_Chandrakant_Khandekar.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 10,
+      name: "Dr. Divyesh Lad",
+      specialty: "Consultant General Medicine",
+      image: "/Doctorphotos/Dr_Divyesh_Lad.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 11,
+      name: "Dr. Jayesh Brijbhushan Dubey",
+      specialty: "Consultant General Medicine",
+      image: "/Doctorphotos/Dr_Jayesh_Brijbhushan_Dubey.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 12,
+      name: "Dr. Gaurav Singh Pardesi",
+      specialty: "Consultant General & Minimal Access Surgery",
+      image: "/Doctorphotos/Dr_Gaurav_Singh_Pardesi.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 13,
+      name: "Dr. Kimaya Sali Medshikar",
+      specialty: "Consultant Obstetrician & Gynaecologist",
+      image: "/Doctorphotos/KIMAYA SALI MEDSHIKAR.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 14,
+      name: "Dr. Monish Gupta",
+      specialty: "Consultant Obstetrician, Gynaecologist & Genetics Specialist",
+      image: "/Doctorphotos/Monish Sir.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 15,
+      name: "Dr. Rashi Gupta",
+      specialty: "Consultant Pathologist",
+      image: "/Doctorphotos/Rashi Gupta.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 16,
+      name: "Dr. Harshada Bhangale",
+      specialty: "Consultant Pathologist",
+      image: "/Doctorphotos/Dr_Harshada_Bhangale.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 17,
+      name: "Dr. Peeyush Suryawanshi",
+      specialty: "Consultant Pediatrician & Neonatologist",
+      image: "/Doctorphotos/Peeyush Sir.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 18,
+      name: "Dr. Apurva Yadav",
+      specialty: "Consultant Ophthalmologist & Cataract Surgeon",
+      image: "/Doctorphotos/Apurva Yadav.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 19,
+      name: "Dr. Shubham Verma",
+      specialty: "Pulmonary Medicine & Critical Care",
+      image: "/Doctorphotos/Shubham Sir.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 20,
+      name: "Dr. Rakesh Mahawar",
+      specialty: "Radiation Oncology",
+      image: "/Doctorphotos/Rakesh Mahawar.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 21,
+      name: "Dr. Deepak K. Bhojwani",
+      specialty: "Consultant Oncologist",
+      image: "/Doctorphotos/Dr_Deepak_Kumar_Bhojwani.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 22,
+      name: "Dr. Bhushan Chopde",
+      specialty: "Consultant Gastroenterology & Hepatology",
+      image: "/Doctorphotos/Bhushan Sir.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 23,
+      name: "Dr. Yash Mahajan",
+      specialty: "Psychiatry",
+      image: "/Doctorphotos/Dr_Yash_Mahajan.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 24,
+      name: "Dr. Chimu Chinte Chopde",
+      specialty: "Endocrinology",
+      image: "/Doctorphotos/Dr_Chimu_chinte_chopde.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 25,
+      name: "Dr. Nikita Andhalkar",
+      specialty: "Dermatologist and Venereologist",
+      image: "/Doctorphotos/Dr_Nikita_Andhalkar_Bagul.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 26,
+      name: "Dr. Anita Chouksey",
+      specialty: "Sr. Consultant Nephrologist (Shalby Hospital, Indore)",
+      image: "/Doctorphotos/Anita Chouksey.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 27,
+      name: "Dr. Abhey Joshi",
+      specialty: "Sr. Consultant Nephrologist (Shalby Hospital, Indore)",
+      image: "/placeholders/doctor-placeholder.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 28,
+      name: "Dr. Hiteshi Bais",
+      specialty: "Consultant - Anesthesiologist",
+      image: "/Doctorphotos/Dr_Hiteshi.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 29,
+      name: "Dr. Rupali Marathe",
+      specialty: "MBBS, MD (Rheumatology), BPT, MPT (Orthopedics)",
+      image: "/Doctorphotos/Dr_Rupali _Marathe.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 30,
+      name: "Dr. Tanishk Shroff",
+      specialty: "BDS, MDS (Orthodontics)",
+      image: "/Doctorphotos/Dr_Tanishk_Shroff.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 31,
+      name: "Dr. Nazma",
+      specialty: "Certified Yoga Instructor, Certified Dietitian & Nutritionist",
+      image: "/Doctorphotos/Nazma Maam.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+  ];
+
 const FindADoctorPage = () => {
    const [searchParams] = useSearchParams();
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
@@ -32,28 +252,17 @@ const FindADoctorPage = () => {
     "All Is Well Super Clinic , Dharni"
   ];
 
-  const specialties = [
-    "Plastic and Reconstructive Surgery",
-    "Urology",
-    "Nephrology",
-    "Cardiology",
-    "Neuro and Spine Surgery",
-    "Surgical Oncology",
-    "Radiation Oncology",
-    "General Medicine",
-    "Internal Medicine",
-    "ENT",
-    "General and Minimal Access Surgery",
-    "Orthopaedic and Joint Replacement",
-    "Obstetrics and Gynaecology",
-    "Dermatology",
-    "Psychiatry",
-    "Anaesthesia",
-    "Radiology",
-    "Blood Bank and Pathology",
-    "Dental",
-    "Physiotherapy and Rehabilitation"
-  ];
+  // Function to get unique specialties from the doctor data
+  const getAvailableSpecialties = () => {
+    const specialtiesSet = new Set();
+    
+    doctors.forEach(doctor => {
+      // Add the full specialty description as it appears in the data
+      specialtiesSet.add(doctor.specialty);
+    });
+    
+    return Array.from(specialtiesSet).sort();
+  };
 
   return (
     <div className="min-h-screen bg-white font-sans">
@@ -109,6 +318,40 @@ const FindADoctorPage = () => {
                 </div>
               </div>
             </div>
+            
+            {/* Specialty Filter */}
+            <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#d4af37]">
+              <button 
+                onClick={() => setIsSpecialtyExpanded(!isSpecialtyExpanded)}
+                className="w-full flex items-center justify-between text-left"
+              >
+                <h3 className="font-serif font-bold text-[#002d72]">Filter by Specialty</h3>
+                {isSpecialtyExpanded ? (
+                  <ChevronUp className="text-[#002d72]" size={20} />
+                ) : (
+                  <ChevronDown className="text-[#002d72]" size={20} />
+                )}
+              </button>
+              <div 
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  isSpecialtyExpanded ? 'max-h-96 mt-4' : 'max-h-0'
+                }`}
+              >
+                <select
+                  value={selectedDepartment}
+                  onChange={(e) => setSelectedDepartment(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#d4af37] focus:border-[#d4af37] transition-all duration-300"
+                >
+                  <option value="">All Specialties</option>
+                  {getAvailableSpecialties().map((specialty) => (
+                    <option key={specialty} value={specialty}>
+                      {specialty}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
             <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#d4af37] mt-6">
               <button 
                 onClick={() => setIsAlphabetExpanded(!isAlphabetExpanded)}
@@ -139,94 +382,6 @@ const FindADoctorPage = () => {
                     >
                       {letter}
                     </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#d4af37] mt-6">
-              <button 
-                onClick={() => setIsLocationExpanded(!isLocationExpanded)}
-                className="w-full flex items-center justify-between text-left"
-              >
-                <h3 className="font-serif font-bold text-[#002d72]">Location</h3>
-                {isLocationExpanded ? (
-                  <ChevronUp className="text-[#002d72]" size={20} />
-                ) : (
-                  <ChevronDown className="text-[#002d72]" size={20} />
-                )}
-              </button>
-              <div 
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  isLocationExpanded ? 'max-h-96 mt-4' : 'max-h-0'
-                }`}
-              >
-                <div className="space-y-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
-                  <label className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors">
-                    <input
-                      type="radio"
-                      name="location"
-                      checked={!selectedLocation}
-                      onChange={() => setSelectedLocation('')}
-                      className="rounded text-[#d4af37] focus:ring-[#d4af37]"
-                    />
-                    <span className="text-sm font-medium text-gray-700">All Locations</span>
-                  </label>
-                  {locations.map((location) => (
-                    <label key={location} className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors">
-                      <input
-                        type="radio"
-                        name="location"
-                        checked={selectedLocation === location}
-                        onChange={() => setSelectedLocation(location)}
-                        className="rounded text-[#d4af37] focus:ring-[#d4af37]"
-                      />
-                      <span className="text-sm font-medium text-gray-700">{location}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#d4af37] mt-6">
-              <button 
-                onClick={() => setIsSpecialtyExpanded(!isSpecialtyExpanded)}
-                className="w-full flex items-center justify-between text-left"
-              >
-                <h3 className="font-serif font-bold text-[#002d72]">Specialities</h3>
-                {isSpecialtyExpanded ? (
-                  <ChevronUp className="text-[#002d72]" size={20} />
-                ) : (
-                  <ChevronDown className="text-[#002d72]" size={20} />
-                )}
-              </button>
-              <div 
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  isSpecialtyExpanded ? 'max-h-96 mt-4' : 'max-h-0'
-                }`}
-              >
-                <div className="space-y-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
-                  <label className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors">
-                    <input
-                      type="radio"
-                      name="specialty"
-                      checked={!selectedDepartment}
-                      onChange={() => setSelectedDepartment('')}
-                      className="rounded text-[#d4af37] focus:ring-[#d4af37]"
-                    />
-                    <span className="text-sm font-medium text-gray-700">All Specialities</span>
-                  </label>
-                  {specialties.map((specialty) => (
-                    <label key={specialty} className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors">
-                      <input
-                        type="radio"
-                        name="specialty"
-                        checked={selectedDepartment === specialty}
-                        onChange={(e) => setSelectedDepartment(e.target.checked ? specialty : '')}
-                        className="rounded text-[#d4af37] focus:ring-[#d4af37]"
-                      />
-                      <span className="text-sm font-medium text-gray-700">{specialty}</span>
-                    </label>
                   ))}
                 </div>
               </div>
@@ -279,10 +434,9 @@ const FindADoctorPage = () => {
                   return true;
                 })
                 .filter((doctor) => {
-                  // Filter by department/specialty
+                  // Filter by department/specialty - match exact specialty
                   if (selectedDepartment) {
-                    // Check the full specialty string for the selected department
-                    return doctor.specialty.toLowerCase().includes(selectedDepartment.toLowerCase());
+                    return doctor.specialty === selectedDepartment;
                   }
                   return true;
                 })
@@ -330,224 +484,5 @@ const FindADoctorPage = () => {
   );
 };
 
-export const doctors = [
-    {
-      id: 1,
-      name: "Dr. Abhishek Sharma",
-      specialty: "Consultant Cosmetic & Plastic Surgeon, Micro-Vascular Surgery (TMC MUMBAI), Specialized Training Cleft Lip/Palate Surgery (Smile Train Surgeon) From USA, Medical Superintendent",
-      image: "/Doctorphotos/Dr_Abhishek_Sharma.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 2,
-      name: "Dr. Prashant Khairnar",
-      specialty: "Consultant Urologist & Andrologist, Deputy Medical Superintendent",
-      image: "/Doctorphotos/Dr_Prashant_Khairnar.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 3,
-      name: "Dr. Nikhil Tharkade",
-      specialty: "Consultant Urologist",
-      image: "/Doctorphotos/Nikhil Sir.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 4,
-      name: "Dr. Shweta Narwade",
-      specialty: "Consultant Radiologist",
-      image: "/Doctorphotos/Dr_Shweta_Narwade.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 5,
-      name: "Dr. Lokendra Singh Thakur",
-      specialty: "Consultant Interventional Cardiologist",
-      image: "/Doctorphotos/Dr_Lokendra_Singh_Thakur.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 6,
-      name: "Dr. Basheeruddin Ansari",
-      specialty: "Consultant Interventional Cardiologist",
-      image: "/Doctorphotos/Bashiruddin Sir.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 7,
-      name: "Dr. Pravin R. Borde",
-      specialty: "Consultant Neuro and Spine Surgery",
-      image: "/Doctorphotos/Dr_Pravin_R._Borde.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 8,
-      name: "Dr. Ravnik R. Bansod",
-      specialty: "Fellowship in Conventional & Robotics Assisted Joint Replacement Surgery (FRJRS)",
-      image: "/Doctorphotos/Dr_Ravnik_R._Bansod.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 9,
-      name: "Dr. Rahul Khandekar",
-      specialty: "ENT Specialist",
-      image: "/Doctorphotos/Dr_Rahul_Chandrakant_Khandekar.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 10,
-      name: "Dr. Divyesh Lad",
-      specialty: "Consultant General Medicine",
-      image: "/Doctorphotos/Dr_Divyesh_Lad.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 11,
-      name: "Dr. Jayesh Dubey",
-      specialty: "Consultant General Medicine",
-      image: "/Doctorphotos/Dr_Jayesh_Brijbhushan_Dubey.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 12,
-      name: "Dr. Gaurav Singh Pardesi",
-      specialty: "Consultant General & Minimal Access Surgery",
-      image: "/Doctorphotos/Dr_Gaurav_Singh_Pardesi.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 13,
-      name: "DR. KIMAYA SALI MEDSHIKAR",
-      specialty: "Consultant Obstetrician & Gynaecologist",
-      image: "/Doctorphotos/KIMAYA SALI MEDSHIKAR.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 14,
-      name: "Dr. Monish Gupta",
-      specialty: "Consultant Obstetrician, Gynaecologist & Genetics Specialist",
-      image: "/Doctorphotos/Monish Sir.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 15,
-      name: "Dr. Rashi Gupta",
-      specialty: "Consultant Pathologist",
-      image: "/Doctorphotos/Rashi Gupta.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 16,
-      name: "Dr. Harshada Bhangale",
-      specialty: "Consultant Pathologist",
-      image: "/Doctorphotos/Dr_Harshada_Bhangale.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 17,
-      name: "Dr. Peeyush Suryawanshi",
-      specialty: "Consultant Pediatrician & Neonatologist",
-      image: "/Doctorphotos/Peeyush Sir.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 18,
-      name: "Dr. Apurva Yadav",
-      specialty: "Consultant Ophthalmologist & Cataract Surgeon",
-      image: "/Doctorphotos/Apurva Yadav.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 19,
-      name: "Dr. Shubham Verma",
-      specialty: "Pulmonary Medicine & Critical Care",
-      image: "/Doctorphotos/Shubham Sir.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 20,
-      name: "Dr. Rakesh Mahawar",
-      specialty: "Radiation Oncology",
-      image: "/Doctorphotos/Rakesh Mahawar.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 21,
-      name: "Dr. Deepak K. Bhojwani",
-      specialty: "Consultant Oncologist",
-      image: "/Doctorphotos/Dr_Deepak_Kumar_Bhojwani.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 22,
-      name: "Dr. Bhushan Chopde",
-      specialty: "Consultant Gastroenterology & Hepatology",
-      image: "/Doctorphotos/Bhushan Sir.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 23,
-      name: "Dr. Yash Mahajan",
-      specialty: "Psychiatry",
-      image: "/Doctorphotos/Dr_Yash_Mahajan.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 24,
-      name: "Dr. Chimu Chinte Chopde",
-      specialty: "Endocrinology",
-      image: "/Doctorphotos/Dr_Chimu_chinte_chopde.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 25,
-      name: "Dr. Nikita Andhalkar",
-      specialty: "Dermatologist and Venereologist",
-      image: "/Doctorphotos/Dr_Nikita_Andhalkar_Bagul.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 26,
-      name: "Dr. Anita Chouksey",
-      specialty: "Sr. Consultant Nephrologist (Shalby Hospital, Indore)",
-      image: "/Doctorphotos/Anita Chouksey.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 27,
-      name: "Dr. Abhey Joshi",
-      specialty: "Sr. Consultant Nephrologist (Shalby Hospital, Indore)",
-      image: "/placeholders/doctor-placeholder.jpg",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 28,
-      name: "Dr. Hiteshi Bais",
-      specialty: "Consultant - Anesthesiologist",
-      image: "/Doctorphotos/Dr_Hiteshi.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 29,
-      name: "Dr. Rupali Marathe",
-      specialty: "MBBS, MD (Rheumatology), BPT, MPT (Orthopedics)",
-      image: "/Doctorphotos/Dr_Rupali _Marathe.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 30,
-      name: "Dr. Tanishk Shroff",
-      specialty: "BDS, MDS (Orthodontics)",
-      image: "/Doctorphotos/Dr_Tanishk_Shroff.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-    {
-      id: 31,
-      name: "DR. Nazma",
-      specialty: "Certified Yoga Instructor, Certified Dietitian & Nutritionist",
-      image: "/Doctorphotos/Nazma Maam.png",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
-  ];
 
 export default FindADoctorPage;

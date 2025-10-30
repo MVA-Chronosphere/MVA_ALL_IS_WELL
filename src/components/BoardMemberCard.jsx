@@ -3,11 +3,11 @@ import React from 'react';
 const BoardMemberCard = ({ name, position, image, alt }) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 text-center">
-      <div className="w-40 h-40 mx-auto mb-4 rounded-lg overflow-hidden shadow-md flex items-center justify-center bg-white border border-[#d4af37]">
+      <div className="mx-auto mb-4 rounded-lg overflow-hidden shadow-md flex items-center justify-center bg-white border border-[#d4af37] w-full max-w-[400px] aspect-[4/5]">
         <img 
           src={image} 
           alt={alt || name}
-          className="w-auto h-auto max-w-full max-h-full object-contain"
+          className="object-cover w-full h-full"
         />
       </div>
       <h3 className="text-xl font-serif font-bold text-[#002d72] mb-1">{name}</h3>

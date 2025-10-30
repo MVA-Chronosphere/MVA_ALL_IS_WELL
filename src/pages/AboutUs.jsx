@@ -4,13 +4,13 @@ import BoardMemberCard from '../components/BoardMemberCard';
 
 const AboutUs = () => {
   const boardMembers = [
-    { name: 'Manjusha Chouksey', position: 'President', image: 'board/Manjusha.jpg', alt: 'Manjusha Chouksey' },
-    { name: 'Sudhir Mahajan', position: 'Vice President', image: 'board/sudhir.jpg', alt: 'Sudhir Mahajan' },
-    { name: 'Anand Prakash Chouksey', position: 'Secretary', image: 'board/Anand.jpg', alt: 'Anand Prakash Chouksey' },
-    { name: 'Vandana Patel', position: 'Joint Secretary', image: 'board/vandana.jpg', alt: 'Vandana Patel' },
-    { name: 'Kabir Chouksey', position: 'Treasurer', image: 'board/kabir.jpg', alt: 'Kabir Chouksey' },
-    { name: 'Antra Chouksey', position: 'Member', image: 'board/antra.jpg', alt: 'Antra Chouksey' },
-    { name: 'Devanshi Chouksey', position: 'Member', image: 'board/devanshi.jpg', alt: 'Devanshi Chouksey' }
+    { name: 'Mrs. Manjusha Chouksey', position: 'President', image: 'board/Manjusha.webp', alt: 'Manjusha Chouksey' },
+    { name: 'Mr. Sudhir Mahajan', position: 'Vice President', image: 'board/sudhir.webp', alt: 'Sudhir Mahajan' },
+    { name: 'Mr. Anand Prakash Chouksey', position: 'Secretary', image: 'board/Anand.webp', alt: 'Anand Prakash Chouksey' },
+    { name: 'Mrs. Vandana Patel', position: 'Joint Secretary', image: 'board/vandana.webp', alt: 'Vandana Patel' },
+    { name: 'Mr. Kabir Chouksey', position: 'Treasurer', image: 'board/kabir.webp', alt: 'Kabir Chouksey' },
+    { name: 'Ms. Antra Chouksey', position: 'Member', image: 'board/antra.webp', alt: 'Antra Chouksey' },
+    { name: 'Mrs. Devanshi Chouksey', position: 'Member', image: 'board/devanshi.webp', alt: 'Devanshi Chouksey' }
   ];
 
   return (
@@ -41,7 +41,7 @@ const AboutUs = () => {
             </div>
 
             {/* Vision Column */}
-            <div className="bg-white p-8 rounded-lg shadow-sm border-l-4 border-[#d4af37] border-[#d4af37]">
+            <div className="bg-white p-8 rounded-lg shadow-sm border-l-4 border-[#d4af37] border border-[#d4af37]">
               <h2 className="text-3xl font-serif font-bold text-[#002d72] mb-4">Vision</h2>
               <h3 className="text-xl font-serif font-semibold text-[#444] mb-4">
                 Transforming Lives Through World-Class Healthcare
@@ -57,7 +57,7 @@ const AboutUs = () => {
             <h2 className="text-3xl font-serif font-bold text-[#002d72] text-center mb-8">Core Values</h2>
             <div className="w-16 h-1 bg-[#d4af37] mx-auto mb-8 rounded"></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#d4af37] border-[#d4af37]">
+              <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#d4af37] border border-[#d4af37]">
                 <h3 className="text-xl font-serif font-semibold text-[#02d72] mb-3">Compassionate Care</h3>
                 <p className="font-sans text-[#444]">
                   We treat every patient with empathy, dignity, and respect.
@@ -199,7 +199,7 @@ const AboutUs = () => {
             <div className="w-16 h-1 bg-[#d4af37] mx-auto mb-8 rounded"></div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {boardMembers.map((member, index) => (
               <BoardMemberCard
                 key={index}

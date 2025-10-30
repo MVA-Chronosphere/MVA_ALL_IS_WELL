@@ -249,7 +249,7 @@ const Header = () => {
         <div className="flex items-center flex-shrink-0">
           <Link to="/" className="flex-shrink-0">
             <img
-              src="/aiwlogo.png"
+              src="/aiwlogo.webp"
               alt="All is well"
               className="h-12 md:h-16 object-contain cursor-pointer max-w-full"
               loading="lazy"
@@ -350,7 +350,7 @@ const Header = () => {
         <div className="flex-shrink-0 ml-1">
           <button
             onClick={() => setIsAppointmentModalOpen(true)}
-            className="bg-[#003366] text-white px-3 py-1 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-medium hover:bg-white hover:text-[#003366] border-[#003366] transition whitespace-nowrap"
+            className="bg-[#003366] text-white px-3 py-1 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-medium hover:bg-white hover:text-[#003366] border-[#003366] transition whitespace-nowrap blink"
           >
             Book Appointment
           </button>
@@ -363,7 +363,7 @@ const Header = () => {
           <div className="flex items-center flex-shrink-0">
             <Link to="/" className="flex-shrink-0">
               <img
-              src="/aiwlogo.png"
+              src="/aiwlogo.webp"
               alt="All is well"
               className="h-10 object-contain cursor-pointer max-w-full"
               loading="lazy"
@@ -373,7 +373,7 @@ const Header = () => {
           <div className="flex items-center space-x-3">
             <button 
               onClick={() => setIsAppointmentModalOpen(true)}
-              className="bg-[#003366] text-white px-2.5 py-1 rounded-full text-xs font-medium hover:bg-white hover:text-[#003366] border-[#003366] transition whitespace-nowrap"
+              className="bg-[#003366] text-white px-2.5 py-1 rounded-full text-xs font-medium hover:bg-white hover:text-[#003366] border-[#003366] transition whitespace-nowrap blink"
             >
               Book
             </button>
@@ -402,7 +402,7 @@ const Header = () => {
                 <div className="flex items-center justify-between p-4 border-b">
                   <div className="flex items-center">
                     <img
-                    src="/aiwlogo.png"
+                    src="/aiwlogo.webp"
                     alt="All is well"
                     className="h-8 object-contain cursor-pointer max-w-full"
                     loading="lazy"
@@ -501,7 +501,7 @@ const Header = () => {
                       setIsAppointmentModalOpen(true);
                       setIsMobileMenuOpen(false);
                     }}
-                    className="w-full bg-[#003366] text-white px-4 py-2.5 rounded-full text-base font-medium hover:bg-white hover:text-[#003366] border border-[#003366] transition"
+                    className="w-full bg-[#003366] text-white px-4 py-2.5 rounded-full text-base font-medium hover:bg-white hover:text-[#003366] border border-[#003366] transition blink"
                   >
                     Book Appointment
                   </button>

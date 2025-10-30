@@ -686,8 +686,8 @@ const DoctorDetailsPage = () => {
       };
     } else if (doctor.name.includes("Peeyush Suryawanshi")) {
       return {
-        about: "Dr. Peeyush Suryawanshi is a Consultant Pediatrician at All Is Well Multispecialty Hospital, Burhanpur. He is a specialized healthcare professional with excellent clinical expertise and has served in reputed hospitals across Madhya Pradesh.",
-        experience: "Dr. Peeyush Suryawanshi is a Consultant Pediatrician at All Is Well Multispecialty Hospital, Burhanpur. He is a specialized healthcare professional with excellent clinical expertise and has served in reputed hospitals across Madhya Pradesh. He has completed a Diploma in Child Health and Pediatrics from SSMC and GMH, Rewa. He has extensive experience in newborn care, having worked with UNICEF and NRHM to develop special newborn care units. During his academic career, he was awarded first position in oral paper presentation competitions in Madhya Pradesh.",
+        about: "Dr. Peeyush Suryawanshi is a highly skilled pediatrician with extensive experience in both general and advanced pediatric care. He has demonstrated expertise in newborn and infant care, critical pediatric procedures, and has contributed to the development of special newborn care units in collaboration with UNICEF and NRHM. Recognized for clinical excellence and academic achievements, he combines procedural proficiency with compassionate child healthcare.",
+        experience: "Dr. Peeyush Suryawanshi is a Consultant Pediatrician at All Is Well Multispecialty Hospital, Burhanpur. He is a specialized healthcare professional with excellent clinical expertise and has served in reputed hospitals across Madhya Pradesh. He has completed a Diploma in Child Health and Pediatrics from SSMC and GMH, Rewa. He is an expert in fundamental and advanced pediatric procedures such as arterial and venous line insertions, intraosseous access, central line insertions, intubations, and lumbar punctures. He has extensive experience in newborn care, having worked with UNICEF and NRHM to develop special newborn care units. During his academic career, he was awarded first position in oral paper presentation competitions in Madhya Pradesh.",
         specializations: [
           "Newborn and Infant Care",
           "General Pediatrics",
@@ -705,7 +705,7 @@ const DoctorDetailsPage = () => {
       };
     } else if (doctor.name.includes("Apurva Yadav")) {
       return {
-        about: "Dr. Apurva Yadav is a Consultant Ophthalmologist and Cataract Surgeon at All Is Well Multispecialty Hospital, Burhanpur. She has performed numerous cataract surgeries, including phacoemulsification, with excellent outcomes.",
+        about: "Dr. Apurva Yadav is a leading ophthalmologist specializing in cataract, corneal, and oculoplastic surgeries. She has extensive surgical and diagnostic expertise in managing corneal disorders, ocular surface diseases, and ophthalmic emergencies. She combines advanced surgical skills with innovative treatment approaches, emphasizing high-quality patient outcomes and active clinical research participation.",
         experience: "Dr. Apurva Yadav is a Consultant Ophthalmologist and Cataract Surgeon at All Is Well Multispecialty Hospital, Burhanpur. She has performed numerous cataract surgeries, including phacoemulsification, with excellent outcomes. Her key areas of expertise include advanced surgical techniques for corneal transplantation, corneal tear repair, scleral tear repair, and pterygium surgeries. She specializes in the diagnosis and management of corneal diseases and ocular surface disorders. She is skilled in innovative treatments such as corneal collagen cross-linking and lamellar keratoplasty. She has hands-on experience in intravitreal anti-VEGF therapy and oculoplasty procedures including cyst excision, DCT, evisceration, and enucleation. She has conducted and assisted various diagnostic procedures, including gonioscopy, Schiotz and applanation tonometry, direct and indirect ophthalmoscopy, 78D and 90D slit lamp examination, ROP screening and laser assistance, corneal topography, OCT anterior segment imaging, automated perimetry, and fundus fluorescein angiography. She has managed ophthalmic emergencies such as chemical and thermal injuries, lid tear repairs, and other urgent ocular conditions. She has a keen interest in clinical research and actively participates in interdisciplinary collaboration.",
         specializations: [
           "Cataract Surgery & Phacoemulsification",
@@ -724,11 +724,11 @@ const DoctorDetailsPage = () => {
           "Member of All India Ophthalmological Society (AIOS)",
           "Recognized for excellence in cataract, corneal, and oculoplasty procedures"
         ],
-        otherExperience: "She has conducted and assisted various diagnostic procedures, including gonioscopy, Schiotz and applanation tonometry, direct and indirect ophthalmoscopy, 78D and 90D slit lamp examination, ROP screening and laser assistance, corneal topography, OCT anterior segment imaging, automated perimetry, and fundus fluorescein angiography. She has managed ophthalmic emergencies such as chemical and thermal injuries, lid tear repairs, and other urgent ocular conditions. She has a keen interest in clinical research and actively participates in interdisciplinary collaboration."
+        otherExperience: ""
       };
     } else if (doctor.name.includes("Shubham Verma")) {
       return {
-        about: "Dr. Shubham Verma is a Pulmonologist and Critical Care Specialist with extensive experience in managing acute and chronic respiratory illnesses.",
+        about: "Dr. Shubham Verma is an expert pulmonologist and critical care specialist with comprehensive experience in respiratory medicine. He excels in managing acute and chronic respiratory conditions, performing advanced interventional procedures, and overseeing respiratory ICU care. He combines clinical acumen with ongoing academic involvement, ensuring up-to-date, evidence-based patient management.",
         experience: "Dr. Shubham Verma is a Pulmonologist and Critical Care Specialist with extensive experience in managing acute and chronic respiratory illnesses. He completed his MD in Pulmonary Medicine from Sri Aurobindo Medical College and Post Graduate Institute (SAMC & PGI), Indore, and his MBBS from Gajra Raja Medical College. He has trained in bronchoscopy, thoracoscopy, and critical care at SAIMS Hospital, Indore, gaining exposure to a wide range of respiratory cases. He is skilled in managing patients with asthma, COPD, tuberculosis, interstitial lung disease, and acute respiratory failure. He performs pulmonary function tests, sleep studies, and other diagnostic procedures to assess the severity of lung diseases. He is experienced in performing complex procedures such as intercostal tube insertion, pleurodesis, bronchoscopy interventions (TBLB, TBNA, removal of secretions, polyps, or growths), and invasive and non-invasive mechanical ventilation. He has hands-on expertise in managing respiratory ICU patients and has worked for three years in a dedicated 10-bedded respiratory ICU during his residency. He actively participates in academic activities, clinical discussions, and attends continuing medical education to stay updated on advances in pulmonary medicine.",
         specializations: [
           "Respiratory Diseases Management - Asthma, COPD, TB, Interstitial Lung Disease",
@@ -751,9 +751,9 @@ const DoctorDetailsPage = () => {
         ],
         otherExperience: ""
       };
-    } else if (doctor.name.includes("Abhey Joshi")) {
+    } else if (doctor.name.includes("Abhay Bhanudas Joshi")) {
       return {
-        about: "Dr. Abhay Bhanudas Joshi is the first full-time nephrologist in Jalgaon district and has been providing specialized kidney care since 2012. He is the founder and lead consultant at Nephron Kidney & Dialysis Center, Jalgaon.",
+        about: "Dr. Abhay Bhanudas Joshi is a distinguished nephrologist and transplant specialist, recognized for his pioneering role in kidney care in Jalgaon. He possesses expertise in chronic kidney disease management, dialysis, kidney transplantation, and interventional nephrology. Dr. Joshi combines clinical excellence with community outreach, academic contributions, and leadership in critical care nephrology.",
         experience: "Dr. Abhay Bhanudas Joshi is the first full-time nephrologist in Jalgaon district and has been providing specialized kidney care since 2012. He is the founder and lead consultant at Nephron Kidney & Dialysis Center, Jalgaon. He has conducted numerous social initiatives, health camps, and visiting OPDs for kidney patients. He served as Assistant Professor of Nephrology at UP Medical College, Jalgaon. He has extensive experience performing interventional nephrology procedures including native and graft kidney biopsies, temporary and permanent tunneled cuffed catheters, live and cadaveric kidney transplants, plasmapheresis, and peritoneal dialysis. He was a member of the COVID Task Force of Jalgaon district. He actively participates in national and international conferences, presenting papers at the Indian Society of Nephrology Annual Conference and the International Society of Hemodialysis Annual Conference.",
         specializations: [
           "Kidney Disease Management - Chronic Kidney Disease, Acute Kidney Injury, Dialysis",
@@ -780,7 +780,7 @@ const DoctorDetailsPage = () => {
       };
     } else if (doctor.name.includes("Rashi Gupta")) {
       return {
-        about: "Dr. Rashi Gupta is a Pathologist with expertise in hematology, cytopathology, and histopathology. She completed her MD in Pathology from Mahatma Gandhi Memorial Medical College, Indore, and her MBBS from Gajra Raja Medical College, Gwalior.",
+        about: "Dr. Rashi Gupta is an accomplished pathologist specializing in hematology, histopathology, and cytopathology. She has significant expertise in diagnostic evaluation of blood disorders, tissue specimens, and cytological samples. Her academic contributions and research focus on evidence-based pathology, while she actively engages in teaching, clinical studies, and quality laboratory management.",
         experience: "Dr. Rashi Gupta is a Pathologist with expertise in hematology, cytopathology, and histopathology. She completed her MD in Pathology from Mahatma Gandhi Memorial Medical College, Indore, and her MBBS from Gajra Raja Medical College, Gwalior. She has extensive experience in preliminary evaluation, slide screening, and reporting of hematological disorders including leukemia, lymphoma, and benign conditions. She is trained in gross examination and histopathology of surgically resected specimens, as well as fine needle aspiration cytology and cytopathology. She is proficient in laboratory operations, quality control, blood banking, and various serologic and microbiologic techniques. She actively participates in academic discussions, CMEs, and workshops to stay updated with advances in pathology. Her research work includes a thesis on the significance of serum markers (AFP, beta HCG, LDH) in reporting testicular tumors, in accordance with CAP guidelines. She has also contributed to teaching and volunteering, including work with the organization “Make a Difference,” Gwalior.",
         specializations: [
           "Hematology - Diagnosis and management of blood disorders",
@@ -799,6 +799,31 @@ const DoctorDetailsPage = () => {
           "Publications in European Journal of Cardiovascular Medicine, International Journal of Pharmaceutical and Clinical Research, and Indian Journal of Basic and Applied Medical Research",
           "Participant and awardee in various pathology workshops, CMEs, and hematology summits",
           "Active contributor in academic, cultural, and voluntary initiatives"
+        ],
+        otherExperience: ""
+      };
+    } else if (doctor.name.includes("Kimaya Sali")) {
+      return {
+        about: "Dr. Kimaya Sali is a dedicated and compassionate Obstetrician, Gynaecologist, and Laparoscopic Surgeon with a strong foundation in obstetric care, gynaecological surgery, and endoscopic procedures. She is committed to providing patient-centred, evidence-based medical care with an emphasis on accurate diagnosis, effective counselling, and comprehensive treatment. Known for her empathetic approach and surgical precision, she focuses on ensuring safe maternal outcomes and advanced gynaecological management.",
+        experience: "Post Graduate Medical Officer (PGMO) at District Hospital, Burhanpur (Feb 2025 - Aug 2025), managing obstetric and gynaecological emergencies, conducting normal vaginal deliveries and LSCS, and performing minor and major gynaecological surgeries. Assisted in infertility counselling and patient follow-up care with focus on evidence-based management. ICU Intensivist (2021-2022), providing critical care management to multi-specialty cases, including ventilated patients and emergency resuscitations. Certified Laparoscopic Surgeon with experience in minimal access gynaecological procedures at Gajanan Hospital, Jalgaon.",
+        specializations: [
+          "Obstetric Care - Normal Vaginal Delivery, LSCS",
+          "Gynaecological Surgery - TAH, TLH, Tubal Ligation",
+          "Endoscopic & Laparoscopic Procedures - Diagnostic Hysteroscopy, HSG, Laparoscopic Tubal Ligation",
+          "Infertility Counselling and Management",
+          "Emergency and Critical Care in Obstetrics & Gynaecology"
+        ],
+        expertise: [
+          "Post Graduate Medical Officer (PGMO) at District Hospital, Burhanpur (Feb 2025 - Aug 2025), managing obstetric and gynaecological emergencies, conducting normal vaginal deliveries and LSCS, and performing minor and major gynaecological surgeries.",
+          "Assisted in infertility counselling and patient follow-up care with focus on evidence-based management.",
+          "ICU Intensivist (2021-2022), providing critical care management to multi-specialty cases, including ventilated patients and emergency resuscitations.",
+          "Certified Laparoscopic Surgeon with experience in minimal access gynaecological procedures at Gajanan Hospital, Jalgaon."
+        ],
+        accreditations: [
+          "DGO - Kamat Hospital, Pune (MUHS Nashik, 2022)",
+          "MBBS - Pravara Institute of Medical Sciences (PIMS), Loni",
+          "Certified Laparoscopic Surgeon - Gajanan Hospital, Jalgaon",
+          "ICU Experience (2021-2022)"
         ],
         otherExperience: ""
       };
@@ -840,7 +865,7 @@ const DoctorDetailsPage = () => {
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   e.target.src =
-                    "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
+                    "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.webp";
                 }}
               />
             </div>

@@ -5,7 +5,7 @@ const certificationsData = [
   {
     id: 1,
     title: "NABH Accreditation",
-    image: "/certifications/All_Is_Well_NABH_Accreditation_Certificate_page-0001-scaled.jpg",
+    image: "/certifications/All_Is_Well_NABH_Accreditation_Certificate_page-0001-scaled.webp",
     description: "National Accreditation Board for Hospitals & Healthcare Providers",
   },
   {

@@ -76,7 +76,7 @@ const Footer = () => {
         {/* Logo & Description */}
         <div className="lg:col-span-1">
           <img
-            src="/aiwlogo.png"
+            src="/aiwlogo.webp"
             alt="All Is WEll Hospital"
             className="h-12 mb-4 max-w-full"
             loading="lazy"
@@ -157,14 +157,10 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-gray-800 py-6 text-center text-gray-400 text-sm">
         <p>
-          © {currentYear} All Is WEll Hospital. All rights reserved. |{" "}
-          <Link to="/privacy" className="hover:text-yellow-400 transition-colors">
+          © {currentYear} All Is Well Hospital. All rights reserved. |{" "}
+          <a href="/Privacypolicy.pdf" download className="hover:text-yellow-400 transition-colors cursor-pointer">
             Privacy Policy
-          </Link>{" "}
-          |{" "}
-          <Link to="/terms" className="hover:text-yellow-400 transition-colors">
-            Terms of Service
-          </Link>
+          </a>
         </p>
       </div>
     </footer>

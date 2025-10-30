@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Blinking animation */
+.blink {
+  animation: blink-animation 1s linear infinite;
+}
+
+@keyframes blink-animation {
+  0%, 50% { 
+    background-color: #003366; 
+    color: white;
+  }
+  51%, 100% { 
+    background-color: #d4af37; 
+    color: #003366;
+    border-color: #d4af37;
+  }
+}
+
 /* Custom styles for blog content */
 .blog-content h1 {
   @apply text-2xl font-bold text-[#002d72] mt-6 mb-4 border-b pb-2;
@@ -46,4 +63,9 @@
 
 .blog-content pre {
   @apply bg-gray-800 text-gray-100 p-4 rounded my-4 overflow-x-auto;
+}
+
+/* Hide banner in mobile view for CareCenterService */
+.care-center-banner-mobile-hidden {
+  @apply hidden md:block;
 }

@@ -375,7 +375,7 @@ const HomePage = () => {
     const videoId = getYouTubeVideoId(testimonial.videoUrl);
     return {
       ...testimonial,
-      thumbnail: videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '/placeholders/video-placeholder.jpg',
+      thumbnail: videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '/placeholders/video-placeholder.webp',
     };
   });
 
@@ -592,16 +592,20 @@ const HomePage = () => {
                   setShouldPauseSlider(false);
                 }
               }}
-              // Add loading optimization attributes
-              loading="lazy"
             >
               {/* Conditionally load video source based on visibility - account for slider loop */}
               {index === currentIndex || 
                index === (currentIndex - 1 + slides.length) % slides.length || 
                index === (currentIndex + 1) % slides.length ? (
-                <source src={slide.video} type="video/mp4" />
+                <>
+                  <source src={slide.video.replace('.mp4', '.webm')} type="video/webm" />
+                  <source src={slide.video} type="video/mp4" />
+                </>
               ) : (
-                <source data-src={slide.video} type="video/mp4" />
+                <>
+                  <source data-src={slide.video.replace('.mp4', '.webm')} type="video/webm" />
+                  <source data-src={slide.video} type="video/mp4" />
+                </>
               )}
               Your browser does not support the video tag.
             </video>
@@ -978,7 +982,7 @@ const HomePage = () => {
           >
             <div className="lg:w-1/2">
               <motion.img
-                src="/whysection/pathology.jpg"
+                src="/whysection/pathology.webp"
                 alt="Advanced Medical Technology"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
                 loading="lazy"
@@ -1013,7 +1017,7 @@ const HomePage = () => {
           >
             <div className="lg:w-1/2">
               <motion.img
-                src="/whysection/ctscan.jpg"
+                src="/whysection/ctscan.webp"
                 alt="Experienced Medical Team"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
                 loading="lazy"
@@ -1047,7 +1051,7 @@ const HomePage = () => {
           >
             <div className="lg:w-1/2">
               <motion.img
-                src="/whysection/patient.jpg"
+                src="/whysection/patient.webp"
                 alt="Timely Emergency Services"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
                 loading="lazy"

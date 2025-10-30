@@ -9,7 +9,7 @@ const EmergencyServicesCarousel = () => {
     {
       id: 1,
       type: "Ambulance Service",
-      image: "/banners/Ambulance.jpg", // Using an appropriate image
+      image: "/banners/Ambulance.webp", // Using an appropriate image
       alt: "Emergency Ambulance Services",
       title: "Emergency Ambulance Services – Available 24x7",
       subtitle: "Reliable and Life-Saving Care",
@@ -19,7 +19,7 @@ const EmergencyServicesCarousel = () => {
     {
       id: 2,
       type: "Pathology Lab",
-      image: "/banners/pathology1.jpg",
+      image: "/banners/pathology1.webp",
       alt: "24x7 Pathology Lab",
       title: "24x7 Pathology Lab",
       subtitle: "Trusted Reports, Prompt Service",
@@ -34,7 +34,7 @@ const EmergencyServicesCarousel = () => {
     
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % services.length);
-    }, 500);
+    }, 2000);
     
     return () => clearInterval(interval);
   }, [isPaused, services.length]);
@@ -55,7 +55,7 @@ const EmergencyServicesCarousel = () => {
     <div className="w-full max-w-[1500px] mx-auto overflow-hidden" style={{ height: '500px' }}>
       <div className="relative w-full h-full flex items-center justify-center" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
         {/* Slides */}
-        <div className="absolute inset-0 w-full h-full flex transition-transform duration-50 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+        <div className="absolute inset-0 w-full h-full flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
           {services.map((service, index) => (
             <div key={service.id} className="w-full h-full flex-shrink-0 relative" style={{ width: '100%', height: '500px' }}>
               <img

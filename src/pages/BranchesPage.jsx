@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 
 const BranchesPage = () => {
   const branches = [
-    { name: "Burhanpur", path: "/branches/burhanpur", image: "/aiwlogo.png" },
-    { name: "Khandwa", path: "/branches/khandwa", image: "/aiwlogo.png" },
-    { name: "Shahpur", path: "/branches/shahpur", image: "/aiwlogo.png" },
-    { name: "Sanawad", path: "/branches/sanawad", image: "/aiwlogo.png" },
-    { name: "Raver", path: "/branches/raver", image: "/aiwlogo.png" },
-    { name: "Khargone", path: "/branches/khargone", image: "/aiwlogo.png" },
-    { name: "Burhanpur Clinic", path: "/branches/burhanpur-clinic", image: "/aiwlogo.png" },
-    { name: "Phopnar", path: "/branches/phopnar", image: "/aiwlogo.png" },
-    { name: "Dharni", path: "/branches/dharni", image: "/aiwlogo.png" },
+    { name: "Burhanpur", path: "/branches/burhanpur", image: "/aiwlogo.webp" },
+    { name: "Khandwa", path: "/branches/khandwa", image: "/aiwlogo.webp" },
+    { name: "Shahpur", path: "/branches/shahpur", image: "/aiwlogo.webp" },
+    { name: "Sanawad", path: "/branches/sanawad", image: "/aiwlogo.webp" },
+    { name: "Raver", path: "/branches/raver", image: "/aiwlogo.webp" },
+    { name: "Khargone", path: "/branches/khargone", image: "/aiwlogo.webp" },
+    { name: "Burhanpur Clinic", path: "/branches/burhanpur-clinic", image: "/aiwlogo.webp" },
+    { name: "Phopnar", path: "/branches/phopnar", image: "/aiwlogo.webp" },
+    { name: "Dharni", path: "/branches/dharni", image: "/aiwlogo.webp" },
   ];
 
  return (
