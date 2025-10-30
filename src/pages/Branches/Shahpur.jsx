@@ -8,11 +8,11 @@ const ShahpurBranch = () => {
       branchName="All Is Well Super Clinic, Shahpur"
       location="Shahpur, Madhya Pradesh"
       galleryImages={[
-        '/branches/shahpur/shahpur1.jpeg',
-        '/branches/shahpur/shahpur2.jpeg',
-        '/branches/shahpur/shahpur3.jpeg',
-        '/branches/shahpur/shahpur4.jpeg',
-        '/branches/shahpur/shahpur5.jpeg'
+        '/branches/shahpur/shahpur1.webp',
+        '/branches/shahpur/shahpur2.webp',
+        '/branches/shahpur/shahpur3.webp',
+        '/branches/shahpur/shahpur4.webp',
+        '/branches/shahpur/shahpur5.webp'
       ]}
       mapLocation="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.4026905270194!2d76.22174457497583!3d21.240151478887406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd9cd628a8e0aa7%3A0xf197b30211d90022!2sAll%20is%20Well%20Super%20Clinic%20Shahpur!5e0!3m2!1sen!2sin!4v1695977424086!5m2!1sen!2sin"
       contactInfo={{

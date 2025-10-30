@@ -8,9 +8,9 @@ const PhopnarBranch = () => {
       branchName="All Is Well Collection Center, Phopnar"
       location="Main Road, Phopnar, Madhya Pradesh"
       galleryImages={[
-        '/branches/khandwa/khandwa.jpeg',
-        '/branches/khandwa/khandwa2.jpeg',
-        '/branches/khandwa/khandwa3.jpeg'
+        '/branches/khandwa/khandwa.webp',
+        '/branches/khandwa/khandwa2.webp',
+        '/branches/khandwa/khandwa3.webp'
       ]}
       mapLocation="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14861.77339261938!2d76.6034238!3d21.4593328!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd83ed0b9149af1%3A0x90314bd5845d3f86!2sALL%20IS%20WELL%20COLLECTION%20CENTER%20PHOPNAR!5e0!3m2!1sen!2sin!4v1696005435284!5m2!1sen!2sin"
       contactInfo={{

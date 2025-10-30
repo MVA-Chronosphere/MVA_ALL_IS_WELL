@@ -13,12 +13,12 @@ const BurhanpurClinic = () => {
         hours: "Monday - Saturday: 10:00 AM - 8:00 PM"
       }}
       galleryImages={[
-        '/branches/burhanpur/burhanpur1.jpeg',
-        '/branches/burhanpur/burhanpur2.jpeg',
-        '/branches/burhanpur/burhanpur3.jpeg',
-        '/branches/burhanpur/burhanpur4.jpeg',
-        '/branches/burhanpur/burhanpur5.jpeg',
-        '/branches/burhanpur/burhanpur6.jpeg'
+        '/branches/burhanpur/burhanpur1.webp',
+        '/branches/burhanpur/burhanpur2.webp',
+        '/branches/burhanpur/burhanpur3.webp',
+        '/branches/burhanpur/burhanpur4.webp',
+        '/branches/burhanpur/burhanpur5.webp',
+        '/branches/burhanpur/burhanpur6.webp'
       ]}
       mapLocation="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3717.248592897735!2d76.21796817733656!3d21.301191335103148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd83377257bd39d%3A0xa12a00197d2367f5!2sAll%20is%20Well%20Super%20Clinic%20Burhanpur!5e0!3m2!1sen!2sin!4v1759133785293!5m2!1sen!2sin"
      

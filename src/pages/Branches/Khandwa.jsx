@@ -8,12 +8,12 @@ const KhandwaBranch = () => {
       branchName="All Is Well Super Clinic, Khandwa"
       location="Khandwa, Madhya Pradesh"
       galleryImages={[
-        '/branches/khandwa/khandwa.jpeg',
-        '/branches/khandwa/khandwa2.jpeg',
-        '/branches/khandwa/khandwa3.jpeg',
-        '/branches/khandwa/khandwa4.jpeg',
-        '/branches/khandwa/khandwa5.jpeg',
-        '/branches/khandwa/khandwa6.jpeg'
+        '/branches/khandwa/khandwa.webp',
+        '/branches/khandwa/khandwa2.webp',
+        '/branches/khandwa/khandwa3.webp',
+        '/branches/khandwa/khandwa4.webp',
+        '/branches/khandwa/khandwa5.webp',
+        '/branches/khandwa/khandwa6.webp'
       ]}
       mapLocation="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3703.8444753985164!2d76.3411357752713!3d21.82493915995757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd81b25e61c2ed3%3A0xf49178fe13d6f875!2sAll%20Is%20Well%20Super%20Clinic%2C%20Khandwa!5e0!3m2!1sen!2sin!4v1759130962506!5m2!1sen!2sin"
       contactInfo={{

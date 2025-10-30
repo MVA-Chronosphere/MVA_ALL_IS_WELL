@@ -8,9 +8,9 @@ const DharniBranch = () => {
       branchName="All Is Well Super Clinic, Dharni"
       location="Main Market, Dharni, Madhya Pradesh"
       galleryImages={[
-        '/branches/khandwa/khandwa.jpeg',
-        '/branches/khandwa/khandwa2.jpeg',
-        '/branches/khandwa/khandwa3.jpeg'
+        '/branches/khandwa/khandwa.webp',
+        '/branches/khandwa/khandwa2.webp',
+        '/branches/khandwa/khandwa3.webp'
       ]}
       mapLocation="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.1234567890123!2d77.07126!3d21.8256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd838a4e54c4567%3A0x90314bd5845d3f86!2sALL%20IS%20WELL%20SUPER%20CLINIC%20DHARNI!5e0!3m2!1sen!2sin!4v1696005435284!5m2!1sen!2sin"
       contactInfo={{

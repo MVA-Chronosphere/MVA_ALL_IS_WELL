@@ -8,9 +8,9 @@ const KhargoneBranch = () => {
       branchName="All Is Well Sahayata, Khargone"
       location="Near Bus Stand, Khargone, Madhya Pradesh"
       galleryImages={[
-        '/branches/khargone/khandwa.jpeg',
-        '/branches/khargone/khandwa2.jpeg',
-        '/branches/khargone/khandwa3.jpeg'
+        '/branches/khargone/khandwa.webp',
+        '/branches/khargone/khandwa2.webp',
+        '/branches/khargone/khandwa3.webp'
       ]}
       mapLocation="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7407.404850470703!2d75.61760997770996!3d21.830425500000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd8877d9866ce67%3A0x4bec69db02569136!2sAll%20is%20well%20hospital%20khargone!5e0!3m2!1sen!2sin!4v1759133660770!5m2!1sen!2sin" 
       contactInfo={{
