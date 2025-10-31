@@ -597,7 +597,7 @@ const HomePage = () => {
               autoPlay={index === currentIndex} // Autoplay only if it's the current slide
               playsInline
               muted={isMuted}
-              preload={index === currentIndex ? "auto" : "none"} // Only preload current and adjacent slides
+              preload="metadata" // Preload only metadata for faster initial loading
               className="w-full h-full object-cover min-h-full"
               style={{
                 objectPosition:
