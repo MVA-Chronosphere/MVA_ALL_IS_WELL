@@ -29,7 +29,7 @@ Lung cancer isn’t just a smoker’s disease — it’s a condition that can af
     image: "/blogpictures/lung-cancer.webp",
     department: "Pulmonology",
     date: "October 2025",
-    doctorName: "Dr. Priya Sharma",
+   
     excerpt:
       "Lung cancer isn’t just caused by smoking. Learn about other risk factors, early signs, and how to keep your lungs healthy.",
     readTime: "5 min read",
@@ -66,7 +66,7 @@ Heart attacks are increasingly common in young adults due to stress and lifestyl
     image: "/blogpictures/heart-attack.webp",
     department: "Cardiology",
     date: "October 2025",
-    doctorName: "Dr. Rajesh Mehta",
+   
     excerpt:
       "Heart attacks are now affecting younger people. Learn about causes, symptoms, and how to protect your heart.",
     readTime: "6 min read",
@@ -105,7 +105,7 @@ RIRS surgery offers a safe, precise, and minimally invasive way to treat kidney 
     image: "/blogpictures/rirs-surgery.webp",
     department: "Urology",
     date: "October 2025",
-    doctorName: "Dr. Neha Patel",
+   
     excerpt:
       "RIRS is a modern, minimally invasive surgery for kidney stones — faster healing and minimal pain.",
     readTime: "7 min read",

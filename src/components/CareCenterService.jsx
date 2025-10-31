@@ -1929,7 +1929,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
 
                   return (
                     <div key={id} className={`w-full ${currentService.doctorIds.length > 1 ? 'sm:w-1/2' : ''}`}>
-                      <div className="w-full max-w-[300px] aspect-square overflow-hidden rounded-lg mx-auto">
+                      <div className="w-full max-w-[300px] aspect-square overflow-hidden rounded-lg mx-auto cursor-pointer" onClick={() => window.location.href = `/doctor/${id}`}>
                         <img
                           src={doctor.image || doctorPlaceholder}
                           alt={doctor.name}
@@ -1938,8 +1938,8 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
                           onError={(e) => { e.target.onerror = null; e.target.src = doctorPlaceholder; }}
                         />
                       </div>
-                      <div className="mt-4 text-center">
-                        <h3 className={`font-serif font-bold text-[#002d72] ${currentService.doctorIds.length > 1 ? 'text-lg' : 'text-xl'}`}>
+                      <div className="mt-4 text-center cursor-pointer" onClick={() => window.location.href = `/doctor/${id}`}>
+                        <h3 className={`font-serif font-bold text-[#02d72] ${currentService.doctorIds.length > 1 ? 'text-lg' : 'text-xl'}`}>
                           {doctor.name}
                         </h3>
                       </div>

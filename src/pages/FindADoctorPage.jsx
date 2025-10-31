@@ -232,7 +232,7 @@ const FindADoctorPage = () => {
   const [selectedLetter, setSelectedLetter] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState(searchParams.get('department') || '');
   const [selectedTreatment, setSelectedTreatment] = useState(searchParams.get('treatment') || '');
-  const [selectedLocation, setSelectedLocation] = useState("All Is Well Super Clinic Burhanpur");
+  const [selectedLocation, setSelectedLocation] = useState("");
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [isAlphabetExpanded, setIsAlphabetExpanded] = useState(false);
   const [isLocationExpanded, setIsLocationExpanded] = useState(false);
@@ -263,6 +263,9 @@ const FindADoctorPage = () => {
     
     return Array.from(specialtiesSet).sort();
   };
+
+  // Use the function to get actual specialties from the doctor data
+  const specialties = getAvailableSpecialties();
 
   return (
     <div className="min-h-screen bg-white font-sans">
@@ -325,7 +328,7 @@ const FindADoctorPage = () => {
                 onClick={() => setIsSpecialtyExpanded(!isSpecialtyExpanded)}
                 className="w-full flex items-center justify-between text-left"
               >
-                <h3 className="font-serif font-bold text-[#002d72]">Filter by Specialty</h3>
+                <h3 className="font-serif font-bold text-[#002d72]">Specialities</h3>
                 {isSpecialtyExpanded ? (
                   <ChevronUp className="text-[#002d72]" size={20} />
                 ) : (
@@ -337,18 +340,74 @@ const FindADoctorPage = () => {
                   isSpecialtyExpanded ? 'max-h-96 mt-4' : 'max-h-0'
                 }`}
               >
-                <select
-                  value={selectedDepartment}
-                  onChange={(e) => setSelectedDepartment(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#d4af37] focus:border-[#d4af37] transition-all duration-300"
-                >
-                  <option value="">All Specialties</option>
-                  {getAvailableSpecialties().map((specialty) => (
-                    <option key={specialty} value={specialty}>
-                      {specialty}
-                    </option>
+                <div className="space-y-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                  <label className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors">
+                    <input
+                      type="radio"
+                      name="specialty"
+                      checked={!selectedDepartment}
+                      onChange={() => setSelectedDepartment('')}
+                      className="rounded text-[#d4af37] focus:ring-[#d4af37]"
+                    />
+                    <span className="text-sm font-medium text-gray-700">All Specialities</span>
+                  </label>
+                  {specialties.map((specialty) => (
+                    <label key={specialty} className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors">
+                      <input
+                        type="radio"
+                        name="specialty"
+                        checked={selectedDepartment === specialty}
+                        onChange={(e) => setSelectedDepartment(e.target.checked ? specialty : '')}
+                        className="rounded text-[#d4af37] focus:ring-[#d4af37]"
+                      />
+                      <span className="text-sm font-medium text-gray-700">{specialty}</span>
+                    </label>
                   ))}
-                </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#d4af37] mt-6">
+              <button 
+                onClick={() => setIsLocationExpanded(!isLocationExpanded)}
+                className="w-full flex items-center justify-between text-left"
+              >
+                <h3 className="font-serif font-bold text-[#002d72]">Location</h3>
+                {isLocationExpanded ? (
+                  <ChevronUp className="text-[#002d72]" size={20} />
+                ) : (
+                  <ChevronDown className="text-[#002d72]" size={20} />
+                )}
+              </button>
+              <div 
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  isLocationExpanded ? 'max-h-96 mt-4' : 'max-h-0'
+                }`}
+              >
+                <div className="space-y-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                  <label className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors">
+                    <input
+                      type="radio"
+                      name="location"
+                      checked={!selectedLocation}
+                      onChange={() => setSelectedLocation('')}
+                      className="rounded text-[#d4af37] focus:ring-[#d4af37]"
+                    />
+                    <span className="text-sm font-medium text-gray-700">All Locations</span>
+                  </label>
+                  {locations.map((location) => (
+                    <label key={location} className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors">
+                      <input
+                        type="radio"
+                        name="location"
+                        checked={selectedLocation === location}
+                        onChange={() => setSelectedLocation(location)}
+                        className="rounded text-[#d4af37] focus:ring-[#d4af37]"
+                      />
+                      <span className="text-sm font-medium text-gray-700">{location}</span>
+                    </label>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -434,9 +493,9 @@ const FindADoctorPage = () => {
                   return true;
                 })
                 .filter((doctor) => {
-                  // Filter by department/specialty - match exact specialty
+                  // Filter by department/specialty - match if the selected department is contained in the doctor's specialty
                   if (selectedDepartment) {
-                    return doctor.specialty === selectedDepartment;
+                    return doctor.specialty.toLowerCase().includes(selectedDepartment.toLowerCase());
                   }
                   return true;
                 })

@@ -56,6 +56,125 @@ const HomePage = () => {
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [showTreatmentDropdown, setShowTreatmentDropdown] = useState(false);
   const [showDepartmentDropdown, setShowDepartmentDropdown] = useState(false);
+  
+  // Mapping of treatments/departments to service slugs
+  const treatmentToServiceMap = {
+    'neuro-spine': 'neuro-spine-surgery',
+    'heart': 'cardiology',
+    'thoracic': 'cardio-thoracic-surgery',
+    'plastic-reconstructive': 'plastic-surgery',
+    'cancer': 'oncology',
+    'orthopedics': 'orthopaedics',
+    'women-health': 'obstetrics-and-gynaecology',
+    'dental': 'dental',
+    'mental-health': 'psychiatry',
+    'skin': 'dermatology',
+    'general': 'general-medicine',
+    'rehabilitation': 'physiotherapy'
+  };
+  
+  const departmentToServiceMap = {
+    'plastic and reconstructive surgery': 'plastic-surgery',
+    'urology': 'urology',
+    'nephrology': 'nephrology',
+    'cardiology': 'cardiology',
+    'neuro and spine surgery': 'neuro-spine-surgery',
+    'surgical oncology': 'oncology',
+    'radiation oncology': 'oncology',
+    'general medicine': 'general-medicine',
+    'internal medicine': 'internal-medicine',
+    'ent': 'ent',
+    'general and minimal access surgery': 'general-and-minimal-invasive-surgery',
+    'orthopaedic and joint replacement': 'orthopaedics',
+    'obstetrics and gynaecology': 'obstetrics-and-gynaecology',
+    'dermatology': 'dermatology',
+    'psychiatry': 'psychiatry',
+    'anaesthesia': 'anaesthesia',
+    'radiology': 'radiology',
+    'blood bank and pathology': 'pathology',
+    'dental': 'dental',
+    'physiotherapy and rehabilitation': 'physiotherapy',
+    'critical care medicine': 'critical-care',
+    'oncology': 'oncology',
+    'gastroenterology': 'gastroenterology',
+    'endocrinology': 'endocrinology',
+    'rheumatology': 'rheumatology',
+    'ophthalmology': 'ophthalmology',
+    'hematology': 'haematology',
+    'blood bank': 'blood-bank',
+    'nutrition and diet': 'nutrition-and-diet'
+  };
+
+  const handleSearch = () => {
+    // Check if a treatment was selected directly from the dropdown
+    if (selectedTreatment && treatmentToServiceMap[selectedTreatment]) {
+      window.location.href = `/care-center/${treatmentToServiceMap[selectedTreatment]}`;
+      return;
+    }
+
+    // Check if a department was selected directly from the dropdown
+    if (selectedDepartment && departmentToServiceMap[selectedDepartment.toLowerCase()]) {
+      window.location.href = `/care-center/${departmentToServiceMap[selectedDepartment.toLowerCase()]}`;
+      return;
+    }
+
+    // If no exact match found, try to match the entered text against treatment/procedure names
+    if (selectedTreatment) {
+      // First, try to find exact match in treatment labels
+      let matchedTreatment = treatments.find(treatment => {
+        return treatment.label.toLowerCase() === selectedTreatment.toLowerCase();
+      });
+
+      if (matchedTreatment && treatmentToServiceMap[matchedTreatment.id]) {
+        window.location.href = `/care-center/${treatmentToServiceMap[matchedTreatment.id]}`;
+        return;
+      }
+
+      // Then, try to match entered text with procedures within treatments
+      for (const treatment of treatments) {
+        const matchedProcedure = treatment.procedures.find(proc => 
+          proc.toLowerCase().includes(selectedTreatment.toLowerCase()) ||
+          selectedTreatment.toLowerCase().includes(proc.toLowerCase())
+        );
+
+        if (matchedProcedure && treatmentToServiceMap[treatment.id]) {
+          window.location.href = `/care-center/${treatmentToServiceMap[treatment.id]}`;
+          return;
+        }
+      }
+
+      // If still no match, try partial matches in treatment labels
+      matchedTreatment = treatments.find(treatment => {
+        const searchLower = selectedTreatment.toLowerCase();
+        return (
+          treatment.label.toLowerCase().includes(searchLower) ||
+          treatment.procedures.some(proc => proc.toLowerCase().includes(searchLower))
+        );
+      });
+
+      if (matchedTreatment && treatmentToServiceMap[matchedTreatment.id]) {
+        window.location.href = `/care-center/${treatmentToServiceMap[matchedTreatment.id]}`;
+        return;
+      }
+    }
+
+    if (selectedDepartment) {
+      // Find the department that matches the entered text
+      const matchedDepartment = departments.find(dept => {
+        const deptLower = dept.toLowerCase();
+        const searchLower = selectedDepartment.toLowerCase();
+        return deptLower.includes(searchLower) || searchLower.includes(deptLower);
+      });
+
+      if (matchedDepartment && departmentToServiceMap[matchedDepartment.toLowerCase()]) {
+        window.location.href = `/care-center/${departmentToServiceMap[matchedDepartment.toLowerCase()]}`;
+        return;
+      }
+    }
+
+    // If no match found, redirect to the general care center page
+    window.location.href = '/care-center';
+  };
   // Mobile detection state
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -824,13 +943,13 @@ const HomePage = () => {
               </div>
             </div>
 
-            <Link
-              to={`/find-doctor?department=${selectedDepartment}&treatment=${selectedTreatment}`}
+              <button
+              onClick={() => handleSearch()}
               className="bg-blue-700 text-white px-6 py-3 rounded-full hover:bg-blue-60 transition-colors font-medium flex items-center gap-2 font-sans text-base sm:text-lg"
             >
               <Search size={18} />
               Search
-            </Link>
+            </button>
             <Link
               to="/find-doctor"
               className="text-gray-700 hover:text-yellow-600 font-medium flex items-center gap-2 font-sans text-base sm:text-lg"
