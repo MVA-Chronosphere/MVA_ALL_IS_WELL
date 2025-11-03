@@ -1,5 +1,6 @@
 import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
+import path from 'path';
 
 // Define paths to the video files
 const videoFiles = [
@@ -9,30 +10,35 @@ const videoFiles = [
   'public/whysection/Explainervide.mp4'
 ];
 
-// Function to convert a video to WebM with better compression for web delivery
+// Define the path to the ffmpeg binary if it's not in your system PATH
+// Update this path if your ffmpeg installation is elsewhere
+// For example: 'C:/ffmpeg/bin/ffmpeg.exe' or 'C:/Program Files/ffmpeg/bin/ffmpeg.exe'
+const ffmpegPath = 'C:/ffmpeg/bin/ffmpeg.exe'; // Assumes it's in PATH, otherwise provide full path like 'C:/path/to/ffmpeg/bin/ffmpeg.exe'
+
+// If the path is not in PATH, uncomment the following line and adjust the path accordingly:
+// ffmpeg.setFfmpegPath('C:/ffmpeg/bin/ffmpeg.exe'); // Example path, adjust as needed
+
+// Function to convert a video to WebM
 function convertToWebM(inputPath) {
   return new Promise((resolve, reject) => {
     const outputPath = inputPath.replace('.mp4', '.webm');
 
-    console.log(`Converting ${inputPath} to WebM with optimized settings for web...`);
+    console.log(`Converting ${inputPath} to WebM...`);
 
-    // Use ffmpeg with optimized settings for web delivery
-    ffmpeg(inputPath)
+    // Use the specified ffmpeg path if not in PATH
+    const ffmpegInstance = ffmpeg(inputPath);
+    if (ffmpegPath !== 'ffmpeg') { // Only set if a specific path was provided
+      ffmpegInstance.setFfmpegPath(ffmpegPath);
+    }
+
+    ffmpegInstance
       .output(outputPath)
       .videoCodec('libvpx-vp9') // Use VP9 codec for WebM
       .audioCodec('libopus')    // Use Opus codec for audio
-      .outputOption('-crf', '35') // Higher CRF for smaller file size (35 is a good balance)
-      .outputOption('-b:v', '1M')  // Limit video bitrate to 1 Mbps for web delivery
-      .outputOption('-cpu-used', '4') // Faster encoding
-      .outputOption('-deadline', 'good') // Good quality-speed balance
-      .outputOption('-quality', 'good') // Good quality setting
-      .outputOption('-row-mt', '1') // Enable row-based multithreading
+      .outputOption('-crf', '30') // Constant Rate Factor (lower = higher quality, larger file)
+      .outputOption('-b:v', '0')  // Bitrate (0 means automatic)
       .on('end', () => {
         console.log(`Successfully converted: ${outputPath}`);
-        // Log the file size for comparison
-        const stats = fs.statSync(outputPath);
-        const fileSizeInMB = (stats.size / (1024 * 1024)).toFixed(2);
-        console.log(`Optimized file size: ${fileSizeInMB} MB`);
         resolve(outputPath);
       })
       .on('error', (err) => {

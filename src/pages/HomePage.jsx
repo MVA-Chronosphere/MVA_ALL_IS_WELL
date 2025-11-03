@@ -403,7 +403,7 @@ const HomePage = () => {
   const slides = [
   {
     type: 'video',
-    video: "/Anandprakashchokseyexplanation.webm",
+    video: "/Anandprakashchokseyexplanation.mp4",
     title: "Trustworthy Medical Expertise",
     buttonLabel: "Book Appointment",
     buttonIcon: <Calendar size={18} />,
@@ -413,7 +413,7 @@ const HomePage = () => {
   },
   {
     type: 'video',
-    video: "/Explainervide.webm",
+    video: "/Explainervide.mp4",
     title: "Quality Healthcare in Central India",
     buttonLabel: "Explore Services",
     buttonIcon: <Play size={18} />,
@@ -423,7 +423,7 @@ const HomePage = () => {
   },
   {
     type: 'video',
-    video: "/kidtestimonial.webm",
+    video: "/kidtestimonial.mp4",
     title: "The Start of Your Healing Journey",
     buttonLabel: "Watch Testimonials",
     buttonIcon: <Play size={18} />,
@@ -597,7 +597,7 @@ const HomePage = () => {
               autoPlay={index === currentIndex} // Autoplay only if it's the current slide
               playsInline
               muted={isMuted}
-              preload="metadata" // Preload only metadata for faster initial loading
+              preload={index === currentIndex ? "auto" : "none"} // Only preload current and adjacent slides
               className="w-full h-full object-cover min-h-full"
               style={{
                 objectPosition:
@@ -806,11 +806,11 @@ const HomePage = () => {
 
           {/* Search Form */}
           <div className="flex flex-col md:flex-row gap-4 sm:gap-6 mb-4 sm:mb-6 items-center">
-            <div className="w-full sm:w-64">
+            <div className="w-full md:w-64 flex flex-col">
               <label className="block text-sm sm:text-base font-medium text-gray-700 mb-1 sm:mb-2 font-sans">
                 Treatment
               </label>
-              <div className="relative treatment-dropdown">
+              <div className="relative treatment-dropdown flex-grow">
                 <input
                   type="text"
                   placeholder="Search treatments, procedures..."
@@ -880,11 +880,11 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className="w-full sm:w-64">
+            <div className="w-full md:w-64 flex flex-col">
               <label className="block text-sm sm:text-base font-medium text-gray-700 mb-1 sm:mb-2 font-sans">
                 Department
               </label>
-              <div className="relative department-dropdown">
+              <div className="relative department-dropdown flex-grow">
                 <input
                   type="text"
                   placeholder="Search departments..."
@@ -943,20 +943,22 @@ const HomePage = () => {
               </div>
             </div>
 
+            <div className="flex gap-4 items-center self-end pb-3 md:self-center md:pb-0 mt-[33px]">
               <button
-              onClick={() => handleSearch()}
-              className="bg-blue-700 text-white px-6 py-3 rounded-full hover:bg-blue-60 transition-colors font-medium flex items-center gap-2 font-sans text-base sm:text-lg"
-            >
-              <Search size={18} />
-              Search
-            </button>
-            <Link
-              to="/find-doctor"
-              className="text-gray-700 hover:text-yellow-600 font-medium flex items-center gap-2 font-sans text-base sm:text-lg"
-            >
-              View all Specialists
-              <ArrowRight size={18} />
-            </Link>
+                onClick={() => handleSearch()}
+                className="bg-blue-700 text-white px-6 py-3 rounded-full hover:bg-blue-60 transition-colors font-medium flex items-center gap-2 font-sans text-base sm:text-lg"
+              >
+                <Search size={18} />
+                Search
+              </button>
+              <Link
+                to="/find-doctor"
+                className="text-gray-700 hover:text-yellow-600 font-medium flex items-center gap-2 font-sans text-base sm:text-lg"
+              >
+                View all Specialists
+                <ArrowRight size={18} />
+              </Link>
+            </div>
           </div>
         </div>
       </motion.section>
@@ -996,7 +998,7 @@ const HomePage = () => {
           >
             <div className="lg:w-1/2">
               <motion.img
-                src="/whysection/pathology.webp"
+                src="/whysection/Mri.png "
                 alt="Advanced Medical Technology"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
                 loading="lazy"
@@ -1031,7 +1033,7 @@ const HomePage = () => {
           >
             <div className="lg:w-1/2">
               <motion.img
-                src="/whysection/ctscan.webp"
+                src="/whysection/pathology.webp"
                 alt="Experienced Medical Team"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
                 loading="lazy"
@@ -1270,29 +1272,8 @@ const HomePage = () => {
         </section>
       </section>
 
-    
-      
-      {/* EMERGENCY SERVICES SECTION */}
-      <motion.section
-        className="py-4 sm:py-6 bg-[#f9f9f9]"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={sectionVariants}
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="text-center mb-12">
-            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#002d72] leading-tight">
-              Emergency & Diagnostic Services
-            </h1>
-            <div className="w-16 h-1 bg-[#d4af37] mx-auto mt-4 rounded"></div>
-          </div>
-          
-          <div className="flex justify-center items-center">
-            <EmergencyServicesCarousel />
-          </div>
-        </div>
-      </motion.section>
+      {/* HEALTH PACKAGES SECTION */}
+      <HealthPackages />
 
       {/* RECENT BLOG SECTION */}
       <div className="py-8 sm:py-10 bg-[#f9f9f9]">

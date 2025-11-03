@@ -8,7 +8,7 @@ const FindDoctorCard = ({ doctor, onBookAppointment }) => {
     <div className="bg-white rounded-lg shadow-sm border border-[#d4af37] overflow-hidden hover:shadow-md transition-shadow duration-300 h-full flex flex-col max-w-full">
       <div className="p-6 flex-col items-center text-center flex-grow">
         {/* Doctor Image */}
-        <div className="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-2 border-[#d4af37] shadow-md">
+        <div className="w-48 h-48 mx-auto mb-4 overflow-hidden rounded-full border-2 border-[#d4af37] shadow-md">
           <img
             src={doctor.image}
             alt={doctor.name}

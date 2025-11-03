@@ -191,7 +191,7 @@ export const doctors = [
       id: 27,
       name: "Dr. Abhey Joshi",
       specialty: "Sr. Consultant Nephrologist (Shalby Hospital, Indore)",
-      image: "/placeholders/doctor-placeholder.webp",
+      image: "/Doctorphotos/Dr. Abhey Joshi .png",
       location: "All Is Well Super Clinic Burhanpur",
     },
     {
@@ -204,7 +204,7 @@ export const doctors = [
     {
       id: 29,
       name: "Dr. Rupali Marathe",
-      specialty: "MBBS, MD (Rheumatology), BPT, MPT (Orthopedics)",
+      specialty: "BPT, MPT (Orthopedics)",
       image: "/Doctorphotos/Dr_Rupali _Marathe.webp",
       location: "All Is Well Super Clinic Burhanpur",
     },
