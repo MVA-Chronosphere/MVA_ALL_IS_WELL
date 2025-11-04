@@ -1033,7 +1033,7 @@ const HomePage = () => {
           >
             <div className="lg:w-1/2">
               <motion.img
-                src="/whysection/pathology.webp"
+                src="/whysection/team.jpg"
                 alt="Experienced Medical Team"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
                 loading="lazy"
