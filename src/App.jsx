@@ -26,6 +26,7 @@ import BlogLoginPage from "./pages/BlogLoginPage";
 import ArticlePage from "./pages/ArticlePage";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AmbulancePage from "./pages/AmbulancePage";
 
 // CSS to make tawk.to widget bigger
 const tawkToStyles = `
@@ -156,6 +157,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about/*" element={<AboutUs />} />
+            <Route path="/ambulance" element={<AmbulancePage />} />
             <Route path="/care-center" element={<CareCenter />} />
             <Route path="/care-center/:service" element={<CareCenterService />} />
             <Route path="/find-doctor" element={<FindADoctorPage />} />
@@ -194,13 +196,23 @@ function App() {
 
           <Footer />
 
-          {/* ✅ WhatsApp Icon (non-overlapping with Tawk.to widget) */}
+          {/* Emergency Button */}
+          <div className="fixed top-[200px] right-0 z-[9999] transform translate-x-1/2 rotate-90 mr-4">
+            <a
+              href="/ambulance"
+              className="bg-red-600 text-white px-4 py-2 rounded-sm shadow-lg hover:bg-red-700 transition-colors duration-300 whitespace-nowrap text-sm font-bold"
+            >
+              EMERGENCY
+            </a>
+          </div>
+
+          {/* WhatsApp Icon (non-overlapping with Tawk.to widget) */}
           <div className="fixed bottom-24 right-6 z-[9999]">
             <a
               href="https://wa.me/769774444"
               target="_blank"
               rel="noopener noreferrer"
-  className="p-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-60 transition-colors duration-300 flex items-center justify-center"
+              className="p-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 flex items-center justify-center"
               title="Chat on WhatsApp"
             >
               <Phone size={32} className="text-white" />

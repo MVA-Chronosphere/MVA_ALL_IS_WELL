@@ -19,8 +19,12 @@ const CardComponent = ({ items }) => {
             </div>
           )}
           <h3 className="text-xl font-serif font-bold text-[#002d72] mb-3 break-words">{item.title}</h3>
-          <div className="w-full h-px bg-primary-gold mb-3"></div>
-          <p className="font-sans text-[#444] flex-grow break-words">{item.description}</p>
+          {item.description && (
+            <>
+              <div className="w-full h-px bg-primary-gold mb-3"></div>
+              <p className="font-sans text-[#444] flex-grow break-words">{item.description}</p>
+            </>
+          )}
         </div>
       ))}
     </div>

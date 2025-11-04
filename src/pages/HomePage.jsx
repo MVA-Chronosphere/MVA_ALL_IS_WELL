@@ -24,7 +24,7 @@ import {
   Clock,
   Star,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { VolumeX, Volume2 } from "lucide-react";
 import CardComponent from '../components/CardComponent';
@@ -37,6 +37,7 @@ const getYouTubeVideoId = (url) => {
 };
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const heroSliderRef = useRef(null);
   const heroSectionRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -562,7 +563,8 @@ const HomePage = () => {
       return (
     <>
       {/* HERO SECTION */}
-<div ref={heroSectionRef} className="w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-x-hidden">
+<div ref={heroSectionRef} className="w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-x-hidden relative">
+
   <Slider
     {...{
       dots: false,
@@ -606,7 +608,7 @@ const HomePage = () => {
               onLoadedData={(e) => {
                 // Once metadata is loaded, if it's the current slide, try to play
                 if (index === currentIndex) {
-                  e.target.play().catch(err => console.warn(`Autoplay prevented for video ${index}:`, err));
+                  e.target.play().catch(err => console.warn(`Autoplay blocked for video ${index}:`, err));
                 }
               }}
               onEnded={(e) => {
@@ -634,6 +636,7 @@ const HomePage = () => {
                 {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
               </button>
             )}
+
           </>
         ) : (
           <img
@@ -649,7 +652,7 @@ const HomePage = () => {
           className="absolute inset-0 hidden sm:block"
           style={{
             background: slide.overlay
-              ? "linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%)"
+              ? "linear-gradient(to right, rgba(0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%)"
               : "none",
           }}
         ></div>
