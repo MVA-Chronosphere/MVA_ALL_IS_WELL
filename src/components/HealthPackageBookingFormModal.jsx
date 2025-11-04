@@ -4,8 +4,9 @@ import { X } from "lucide-react";
 const HealthPackageBookingFormModal = ({
   isOpen,
   onClose,
-  healthPackage = null,
+  packageDetails = null,
 }) => {
+  const { branchName, ...healthPackage } = packageDetails || {};
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -13,6 +14,7 @@ const HealthPackageBookingFormModal = ({
     email: "",
     message: "",
     packageName: healthPackage?.name || "",
+    branchName: branchName || "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,10 +25,14 @@ const HealthPackageBookingFormModal = ({
   };
 
   useEffect(() => {
-    if (healthPackage) {
-      setFormData((prev) => ({ ...prev, packageName: healthPackage.name }));
+    if (packageDetails) {
+      setFormData((prev) => ({ 
+        ...prev, 
+        packageName: packageDetails.name,
+        branchName: packageDetails.branchName || "",
+      }));
     }
-  }, [healthPackage]);
+  }, [packageDetails]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +53,7 @@ const HealthPackageBookingFormModal = ({
     fd.append('_captcha', 'false');
     fd.append('_autoresponse', 'Thank you for choosing All Is Well Hospital. Our team will contact you shortly.');
     fd.append("package_name", formData.packageName || healthPackage?.name || "Not specified");
+    fd.append("branch_name", formData.branchName || "Not specified");
     fd.append("booking_date", formData.date || "Not specified");
 
     try {
@@ -95,6 +102,7 @@ const HealthPackageBookingFormModal = ({
           {healthPackage && (
             <div className="text-lg font-semibold text-[#444]">
               Package: {healthPackage.name}
+              {branchName && <span className="ml-2">({branchName})</span>}
             </div>
           )}
 

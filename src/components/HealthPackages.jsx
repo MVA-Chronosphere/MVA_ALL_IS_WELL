@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import HealthPackageBookingFormModal from "./HealthPackageBookingFormModal";
 
-const HealthPackages = () => {
+const HealthPackages = ({ branchName }) => {
   // Unique health packages from various branches
   const healthPackages = [
     {
@@ -219,7 +219,7 @@ const HealthPackages = () => {
   };
 
   const handleBookNow = (pkg) => {
-    setSelectedPackage(pkg);
+    setSelectedPackage({ ...pkg, branchName });
     setIsModalOpen(true);
   };
 
@@ -352,6 +352,7 @@ const HealthPackages = () => {
           isOpen={isModalOpen}
           onClose={closeModal}
           packageDetails={selectedPackage}
+          branchName={branchName}
         />
       )}
     </motion.section>

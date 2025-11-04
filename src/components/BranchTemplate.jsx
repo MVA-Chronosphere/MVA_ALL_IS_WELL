@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import HealthPackages from './HealthPackages';
 
 const BranchTemplate = ({ 
   branchName, 
@@ -67,23 +68,7 @@ const BranchTemplate = ({
 
       {/* Health Packages Section */}
       {healthPackages.length > 0 && (
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
-            <h2 className="text-3xl font-serif font-bold text-[#002d72] text-center mb-8">Our Health Packages</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {healthPackages.map((pkg, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-sm border border-[#d4af37]">
-                  <h3 className="text-xl font-serif font-bold text-[#002d72] mb-3">{pkg.name}</h3>
-                  <p className="text-[#d4af37] font-bold mb-2">₹{pkg.price}</p>
-                  <p className="text-gray-600 mb-4">{pkg.description}</p>
-                  <button className="bg-[#002d72] text-white px-6 py-2 rounded text-sm font-medium hover:bg-[#001d52] transition duration-300">
-                    Book Now
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <HealthPackages healthPackages={healthPackages} branchName={branchName} />
       )}
 
       {/* Services Available */}
