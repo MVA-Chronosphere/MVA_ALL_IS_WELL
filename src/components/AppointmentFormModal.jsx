@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { X, ChevronDown } from "lucide-react";
 import { indianStatesCities } from "../data/indianStatesCities";
+import emailjs from "@emailjs/browser";
 
 const AppointmentFormModal = ({
   isOpen,
@@ -71,32 +72,39 @@ const AppointmentFormModal = ({
       return;
     }
 
-    const fd = new FormData(e.currentTarget);
-    fd.append('Form Source', 'Book Appointment - All Is Well Hospital');
-    fd.append('_subject', `Book Appointment • All Is Well Hospital`);
-    fd.append('_template', 'table');
-    fd.append('_captcha', 'false');
-    fd.append('_autoresponse', 'Thank you for contacting All Is Well Hospital. Our team will get back to you shortly.');
-    fd.append("doctor", doctor?.name || "Not specified");
-    fd.append("appointment_time", selectedTime || "Not specified");
-
     try {
-      const response = await fetch("https://formsubmit.co/ajax/digitalmarketing@mvaburhanpur.com", {
-        method: "POST",
-        body: fd,
-      });
+      const templateParams = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        age: formData.age,
+        gender: formData.gender,
+        date: formData.date || "Not specified",
+        address: formData.address || "Not specified",
+        country: formData.country,
+        state: formData.state || "Not specified",
+        district: formData.district || "Not specified",
+        pincode: formData.pincode || "Not specified",
+        mobile: formData.mobile,
+        email: formData.email || "Not provided",
+        department: formData.department || "Not specified",
+        illnessDescription: formData.illnessDescription || "Not specified",
+        Pid: formData.Pid || "N/A",
+        doctor: doctor?.name || "Not specified",
+        appointment_time: selectedTime || "Not specified",
+      };
 
-      const result = await response.json();
+      // 📨 Replace these IDs with your actual EmailJS credentials
+      const serviceId = "service_ey9to09";
+      const templateId = "template_db6hm5p";
+      const publicKey = "rEaE0gSCgvgy2DSpy";
 
-      if (result.success === "true") {
-        alert("Appointment request sent successfully");
-        onClose();
-      } else {
-        alert("Submission failed. Please try again.");
-      }
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      alert("Appointment request sent successfully!");
+      onClose();
     } catch (error) {
-      console.error(error);
-      alert("Something went wrong. Try again later.");
+      console.error("EmailJS Error:", error);
+      alert("Something went wrong. Please try again later.");
     }
   };
 
@@ -105,7 +113,6 @@ const AppointmentFormModal = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
       <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-2xl">
-
         <div className="flex justify-end mb-2">
           <button
             onClick={onClose}
@@ -146,23 +153,24 @@ const AppointmentFormModal = ({
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-
+          {/* Personal Info */}
           <div className="mb-8">
             <h3 className="text-xl font-serif font-semibold text-[#002d72] mb-4 border-b border-[#d4af37] pb-2">
               Personal Information
             </h3>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <input type="text" name="firstName" placeholder="First Name *" value={formData.firstName} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
               <input type="text" name="lastName" placeholder="Last Name *" value={formData.lastName} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
             </div>
           </div>
 
+          {/* Age and PID */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input type="text" name="Pid" placeholder="Patient Id (optional)" value={formData.Pid} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
             <input type="number" name="age" placeholder="Age *" value={formData.age} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
           </div>
 
+          {/* Gender & Date */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <select name="gender" value={formData.gender} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
               <option value="">Select Gender *</option>
@@ -174,14 +182,15 @@ const AppointmentFormModal = ({
             <input type="date" name="date" value={formData.date} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
           </div>
 
+          {/* Address */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input type="text" name="address" placeholder="Address (optional)" value={formData.address} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
-
             <select name="country" value={formData.country} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
               <option value="India">India</option>
             </select>
           </div>
 
+          {/* Mobile */}
           <div className="flex items-center border border-gray-300 rounded-md">
             <div className="px-3 py-2 bg-gray-50 border-r border-gray-300 flex items-center gap=1">
               <img src="/flag.webp" alt="India" className="w-5 h-5" />
@@ -191,9 +200,9 @@ const AppointmentFormModal = ({
             <input type="tel" name="mobile" placeholder="Mobile Number *" value={formData.mobile} onChange={handleInputChange} required className="flex-1 px-3 py-2 focus:outline-none" />
           </div>
 
+          {/* Email & Department */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input type="email" name="email" placeholder="Email (optional)" value={formData.email} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
-
             <select name="department" value={formData.department} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
               <option value="">Select Department (optional)</option>
               <option value="Cardiology">Cardiology</option>
@@ -210,7 +219,6 @@ const AppointmentFormModal = ({
               Submit
             </button>
           </div>
-
         </form>
       </div>
     </div>

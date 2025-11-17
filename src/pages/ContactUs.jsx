@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { FaMapMarkerAlt, FaPhoneAlt, FaRegClock, FaRegEnvelope } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 const ContactUs = () => {
   const formRef = useRef(null);
@@ -9,35 +10,45 @@ const ContactUs = () => {
     e.preventDefault();
     setLoading(true);
 
-    const fd = new FormData(formRef.current);
+    const form = formRef.current;
+    const formData = new FormData(form);
 
-    // Add hospital identification in inbox
-    fd.append("Form Source", "Contact Us - All Is Well Hospital");
-    fd.append("_subject", "Contact Us • All Is Well Hospital");
-    fd.append("_template", "table");
-    fd.append("_captcha", "false");
-    fd.append("_autoresponse", "Thank you for contacting All Is Well Hospital. We will get back to you soon.");
+    const templateParams = {
+      // Common appointment fields (set others to N/A)
+      firstName: formData.get("name") || "N/A",
+      lastName: "N/A",
+      age: "N/A",
+      gender: "N/A",
+      date: new Date().toLocaleDateString("en-IN"),
+      address: "N/A",
+      country: "India",
+      state: "N/A",
+      district: "N/A",
+      pincode: "N/A",
+      mobile: formData.get("phone") || "N/A",
+      email: formData.get("email") || "N/A",
+      department: "General Inquiry",
+      illnessDescription: formData.get("message") || "N/A",
+      Pid: "N/A",
+      doctor: "N/A",
+      appointment_time: "N/A",
+    };
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/digitalmarketing@mvaburhanpur.com", {
-        method: "POST",
-        body: fd
-      });
-      
-      const result = await res.json();
+      const serviceId = "service_ey9to09";
+      const templateId = "template_db6hm5p"; // same as AppointmentFormModal
+      const publicKey = "rEaE0gSCgvgy2DSpy";
 
-      if (result.success === "true") {
-        alert("✅ Message sent successfully!");
-        formRef.current.reset();
-      } else {
-        alert("❌ Failed to send message. Please try again.");
-      }
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      alert("✅ Message sent successfully!");
+      form.reset();
     } catch (error) {
-      console.error(error);
+      console.error("EmailJS Error:", error);
       alert("❌ Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
@@ -91,10 +102,10 @@ const ContactUs = () => {
               </div>
             </div>
 
-            {/* Form */}
+            {/* Contact Form */}
             <div className="bg-[#002d72] p-8 rounded-lg shadow-lg">
               <h2 className="text-3xl font-serif font-bold text-white text-center mb-4">
-                Need emergency?
+                Need Emergency?
               </h2>
               <h3 className="text-2xl font-serif font-bold text-[#d4af37] text-center mb-8">
                 Drop us a Line
@@ -102,30 +113,49 @@ const ContactUs = () => {
 
               <form ref={formRef} onSubmit={sendEmail}>
                 <div className="mb-4">
-                  <input type="text" name="name" required placeholder="Enter your name"
-                    className="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#d4af37]" />
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="Enter your name"
+                    className="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#d4af37]"
+                  />
                 </div>
 
                 <div className="mb-4">
-                  <input type="email" name="email" required placeholder="Enter your email"
-                    className="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#d4af37]" />
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Enter your email"
+                    className="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#d4af37]"
+                  />
                 </div>
 
                 <div className="mb-4">
-                  <input type="tel" name="phone" placeholder="Enter your phone number"
-                    className="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#d4af37]" />
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    className="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#d4af37]"
+                  />
                 </div>
 
                 <div className="mb-6">
-                  <textarea name="message" rows="4" placeholder="Write your message"
-                    className="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#d4af37]"></textarea>
+                  <textarea
+                    name="message"
+                    rows="4"
+                    placeholder="Write your message"
+                    className="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#d4af37]"
+                  ></textarea>
                 </div>
 
-                <input type="hidden" name="time" value={new Date().toLocaleString()} />
-
                 <div className="text-center">
-                  <button type="submit" disabled={loading}
-                    className="bg-[#d4af37] text-[#002d72] font-serif font-bold py-3 px-8 rounded-full shadow-md hover:bg-[#c4a035] transition">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-[#d4af37] text-[#002d72] font-serif font-bold py-3 px-8 rounded-full shadow-md hover:bg-[#c4a035] transition"
+                  >
                     {loading ? "Sending..." : "SUBMIT NOW"}
                   </button>
                 </div>

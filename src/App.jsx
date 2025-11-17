@@ -209,7 +209,7 @@ function App() {
           {/* WhatsApp Icon (non-overlapping with Tawk.to widget) */}
           <div className="fixed bottom-24 right-6 z-[9999]">
             <a
-              href="https://wa.me/769774444"
+              href="https://wa.me/7697744444"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 flex items-center justify-center"
