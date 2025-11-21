@@ -19,7 +19,6 @@ const Footer = () => {
   const serviceNameToSlug = (serviceName) => {
     return serviceName
       .toLowerCase()
-      .replace(/ and /g, '-')
       .replace(/ /g, '-')
       .replace(/,/g, '')
       .replace(/\./g, '')
@@ -82,7 +81,7 @@ const Footer = () => {
             loading="lazy"
           />
           <p className="text-gray-300 text-sm leading-relaxed">
-            Providing compassionate, cutting-edge healthcare services with integrity and innovation since 1998.
+            Providing compassionate, cutting-edge healthcare services with integrity and innovation since 2019.
           </p>
           <div className="flex gap-4 mt-6">
             <a href="https://www.facebook.com/alliswellhospital" aria-label="Facebook" className="text-gray-400 hover:text-yellow-400 transition-colors">

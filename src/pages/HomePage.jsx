@@ -400,6 +400,7 @@ const HomePage = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   const slides = [
   {
@@ -971,6 +972,7 @@ const HomePage = () => {
         <AppointmentFormModal
           isOpen={isAppointmentModalOpen}
           onClose={() => setIsAppointmentModalOpen(false)}
+          doctor={selectedDoctor}
         />
       )}
 
@@ -1174,7 +1176,10 @@ const HomePage = () => {
                           image={doctor.image}
                           title={doctor.name}
                           description={doctor.specialty}
-                          onBookClick={() => alert(`Booking with ${doctor.name}`)}
+                          onBookClick={() => {
+                            setSelectedDoctor(doctor);
+                            setIsAppointmentModalOpen(true);
+                          }}
                         />
                       </div>
                     </motion.div>
