@@ -6,7 +6,7 @@ const AmbulancePage = () => {
   return (
     <div className="min-h-screen bg-white text-gray-700 font-sans">
       {/* Hero Section */}
-      <section className="relative bg-cover bg-center py-20" style={{ backgroundImage: "url('/public/banners/Ambulance.webp')" }}>
+      <section className="relative bg-cover bg-center py-20" style={{ backgroundImage: "url('banners/Ambulance.webp')" }}>
         <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="relative max-w-7xl mx-auto px-6 md:px-12 text-white text-center">
           <h1 className="text-5xl md:text-6xl font-serif font-bold leading-tight">
