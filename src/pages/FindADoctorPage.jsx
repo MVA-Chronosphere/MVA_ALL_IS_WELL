@@ -215,13 +215,7 @@ export const doctors = [
       image: "/Doctorphotos/Dr_Tanishk_Shroff.webp",
       location: "All Is Well Super Clinic Burhanpur",
     },
-    {
-      id: 31,
-      name: "Dr. Nazma",
-      specialty: "Certified Yoga Instructor, Certified Dietitian & Nutritionist",
-      image: "/Doctorphotos/Nazma Maam.webp",
-      location: "All Is Well Super Clinic Burhanpur",
-    },
+    
   ];
 
 const FindADoctorPage = () => {
