@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import HealthPackages from './HealthPackages';
 
 const BranchTemplate = ({ 
@@ -49,7 +50,13 @@ const BranchTemplate = ({
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-700 font-sans">
+    <>
+      <Helmet>
+        <title>{branchName} - All Is Well Hospital</title>
+        <meta name="description" content={`Find healthcare services at ${branchName}, ${location}. Quality medical care close to you.`} />
+        <meta name="keywords" content={`hospital, healthcare, medical services, ${branchName}, ${location}`} />
+      </Helmet>
+      <div className="min-h-screen bg-white text-gray-700 font-sans">
       {/* Hero Section */}
       <section className="py-20 bg-[#f9f9f9]">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -294,6 +301,7 @@ const BranchTemplate = ({
         </div>
       )}
     </div>
+    </>
   );
 };
 

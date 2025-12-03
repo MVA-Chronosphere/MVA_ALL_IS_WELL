@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import AppointmentFormModal from '../components/AppointmentFormModal';
 import { Search, ChevronDown, ChevronUp } from 'lucide-react';
 import FindDoctorCard from '../components/FindDoctorCard';
@@ -262,7 +263,22 @@ const FindADoctorPage = () => {
   const specialties = getAvailableSpecialties();
 
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <>
+      <Helmet>
+        <title>Find a Doctor - All Is Well Hospital</title>
+        <meta name="description" content="Find the right doctor at All Is Well Hospital. Search by specialty, department, or doctor name for your healthcare needs." />
+        <meta name="keywords" content="find doctor, doctor search, medical specialists, hospital doctors, doctor appointment, healthcare" />
+        <meta property="og:title" content="Find a Doctor - All Is Well Hospital" />
+        <meta property="og:description" content="Find the right doctor at All Is Well Hospital. Search by specialty, department, or doctor name for your healthcare needs." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
+        <meta property="og:image" content="/aiwlogo.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Find a Doctor - All Is Well Hospital" />
+        <meta name="twitter:description" content="Find the right doctor at All Is Well Hospital. Search by specialty, department, or doctor name for your healthcare needs." />
+        <meta name="twitter:image" content="/aiwlogo.webp" />
+      </Helmet>
+      <div className="min-h-screen bg-white font-sans">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-8">
         {/* Breadcrumb */}
         <div className="mb-8">
@@ -534,6 +550,7 @@ const FindADoctorPage = () => {
         doctor={selectedDoctor}
       />
     </div>
+    </>
   );
 };
 

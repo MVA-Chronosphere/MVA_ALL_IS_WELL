@@ -50,7 +50,7 @@ const PrevArrow = (props) => {
       className={`${className} absolute top-1/2 left-0 z-10 transform -translate-y-1/2 -ml-6 md:-ml-8 cursor-pointer`}
       style={{ 
         ...style, 
-        display: 'block', 
+        display: 'flex', 
         background: '#d4af37', 
         borderRadius: '50%', 
         padding: '8px', 
@@ -58,7 +58,6 @@ const PrevArrow = (props) => {
         fontSize: '24px', 
         width: '40px', 
         height: '40px', 
-        display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center', 
         boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
@@ -88,7 +87,7 @@ const NextArrow = (props) => {
       className={`${className} absolute top-1/2 right-0 z-10 transform -translate-y-1/2 -mr-6 md:-mr-8 cursor-pointer`}
       style={{ 
         ...style, 
-        display: 'block', 
+        display: 'flex', 
         background: '#d4af37', 
         borderRadius: '50%', 
         padding: '8px', 
@@ -96,7 +95,6 @@ const NextArrow = (props) => {
         fontSize: '24px', 
         width: '40px', 
         height: '40px', 
-        display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center', 
         boxShadow: '0 2px 8px rgba(0,0,0,0.3)',

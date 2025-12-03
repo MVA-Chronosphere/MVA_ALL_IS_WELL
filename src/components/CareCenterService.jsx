@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import CardComponent from './CardComponent';
 import PatientStoryCard from './PatientStoryCard'; // Import PatientStoryCard
 import { doctors } from '../pages/FindADoctorPage';
@@ -10,6 +11,18 @@ import {Star} from "lucide-react";
 const CareCenterService = () => {
   const { service } = useParams();
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const [seo, setSeo] = useState(null);
+  const location = useLocation();
+
+useEffect(() => {
+  fetch(`${import.meta.env.VITE_API_BASE_URL}/seo_api.php${location.pathname}`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.success) setSeo(data.data);
+    })
+    .catch(console.error);
+}, [location.pathname]);
+
 
   // Helper to extract YouTube video ID
   const getYouTubeVideoId = (url) => {
@@ -1887,7 +1900,19 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-700 font-sans">
+    <>
+      <Helmet>
+        <title>{seo?.title || currentService.title || "All Is Well Hospital"}</title>
+        <meta
+          name="description"
+          content={seo?.description || `${currentService.title} at All Is Well Hospital, Burhanpur`}
+        />
+        <meta
+          name="keywords"
+          content={seo?.keywords || currentService.title}
+        />
+      </Helmet>
+      <div className="min-h-screen bg-white text-gray-70 font-sans">
       {/* Banner Section */}
       <div className="relative w-full min-h-[200px] max-h-[400px] overflow-hidden care-center-banner-mobile-hidden">
         <img
@@ -2085,6 +2110,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
         department={currentService.title}
       />
     </div>
+    </>
   );
 };
 
