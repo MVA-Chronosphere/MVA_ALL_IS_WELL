@@ -39,10 +39,8 @@ const Sidebar = ({ isOpen, onClose, onLogout, activeTab, setActiveTab }) => {
           {/* Logo */}
           <div className="flex items-center justify-center h-16 px-4 border-b border-gray-200">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">AIW</span>
-              </div>
-              <span className="text-xl font-semibold text-gray-80">Admin</span>
+              <img src="/favicon.webp" alt="AIW Logo" className="w-8 h-8" />
+              <span className="text-xl font-semibold text-gray-80">AIW Admin</span>
             </div>
           </div>
           
