@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { X, ChevronDown } from "lucide-react";
 import { indianStatesCities } from "../data/indianStatesCities";
 import emailjs from "@emailjs/browser";
+import SeoImage from "./SeoImage";
 
 const AppointmentFormModal = ({
   isOpen,
@@ -129,8 +130,37 @@ const AppointmentFormModal = ({
           <div className="w-16 h-1 bg-primary-gold mx-auto my-4 rounded"></div>
 
           {doctor && (
-            <div className="text-lg font-semibold text-[#444]">
-              With Dr. {doctor.name.replace("Dr. ", "")}
+            <div className="text-center mb-6">
+              <div className="flex justify-center">
+                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[#d4af37] shadow-md">
+                  <img 
+                    src={doctor.image} 
+                    alt={doctor.name} 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.src = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.webp";
+                    }}
+                  />
+                </div>
+              </div>
+              
+              <div className="mt-4">
+                <div className="text-xl font-semibold text-[#002d72]">
+                  Dr. {doctor.name.replace("Dr. ", "")}
+                </div>
+                
+                <div className="text-md text-[#444] mt-2">
+                  <span className="font-semibold">Speciality:</span> {doctor.specialty}
+                </div>
+                
+                <div className="flex items-center justify-center text-sm text-[#444] mt-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  {doctor.location}
+                </div>
+              </div>
             </div>
           )}
 
@@ -193,7 +223,7 @@ const AppointmentFormModal = ({
           {/* Mobile */}
           <div className="flex items-center border border-gray-300 rounded-md">
             <div className="px-3 py-2 bg-gray-50 border-r border-gray-300 flex items-center gap=1">
-              <img src="/flag.webp" alt="India" className="w-5 h-5" />
+              <SeoImage src="/flag.webp" alt="India" className="w-5 h-5" />
               <span>+91</span>
               <ChevronDown size={14} className="ml-1 text-gray-500" />
             </div>

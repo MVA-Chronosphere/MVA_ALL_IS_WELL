@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import SeoImage from '../components/SeoImage';
 
 const certificationsData = [
   {
@@ -65,7 +66,7 @@ const CertificationsPage = () => {
                 className="bg-white p-8 rounded-lg shadow-sm border-l-4 border-[#d4af37] border flex flex-col items-center justify-center w-full sm:w-[300px] md:w-[320px] lg:w-[340px]"
               >
                 <div className="mb-4 flex items-center justify-center w-full">
-                  <img
+                  <SeoImage
                     src={cert.image}
                     alt={cert.title}
                     className="w-full h-auto max-w-[250px] object-contain mx-auto"

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import SeoImage from '../components/SeoImage';
 
 const communityImages = [
   '/communityservices/330934941_865962471367476_5018432288634109443_n-1024x1024.jpeg.webp',
@@ -169,7 +170,7 @@ const CommunityServices = () => {
             <Slider {...settings}>
               {communityImages.map((image, index) => (
                 <div key={index} className="outline-none">
-                  <img
+                  <SeoImage
                     src={image}
                     alt={`Community service ${index + 1}`}
                     className="w-full h-auto rounded-lg shadow-lg object-cover border-4 border-[#d4af37]"

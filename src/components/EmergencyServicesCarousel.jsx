@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import SeoImage from './SeoImage';
 
 const EmergencyServicesCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -58,7 +59,7 @@ const EmergencyServicesCarousel = () => {
         <div className="absolute inset-0 w-full h-full flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
           {services.map((service, index) => (
             <div key={service.id} className="w-full h-full flex-shrink-0 relative" style={{ width: '100%', height: '500px' }}>
-              <img
+              <SeoImage
                 src={service.image}
                 alt={service.alt}
                 className="w-full h-full object-cover rounded-lg shadow-lg border border-gray-200"

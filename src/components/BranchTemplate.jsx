@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import HealthPackages from './HealthPackages';
+import SeoImage from './SeoImage';
 
 const BranchTemplate = ({ 
   branchName, 
@@ -177,7 +178,7 @@ const BranchTemplate = ({
                     className="relative overflow-hidden rounded-lg aspect-square cursor-pointer"
                     onClick={() => openModal(index)}
                   >
-                    <img 
+                    <SeoImage 
                       src={image} 
                       alt={`Facility Image ${index + 1}`} 
                       className="object-cover w-full h-full hover:scale-110 transition-transform duration-300"
@@ -286,7 +287,7 @@ const BranchTemplate = ({
             )}
             
             {/* Image */}
-            <img
+            <SeoImage
               src={galleryImages[selectedImage]}
               alt={`Facility Image ${selectedImage + 1}`}
               className="max-w-full max-h-full object-contain"

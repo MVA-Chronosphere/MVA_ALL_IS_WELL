@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, User, Trash2 } from 'lucide-react';
 import sampleBlogs from '../data/sampleBlogs';
+import SeoImage from './SeoImage';
 
 const BlogForm = () => {
   const [formData, setFormData] = useState({
@@ -151,7 +152,7 @@ const BlogForm = () => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center justify-center w-32 h-32 border-2 border-dashed border-gray-30 rounded-lg overflow-hidden">
                 {formData.image ? (
-                  <img 
+                  <SeoImage 
                     src={formData.image} 
                     alt="Preview" 
                     className="w-full h-full object-cover"

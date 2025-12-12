@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { MapPin, Clock, Star, Calendar, ArrowLeft, GraduationCap, Award, Stethoscope } from 'lucide-react';
 import { doctors } from './FindADoctorPage';
 import AppointmentFormModal from '../components/AppointmentFormModal';
+import SeoImage from '../components/SeoImage';
 
 const DoctorDetailsPage = () => {
   const { doctorId } = useParams();
@@ -545,36 +546,34 @@ const DoctorDetailsPage = () => {
         ],
         otherExperience: "Dr. Hiteshi believes in a compassionate, calm, and vigilant approach to anesthetic care. She prioritizes patient well-being, safety, and precision throughout perioperative management while staying up to date with the latest techniques and protocols in anesthesiology. Team-oriented care in collaboration with surgeons and physicians."
       };
-    } else if (doctor.name.includes("Atul Dhok")) {
+    } else if (doctor.name.includes("Arpit Daulal Mahajan")) {
       return {
-        about: "Dr. Atul Dhok is a Consultant Radiologist at All Is Well Multispecialty Hospital, Burhanpur. He possesses vast experience in the field of Radiodiagnosis and has served at several prominent medical institutions across India.",
-        experience: "Consultant Radiologist at Lifecare Diagnostics and Research Centre, Durg. Assistant Professor (Radiology) at Shri Shankaracharya Institute of Medical Sciences, Bhilai. Assistant Professor in the Dept. of Radiodiagnosis at MGIIMS, Sewagram. Senior Resident in the Dept. of Radiodiagnosis at MGIIMS, Sewagram.",
+        about: "Dr. Arpit Daulal Mahajan is a qualified Radiologist with comprehensive training and clinical experience in diagnostic imaging, including MRI, CT, Ultrasonography, X-ray, and Doppler studies. He has been trained at a tertiary care institute and has worked as a Senior Resident as well as a Consultant Radiologist in private practice. He is committed to delivering accurate, timely, and patient-focused diagnostic services, with additional expertise in image-guided procedures and academic involvement.",
+        experience: [
+          "Consultant Radiologist at a Private Hospital, Khargone, Madhya Pradesh (January 2025 – Present), providing routine and emergency radiology services.",
+          "Senior Resident – Radiodiagnosis at Hind Institute of Medical Sciences, Safedabad, Barabanki (U.P.) (August 2023 – December 2024), involved in MRI, CT, USG, and X-ray reporting along with academic activities.",
+          "Junior Resident (MD Radiodiagnosis) at Hind Institute of Medical Sciences, Safedabad, Barabanki (U.P.) (July 2020 – July 2023); completed MD Radiodiagnosis and passed final examination in September 2023.",
+          "Rotational postings during residency included CT (6 months), MRI (6 months), X-ray (6 months), and Ultrasonography (1 year).",
+          "Actively participated in departmental seminars and assisted in organizing CMEs."
+        ],
         specializations: [
-          "SSSIHMS-UPenn Hands-On Cardiac MR Course – 2019",
-          "7th Indian Association of Cardiac Imaging, Mumbai – 2017",
-          "CME by Vidarbha chapter of MSBIRIA – 2015",
-          "HARP Radio Physics Course, Hyderabad – 2014",
-          "37th IRIA Maharashtra State Conference, Nagpur – 2014",
-          "Workshop on Hepatobiliary system, JNMC – 2014",
-          "State conference on Head, Neck and Face Imaging, Nagpur – 2013",
-          "CME on Chest Radiology, JNMC – 2013",
-          "REC by MSBIRIA, Nagpur – 2013"
+          "MRI and CT reporting, including angiographic studies",
+          "Ultrasonography and Doppler studies (routine and emergency)",
+          "Conventional radiology procedures (X-ray, RGU, MCU, IVP, HSG, Barium studies)",
+          "Image-guided interventions – USG/CT-guided biopsies, pigtail catheterization, pleural aspiration"
         ],
         expertise: [
-          "SSSIHMS-UPenn Hands-On Cardiac MR Course – 2019",
-          "7th Indian Association of Cardiac Imaging, Mumbai – 2017",
-          "CME by Vidarbha chapter of MSBIRIA – 2015",
-          "HARP Radio Physics Course, Hyderabad – 2014",
-          "37th IRIA Maharashtra State Conference, Nagpur – 2014"
+          "MRI and CT reporting, including angiographic studies",
+          "Ultrasonography and Doppler studies (routine and emergency)",
+          "Conventional radiology procedures (X-ray, RGU, MCU, IVP, HSG, Barium studies)",
+          "Image-guided interventions – USG/CT-guided biopsies, pigtail catheterization, pleural aspiration"
         ],
         accreditations: [
-          "Consultant Radiologist at Lifecare Diagnostics and Research Centre, Durg",
-          "Assistant Professor (Radiology) at Shri Shankaracharya Institute of Medical Sciences, Bhilai",
-          "Assistant Professor in the Dept. of Radiodiagnosis at MGIIMS, Sewagram",
-          "Senior Resident in the Dept. of Radiodiagnosis at MGIIMS, Sewagram",
-          "SSSIHMS-UPenn Hands-On Cardiac MR Course – 2019"
+          "MD Radiodiagnosis – Hind Institute of Medical Sciences, Safedabad, Barabanki (U.P.)",
+          "Best Student Award – Department of Radiodiagnosis",
+          "Active participation in academic seminars and Continuing Medical Education (CME) programs"
         ],
-        otherExperience: "Dr. Dhok has published multiple research papers including 'CT Evaluation of Craniovertebral Junction' – J Neurosci Rural Pract, 2020, 'Evaluation of Evan's and Bicaudate Index in Rural India' – Asian J Neurosurgery 2020, and 'Role of B-Mode Ultrasound in Orbital Masses' – International Journal of Scientific Research (2019). He has also presented various studies and posters at national conferences."
+        otherExperience: ""
       };
     } else if (doctor.name.includes("Harshada Bhangle")) {
       return {
@@ -840,7 +839,14 @@ const DoctorDetailsPage = () => {
     }
   };
 
-  const doctorDetails = getDoctorDetails();
+  const doctorDetails = getDoctorDetails() || {
+    about: '',
+    experience: '',
+    specializations: [],
+    expertise: [],
+    accreditations: [],
+    otherExperience: ''
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-700 font-sans">
@@ -859,10 +865,10 @@ const DoctorDetailsPage = () => {
           <div className="p-8 flex flex-col md:flex-row items-center">
             {/* Doctor Image */}
             <div className="w-40 h-40 mx-auto md:mx-0 md:mr-8 mb-6 md:mb-0 overflow-hidden rounded-lg border border-[#d4af37] shadow-md">
-              <img
+              <SeoImage
                 src={doctor.image}
                 alt={doctor.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
                 onError={(e) => {
                   e.target.src =
                     "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.webp";
@@ -910,9 +916,20 @@ const DoctorDetailsPage = () => {
             {/* Experience */}
             <div className="bg-white p-8 rounded-lg shadow-sm border-l-4 border-[#d4af37] border border-[#d4af37]">
               <h2 className="text-2xl font-serif font-bold text-[#002d72] mb-4">Professional Experience</h2>
-              <p className="font-sans text-[#444] leading-relaxed text-justify">
-                {doctorDetails.experience}
-              </p>
+              {Array.isArray(doctorDetails.experience) ? (
+                <ul className="space-y-2">
+                  {doctorDetails.experience.map((exp, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-[#d4af37] mr-2">•</span>
+                      <span className="font-sans text-[#444]">{exp}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="font-sans text-[#444] leading-relaxed text-justify">
+                  {doctorDetails.experience}
+                </p>
+              )}
             </div>
 
             {/* Specializations */}

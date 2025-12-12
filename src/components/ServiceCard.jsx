@@ -1,10 +1,11 @@
 import React from 'react';
+import SeoImage from './SeoImage';
 
 const ServiceCard = ({ title, description, image, ctaText = "Read more" }) => {
   return (
     <div className="flex flex-col md:flex-row rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-8">
       <div className="md:w-1/2 h-64 md:h-auto">
-        <img
+        <SeoImage
           src={image}
           alt={title}
           className="w-full h-full object-cover max-w-full"

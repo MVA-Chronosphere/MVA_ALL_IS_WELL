@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, User, X } from "lucide-react";
 import sampleBlogs from "../data/sampleBlogs";
+import SeoImage from './SeoImage';
 
 const BlogSection = ({ maxBlogs = null, showViewAllButton = true }) => {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -72,7 +73,7 @@ const BlogSection = ({ maxBlogs = null, showViewAllButton = true }) => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <img 
+              <SeoImage 
                 src={post.image} 
                 alt={post.title}
                 className="w-full h-48 object-cover"
@@ -140,7 +141,7 @@ const BlogSection = ({ maxBlogs = null, showViewAllButton = true }) => {
               <X size={20} />
             </button>
             <div className="p-8 pt-12">
-              <img 
+              <SeoImage 
                 src={selectedBlog.image} 
                 alt={selectedBlog.title}
                 className="w-full h-64 object-cover rounded-lg mb-6"

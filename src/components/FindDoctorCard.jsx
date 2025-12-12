@@ -2,6 +2,7 @@
 import React from "react";
 import { MapPin, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import SeoImage from './SeoImage';
 
 const FindDoctorCard = ({ doctor, onBookAppointment }) => {
   return (
@@ -9,7 +10,7 @@ const FindDoctorCard = ({ doctor, onBookAppointment }) => {
       <div className="p-6 flex-col items-center text-center flex-grow">
         {/* Doctor Image */}
         <div className="w-48 h-48 mx-auto mb-4 overflow-hidden rounded-full border-2 border-[#d4af37] shadow-md">
-          <img
+          <SeoImage
             src={doctor.image}
             alt={doctor.name}
             className="w-full h-full object-cover"

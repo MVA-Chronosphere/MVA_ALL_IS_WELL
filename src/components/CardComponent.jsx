@@ -1,5 +1,6 @@
 // CardComponent.jsx
 import React from 'react';
+import SeoImage from './SeoImage';
 
 const CardComponent = ({ items }) => {
   return (
@@ -11,7 +12,7 @@ const CardComponent = ({ items }) => {
         >
           {item.image && (
             <div className="mb-4 w-full h-48 overflow-hidden rounded-lg">
-              <img 
+              <SeoImage 
                 src={item.image} 
                 alt={item.title}
                 className="w-full h-full object-cover max-w-full"

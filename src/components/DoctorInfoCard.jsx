@@ -1,12 +1,13 @@
 // src/components/DoctorInfoCard.jsx
 import React from 'react';
+import SeoImage from './SeoImage';
 
 const DoctorInfoCard = ({ image, title, description, onBookClick }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm border border-[#d4af37] hover:shadow-md transition duration-300 flex-col h-full w-full max-w-[280px] mx-auto overflow-hidden flex flex-col">
       {/* Responsive image container with fixed aspect ratio */}
       <div className="w-full aspect-square overflow-hidden">
-        <img
+        <SeoImage
           src={image}
           alt={title}
           className="w-full h-full object-cover max-w-full"

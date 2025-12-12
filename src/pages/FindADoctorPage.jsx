@@ -29,9 +29,9 @@ export const doctors = [
     },
     {
       id: 4,
-      name: "Dr. Shweta Narwade",
+      name: "Dr. Arpit Daulal Mahajan",
       specialty: "Consultant Radiologist",
-      image: "/Doctorphotos/Dr_Shweta_Narwade.webp",
+      image: "/Doctorphotos/Dr_Arpit_Mahajan.jpg",
       location: "All Is Well Super Clinic Burhanpur",
     },
     {

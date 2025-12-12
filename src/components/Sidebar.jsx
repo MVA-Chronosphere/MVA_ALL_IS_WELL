@@ -1,15 +1,13 @@
 import React from 'react';
-import { Home, Settings, Users, BarChart3, Shield, LogOut, FileText, Image } from 'lucide-react';
+import { Home, BarChart3, LogOut, FileText, Image } from 'lucide-react';
+import SeoImage from './SeoImage';
 
 const Sidebar = ({ isOpen, onClose, onLogout, activeTab, setActiveTab }) => {
   const menuItems = [
     { icon: Home, label: 'Dashboard', key: 'dashboard', active: activeTab === 'dashboard' },
     { icon: FileText, label: 'Page SEO', key: 'pages', active: activeTab === 'pages' },
     { icon: Image, label: 'Image Alt Text', key: 'images', active: activeTab === 'images' },
-    { icon: BarChart3, label: 'Analytics', key: 'analytics', active: activeTab === 'analytics' },
-    { icon: Settings, label: 'Settings', key: 'settings', active: activeTab === 'settings' },
-    { icon: Users, label: 'Users', key: 'users', active: activeTab === 'users' },
-    { icon: Shield, label: 'Security', key: 'security', active: activeTab === 'security' },
+
   ];
 
   const handleItemClick = (key) => {
@@ -39,8 +37,8 @@ const Sidebar = ({ isOpen, onClose, onLogout, activeTab, setActiveTab }) => {
           {/* Logo */}
           <div className="flex items-center justify-center h-16 px-4 border-b border-gray-200">
             <div className="flex items-center space-x-2">
-              <img src="/favicon.webp" alt="AIW Logo" className="w-8 h-8" />
-              <span className="text-xl font-semibold text-gray-80">AIW Admin</span>
+              <SeoImage src="/favicon.webp" alt="AIW Logo" className="w-8 h-8" />
+              <span className="text-xl font-semibold text-gray-80">Admin</span>
             </div>
           </div>
           

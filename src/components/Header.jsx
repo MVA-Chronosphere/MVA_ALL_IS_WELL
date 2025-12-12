@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import AppointmentFormModal from "./AppointmentFormModal";
+import SeoImage from "./SeoImage";
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -248,9 +249,9 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hidden md:flex items-center justify-between h-24">
         <div className="flex items-center flex-shrink-0">
           <Link to="/" className="flex-shrink-0">
-            <img
+            <SeoImage
               src="/aiwlogo.webp"
-              alt="All is well"
+              alt="All Is Well Hospital Logo"
               className="h-12 md:h-16 object-contain cursor-pointer max-w-full"
               loading="lazy"
             />
@@ -362,9 +363,9 @@ const Header = () => {
         <div className="flex items-center justify-between h-24">
           <div className="flex items-center flex-shrink-0">
             <Link to="/" className="flex-shrink-0">
-              <img
+              <SeoImage
               src="/aiwlogo.webp"
-              alt="All is well"
+              alt="All Is Well Hospital Logo"
               className="h-10 object-contain cursor-pointer max-w-full"
               loading="lazy"
               />
@@ -399,23 +400,23 @@ const Header = () => {
               className="absolute right-0 top-0 h-full w-full sm:w-4/5 bg-white shadow-lg"
             >
               <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between p-4 border-b">
-                  <div className="flex items-center">
-                    <img
-                    src="/aiwlogo.webp"
-                    alt="All is well"
-                    className="h-8 object-contain cursor-pointer max-w-full"
-                    loading="lazy"
-                    />
-                  </div>
-                  <button 
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-[#003366] p-2"
-                    aria-label="Close menu"
-                  >
-                    <X size={24} />
-                  </button>
-                </div>
+          <div className="flex items-center justify-between p-4 border-b">
+            <div className="flex items-center">
+              <SeoImage
+              src="/aiwlogo.webp"
+              alt="All Is Well Hospital Logo"
+              className="h-8 object-contain cursor-pointer max-w-full"
+              loading="lazy"
+              />
+            </div>
+            <button 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-[#003366] p-2"
+              aria-label="Close menu"
+            >
+              <X size={24} />
+            </button>
+          </div>
                 <nav className="flex-1 overflow-y-auto p-4">
                   {navItems.map((item, index) => {
                     if (!item.hasDropdown) {

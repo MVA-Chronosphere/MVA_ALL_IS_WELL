@@ -28,6 +28,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { VolumeX, Volume2 } from "lucide-react";
 import CardComponent from '../components/CardComponent';
+import SeoImage from '../components/SeoImage';
 
 // Helper to extract YouTube video ID
 const getYouTubeVideoId = (url) => {
@@ -640,7 +641,7 @@ const HomePage = () => {
 
           </>
         ) : (
-          <img
+          <SeoImage
             src={slide.image}
             alt={slide.title}
             className="w-full h-full object-cover min-h-full"
@@ -1002,8 +1003,8 @@ const HomePage = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="lg:w-1/2">
-              <motion.img
-                src="/whysection/Mri.png "
+              <SeoImage
+                src="/whysection/Mri.png"
                 alt="Advanced Medical Technology"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
                 loading="lazy"
@@ -1037,7 +1038,7 @@ const HomePage = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <div className="lg:w-1/2">
-              <motion.img
+              <SeoImage
                 src="/whysection/team.jpg"
                 alt="Experienced Medical Team"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
@@ -1071,7 +1072,7 @@ const HomePage = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="lg:w-1/2">
-              <motion.img
+              <SeoImage
                 src="/whysection/patient.webp"
                 alt="Timely Emergency Services"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
@@ -1230,7 +1231,7 @@ const HomePage = () => {
                 >
                   {/* Video Thumbnail */}
                   <div className="relative aspect-video bg-gray-200 mb-4 rounded">
-                    <img
+                    <SeoImage
                       src={feedback.thumbnail}
                       alt={feedback.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded"

@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock, Youtube } from "lucide-react";
+import SeoImage from "./SeoImage";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -74,9 +75,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Logo & Description */}
         <div className="lg:col-span-1">
-          <img
+          <SeoImage
             src="/aiwlogo.webp"
-            alt="All Is WEll Hospital"
+            alt="All Is Well Hospital Logo"
             className="h-12 mb-4 max-w-full"
             loading="lazy"
           />

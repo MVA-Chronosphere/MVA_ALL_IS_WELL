@@ -6,6 +6,7 @@ import PatientStoryCard from './PatientStoryCard'; // Import PatientStoryCard
 import { doctors } from '../pages/FindADoctorPage';
 import AppointmentFormModal from './AppointmentFormModal';
 import {Star} from "lucide-react";
+import SeoImage from './SeoImage';
 
 
 const CareCenterService = () => {
@@ -1915,7 +1916,7 @@ const currentTestimonials = currentTestimonialData.map((item, index) => {
       <div className="min-h-screen bg-white text-gray-70 font-sans">
       {/* Banner Section */}
       <div className="relative w-full min-h-[200px] max-h-[400px] overflow-hidden care-center-banner-mobile-hidden">
-        <img
+        <SeoImage
           src={currentService.bannerImage || currentService.image}
           alt={`${currentService.title} Banner`}
           className="w-full h-full object-cover object-center"

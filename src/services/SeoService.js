@@ -10,13 +10,31 @@ class SeoService {
       // Use the new API format with path parameter: /seo_api.php?path=/care-center/neuro-spine-surgery
       const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/seo_api.php?path=${encodeURIComponent(path)}`);
       console.log('SEO API Response:', response); // Debug log
-      const result = await response.json();
-      console.log('SEO API Result:', result); // Debug log
       
-      if (result.success && result.data) {
+      const raw = await response.text();
+
+      if (!raw) {
+        throw new Error(`Empty response body (status ${response.status})`);
+      }
+
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch (err) {
+        console.error("Invalid JSON response:", raw);
+        throw err;
+      }
+
+      if (!response.ok) {
+        throw new Error(data?.message || `Server error ${response.status}`);
+      }
+      
+      console.log('SEO API Result:', data); // Debug log
+      
+      if (data.success && data.data) {
         // Check if the API returned parent page data for a specific child page
         // If so, and if we have specific frontend data for this child page, use that instead
-        const apiPageUrl = result.data.page_url;
+        const apiPageUrl = data.data.page_url;
         const specificMockData = this.getSpecificMockSeoData(path);
         
         // If we're on a specific page (like /care-center/neuro-spine-surgery) 
@@ -29,10 +47,10 @@ class SeoService {
         
         // Transform the API response to match our expected format
         return {
-          title: result.data.title || result.data.og_title,
-          description: result.data.description || result.data.og_description,
-          keywords: result.data.keywords,
-          image: result.data.og_image
+          title: data.data.title || data.data.og_title,
+          description: data.data.description || data.data.og_description,
+          keywords: data.data.keywords,
+          image: data.data.og_image
         };
       } else {
         console.log('No SEO data found from API, using mock data for path:', path);
@@ -397,15 +415,31 @@ class SeoService {
     };
   }
 
-  // Function to get image alt text (will be implemented with API call later)
-  static async getImageAltText(imagePath) {
+   // Function to get image alt text (will be implemented with API call later)
+ static async getImageAltText(imagePath) {
     try {
       // Use the new API format for image alt text
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/seo_api.php/image-alt/${imagePath}`);
-      const result = await response.json();
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/seo_api.php?path=image-alt/${encodeURIComponent(imagePath)}`);
+      const raw = await response.text();
+
+      if (!raw) {
+        throw new Error(`Empty response body (status ${response.status})`);
+      }
+
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch (err) {
+        console.error("Invalid JSON response:", raw);
+        throw err;
+      }
+
+      if (!response.ok) {
+        throw new Error(data?.message || `Server error ${response.status}`);
+      }
       
-      if (result.success && result.data) {
-        return result.data.alt_text;
+      if (data.success && data.data) {
+        return data.data.alt_text;
       } else {
         // If API call fails, return default alt text
         return this.getDefaultImageAlt(imagePath);

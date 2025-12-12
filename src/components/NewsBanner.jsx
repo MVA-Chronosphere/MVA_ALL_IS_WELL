@@ -1,9 +1,10 @@
 import React from 'react';
+import SeoImage from './SeoImage';
 
 const NewsBanner = ({ title, image, ctaText = "Read more" }) => {
   return (
     <div className="max-w-5xl mx-auto rounded-xl overflow-hidden shadow-lg">
-      <img
+      <SeoImage
         src={image}
         alt={title}
         className="w-full h-64 md:h-80 object-cover"

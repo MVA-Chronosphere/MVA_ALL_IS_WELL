@@ -1,6 +1,12 @@
 RewriteEngine On
 RewriteBase /seo_backend/
 
+# Handle requests to seo_api.php with path segments (e.g., seo_api.php/image-alt/some-image.jpg)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^seo_api\.php/(.*)$ seo_api.php?path=$1 [QSA,NC,L]
+
+# Handle requests to seo_api.php with query parameters (e.g., seo_api.php?path=image-alt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^seo_api\.php$ seo_api.php [QSA,NC,L]

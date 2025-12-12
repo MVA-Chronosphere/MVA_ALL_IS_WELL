@@ -13,6 +13,45 @@ const SeoManager = ({ children }) => {
     keywords: "hospital, healthcare, medical services, emergency care, cardiology, orthopedics, neurology",
     image: '/aiwlogo.webp'
   });
+
+  useEffect(() => {
+  if (!seoData) return;
+
+  // --- Update <title> ---
+  if (seoData.title) {
+    document.title = seoData.title.trim();
+  }
+
+  const setMeta = (selector, attr, value) => {
+    if (!value) return;
+
+    let tag = document.querySelector(selector);
+    if (!tag) {
+      tag = document.createElement("meta");
+      if (attr === "name") tag.setAttribute("name", selector.replace('meta[name="', '').replace('"]', ''));
+      if (attr === "property") tag.setAttribute("property", selector.replace('meta[property="', '').replace('"]', ''));
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute("content", value);
+  };
+
+  // --- Basic SEO ---
+  setMeta('meta[name="description"]', "name", seoData.description);
+  setMeta('meta[name="keywords"]', "name", seoData.keywords);
+
+  // --- Open Graph (Facebook) ---
+  setMeta('meta[property="og:title"]', "property", seoData.title);
+  setMeta('meta[property="og:description"]', "property", seoData.description);
+  setMeta('meta[property="og:image"]', "property", `${window.location.origin}${seoData.image || seoData.og_image}`);
+  setMeta('meta[property="og:url"]', "property", window.location.href);
+
+  // --- Twitter ---
+  setMeta('meta[name="twitter:title"]', "name", seoData.title);
+  setMeta('meta[name="twitter:description"]', "name", seoData.description);
+  setMeta('meta[name="twitter:image"]', "name", `${window.location.origin}${seoData.image || seoData.twitter_image}`);
+
+}, [seoData]);
+
   
   // Use ref to prevent duplicate requests for the same path
   const currentPathRef = useRef(location.pathname);
@@ -20,20 +59,18 @@ const SeoManager = ({ children }) => {
 
   useEffect(() => {
     const fetchSeoData = async () => {
-      // Only fetch if the path has actually changed
-      if (location.pathname !== currentPathRef.current) {
-        try {
-          const data = await SeoService.getSeoData(location.pathname);
-          setSeoData(data);
-          currentPathRef.current = location.pathname; // Update the ref with the new path
-        } catch (error) {
-          console.error('Error fetching SEO data:', error);
-          // Use default data if there's an error
-          setSeoData(SeoService.getDefaultSeoData());
-          currentPathRef.current = location.pathname; // Update the ref even on error
-        }
-      }
-    };
+  if (location.pathname !== currentPathRef.current) {
+    try {
+      const data = await SeoService.getSeoData(location.pathname);
+      setSeoData(data);
+    } catch (error) {
+      console.error('Error fetching SEO data:', error);
+      setSeoData(SeoService.getDefaultSeoData());
+    }
+    currentPathRef.current = location.pathname;
+  }
+};
+
 
     // On initial mount, we always fetch, but on subsequent route changes, we check if it's a new path
     if (isInitialMount.current) {
@@ -45,7 +82,13 @@ const SeoManager = ({ children }) => {
     }
   }, [location.pathname]);
 
-  const { title: seoTitle, description: seoDescription, keywords: seoKeywords, image: seoImage } = seoData;
+  // Destructure with fallback values to prevent errors if seoData is null/undefined
+  const { 
+    title: seoTitle = "All Is Well Hospital - Best Healthcare Services",
+    description: seoDescription = "All Is Well Hospital provides comprehensive healthcare services including cardiology, orthopedics, neurology, and emergency care. Quality healthcare you can trust.",
+    keywords: seoKeywords = "hospital, healthcare, medical services, emergency care, cardiology, orthopedics, neurology",
+    image: seoImage = '/aiwlogo.webp'
+  } = seoData || {};
 
   return (
     <>
