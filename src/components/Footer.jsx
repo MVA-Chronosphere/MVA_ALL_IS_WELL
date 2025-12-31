@@ -124,6 +124,7 @@ const Footer = () => {
                 <Link
                   to={`/care-center/${serviceNameToSlug(service)}`}
                   className="text-gray-300 hover:text-yellow-400 transition-colors text-sm"
+                  aria-label={`Learn more about ${service}`}
                 >
                   {service}
                 </Link>

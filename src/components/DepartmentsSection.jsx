@@ -276,17 +276,18 @@ const DepartmentsSection = () => {
                               <div className="mb-3 text-[#002d72]">
                                 {React.createElement(dept.icon, { size: 36 })}
                               </div>
-                              <h3 className="text-lg sm:text-xl font-serif font-semibold text-[#002d72] mb-2 text-center break-words">
+                              <h2 className="text-lg sm:text-xl font-serif font-semibold text-[#002d72] mb-2 text-center break-words">
                                 {dept.title}
-                              </h3>
+                              </h2>
                               <p className="text-sm sm:text-base text-[#444] mb-4 flex-grow text-center overflow-hidden line-clamp-3 sm:line-clamp-4">
                                 {dept.description}
                               </p>
                               <Link
                                 to={`/care-center/${serviceSlug}`}
                                 className="text-[#002d72] hover:text-[#d4af37] text-sm font-medium flex items-center justify-center gap-1 transition-colors duration-300 mt-auto"
+                                aria-label={`Learn more about ${dept.title}`}
                               >
-                                Learn More
+                                Explore {dept.title}
                                 <ArrowRight size={12} />
                               </Link>
                             </div>
@@ -306,9 +307,9 @@ const DepartmentsSection = () => {
             <button
               key={index}
               onClick={() => setCurrentSlideIndex(index)}
-              className={`w-3 h-3 rounded-full ${
+              className={`w-4 h-4 rounded-full ${
                 index === currentSlideIndex ? "bg-[#d4af37]" : "bg-gray-300"
-              }`}
+              } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#d4af37]`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

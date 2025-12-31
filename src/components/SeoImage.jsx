@@ -1,9 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import SeoService from '../services/SeoService';
 
-const SeoImage = ({ src, alt, className, ...props }) => {
- const [imageAlt, setImageAlt] = useState(alt || 'All Is Well Hospital Image');
-  const [loading, setLoading] = useState(true);
+const SeoImage = ({ src, alt, className, loading = 'lazy', width, height, ...props }) => {
+  const [imageAlt, setImageAlt] = useState(alt || 'All Is Well Hospital Image');
+  const [loadingState, setLoadingState] = useState(true);
+  const [imageDimensions, setImageDimensions] = useState({ width: width, height: height });
+  const [aspectRatio, setAspectRatio] = useState(null);
+
+  // Filter out framer-motion specific props to avoid React warnings
+  const motionProps = [
+    'whileHover', 'whileTap', 'whileFocus', 'whileInView', 'whileDrag', 'whileAnimate',
+    'initial', 'animate', 'exit', 'transition', 'variants', 'transformTemplate',
+    'transformValues', 'custom', 'style', 'onViewportEnter', 'onViewportLeave'
+  ];
+  
+  const filteredProps = {};
+  const motionPropsForMotionComponent = {};
+  
+ // Separate motion props from regular image props
+  Object.keys(props).forEach(key => {
+    if (motionProps.includes(key)) {
+      motionPropsForMotionComponent[key] = props[key];
+    } else {
+      filteredProps[key] = props[key];
+    }
+ });
+
+  // If there are motion props, we need to use a motion.img instead of regular img
+ const hasMotionProps = Object.keys(motionPropsForMotionComponent).length > 0;
 
   useEffect(() => {
     const fetchAltText = async () => {
@@ -21,15 +46,32 @@ const SeoImage = ({ src, alt, className, ...props }) => {
         // Fallback to provided alt or default
         setImageAlt(alt || getDefaultAltText(src));
       } finally {
-        setLoading(false);
+        setLoadingState(false);
       }
     };
 
+    // If width and height are not provided, try to determine them based on the image
+    if (!width || !height) {
+      const img = new Image();
+      img.onload = () => {
+        setImageDimensions({
+          width: width || img.naturalWidth,
+          height: height || img.naturalHeight
+        });
+        
+        // Calculate aspect ratio
+        if (img.naturalWidth && img.naturalHeight) {
+          setAspectRatio(img.naturalWidth / img.naturalHeight);
+        }
+      };
+      img.src = src;
+    }
+
     fetchAltText();
-  }, [src]);
+  }, [src, width, height]);
 
   // Function to generate default alt text based on image path
-  const getDefaultAltText = (imagePath) => {
+ const getDefaultAltText = (imagePath) => {
     if (!imagePath) return 'All Is Well Hospital Image';
     
     const imageMap = {
@@ -88,27 +130,83 @@ const SeoImage = ({ src, alt, className, ...props }) => {
     return 'All Is Well Hospital Image';
   };
 
-  if (loading) {
+  // Calculate aspect ratio for responsive images
+  const calculateAspectRatio = (naturalWidth, naturalHeight) => {
+    if (naturalWidth && naturalHeight) {
+      return naturalWidth / naturalHeight;
+    }
+    return null;
+  };
+
+  if (loadingState) {
     // Show a placeholder while loading the alt text
+    if (hasMotionProps) {
+      return React.createElement(motion.img, {
+        src: src,
+        alt: alt || 'Loading image...',
+        className: className,
+        loading: loading,
+        width: imageDimensions.width,
+        height: imageDimensions.height,
+        ...filteredProps,
+        ...motionPropsForMotionComponent,
+        style: { ...props.style, opacity: 0.8 }
+      });
+    } else {
+      return (
+        <img
+          src={src}
+          alt={alt || 'Loading image...'}
+          className={className}
+          loading={loading}
+          width={imageDimensions.width}
+          height={imageDimensions.height}
+          {...filteredProps}
+          style={{ ...props.style, opacity: 0.8 }}
+        />
+      );
+    }
+  }
+
+   if (hasMotionProps) {
+    return React.createElement(motion.img, {
+      src: src,
+      alt: imageAlt,
+      className: className,
+      loading: loading,
+      width: imageDimensions.width,
+      height: imageDimensions.height,
+      ...filteredProps,
+      ...motionPropsForMotionComponent
+    });
+ } else {
+    // For aiwlogo.webp specifically, ensure proper aspect ratio handling
+    if (src.includes('/aiwlogo.webp')) {
+      return (
+        <div className="aspect-[428/138] w-full max-w-[428px]">
+          <img
+            src={src}
+            alt={imageAlt}
+            className={`${className || ''} w-full h-full object-contain`}
+            loading={loading}
+            {...filteredProps}
+          />
+        </div>
+      );
+    }
+    
     return (
       <img
         src={src}
-        alt={alt || 'Loading image...'}
+        alt={imageAlt}
         className={className}
-        {...props}
-        style={{ ...props.style, opacity: 0.8 }}
+        loading={loading}
+        width={imageDimensions.width}
+        height={imageDimensions.height}
+        {...filteredProps}
       />
     );
-  }
-
-  return (
-    <img
-      src={src}
-      alt={imageAlt}
-      className={className}
-      {...props}
-    />
-  );
+ }
 };
 
 export default SeoImage;

@@ -878,8 +878,8 @@ const DoctorDetailsPage = () => {
 
             {/* Doctor Info */}
             <div className="text-center md:text-left flex-grow">
-              <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2">{doctor.name}</h1>
-              <p className="text-lg text-[#002d72] font-semibold mb-3">{doctor.specialty}</p>
+                <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2">Dr. {doctor.name}</h1>
+              <p className="text-base md:text-lg text-[#002d72] font-semibold mb-3">{doctor.specialty}</p>
               
               <div className="flex flex-col md:flex-row items-center justify-center md:justify-start space-y-2 md:space-y-0 md:space-x-6 text-gray-600 mb-4">
                 <div className="flex items-center">

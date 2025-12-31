@@ -1,43 +1,54 @@
 <?php
-// Simple test script to verify the SEO API functionality
+// Simple test script to verify the SEO API fix
+echo "Testing SEO API fix...\n";
 
-// Test URL parsing logic
-$path_info = '/care-center/neuro-spine-surgery';
-$request = explode('/', trim($path_info, '/'));
+// Test 1: Check if we can make a request to the API
+$apiUrl = 'http://localhost/seo_backend/seo_api.php?action=all';
 
-echo "PATH_INFO: " . $path_info . "\n";
-echo "Request array: " . print_r($request, true) . "\n";
+// For local testing without a web server, we'll simulate the request by including the file
+// and manually setting the $_GET parameters
 
-// Test the logic we're using in the API
-if (isset($request[0])) {
-    // Treat the full PATH_INFO as the SEO page URL automatically
-    // Build page_url as "/" + implode('/', $request) no matter how many segments
-    $page_url = '/' . implode('/', $request);
-    
-    echo "Constructed page_url: " . $page_url . "\n";
-    
-    // Normalize full URLs using parse_url()
-    $parsed_url = parse_url($page_url);
-    if ($parsed_url && isset($parsed_url['path'])) {
-        $page_url = $parsed_url['path'];
-    }
-    
-    echo "Final page_url after normalization: " . $page_url . "\n";
-}
+// Save original $_GET
+$originalGet = $_GET;
 
-echo "\nTesting other paths:\n";
+// Simulate action=all request
+$_GET['action'] = 'all';
+$_SERVER['REQUEST_METHOD'] = 'GET';
 
-$test_paths = [
-    '/find-doctor',
-    '/services/cardiology',
-    '/departments/emergency/ambulance',
-    '/branches/khandwa/doctors/specialists'
-];
+// Capture output
+ob_start();
+include '../seo_backend/seo_api.php';
+$output = ob_get_clean();
 
-foreach ($test_paths as $path) {
-    $request = explode('/', trim($path, '/'));
-    $page_url = '/' . implode('/', $request);
-    
-    echo "Input: $path => Output: $page_url\n";
-}
+// Restore original $_GET
+$_GET = $originalGet;
+
+echo "Output for action=all request:\n";
+echo $output . "\n";
+
+// Test 2: Check action=image-alt
+$_GET['action'] = 'image-alt';
+$_SERVER['REQUEST_METHOD'] = 'GET';
+
+ob_start();
+include '../seo_backend/seo_api.php';
+$output2 = ob_get_clean();
+
+$_GET = $originalGet;
+
+echo "Output for action=image-alt request:\n";
+echo $output2 . "\n";
+
+// Test 3: Check default path request
+$_GET['path'] = '/';
+$_SERVER['REQUEST_METHOD'] = 'GET';
+
+ob_start();
+include '../seo_backend/seo_api.php';
+$output3 = ob_get_clean();
+
+$_GET = $originalGet;
+
+echo "Output for path=/ request:\n";
+echo $output3 . "\n";
 ?>

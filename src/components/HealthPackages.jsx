@@ -338,7 +338,7 @@ const HealthPackages = ({ branchName }) => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-4 h-4 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#d4af37] ${
                   index === currentSlide ? "bg-[#d4af37] w-6" : "bg-gray-300"
                 }`}
                 aria-label={`Go to page ${index + 1}`}

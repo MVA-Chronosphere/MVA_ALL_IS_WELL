@@ -51,7 +51,7 @@ const tawkToStyles = `
     transform-origin: right bottom !important;
     width: 65px !important;
     height: 65px !important;
-  }
+ }
 `;
 
 const ScrollToHash = () => {
@@ -63,7 +63,7 @@ const ScrollToHash = () => {
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [location]);
+ }, [location]);
 
   return null;
 };
@@ -73,21 +73,70 @@ function App() {
   const hideMainHeaderFooter = location.pathname.startsWith("/seo-management");
 
   useEffect(() => {
-    const s1 = document.createElement("script");
-    const s0 = document.getElementsByTagName("script")[0];
-    s1.async = true;
-    s1.src = "https://embed.tawk.to/68ea085e97f1e31950bda971/1j7931cki";
-    s1.charset = "UTF-8";
-    s1.setAttribute("crossorigin", "*");
-    s0.parentNode.insertBefore(s1, s0);
+    // Google Analytics (GA4) - Use environment variable for Measurement ID
+    if (import.meta.env.VITE_GA_MEASUREMENT_ID) {
+      const gaScript1 = document.createElement("script");
+      gaScript1.async = true;
+      gaScript1.src = `https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_MEASUREMENT_ID}`;
+      gaScript1.setAttribute("data-cookie-consent", "true");
+      document.head.appendChild(gaScript1);
+
+      const gaScript2 = document.createElement("script");
+      gaScript2.async = true; // Make this script async as well
+      gaScript2.textContent = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${import.meta.env.VITE_GA_MEASUREMENT_ID}');
+      `;
+      document.head.appendChild(gaScript2);
+    }
+
+    // Google Search Console verification - Use environment variable
+    if (import.meta.env.VITE_GSC_VERIFICATION) {
+      const gscMeta = document.createElement("meta");
+      gscMeta.name = "google-site-verification";
+      gscMeta.content = import.meta.env.VITE_GSC_VERIFICATION;
+      document.head.appendChild(gscMeta);
+    }
+
+    // tawk.to widget - Load asynchronously
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://embed.tawk.to/68ea085e97f1e31950bda971/1j7931cki";
+    script.charset = "UTF-8";
+    script.setAttribute("crossorigin", "*");
+    document.head.appendChild(script);
 
     const style = document.createElement("style");
     style.innerHTML = tawkToStyles;
     document.head.appendChild(style);
 
     return () => {
-      if (s1.parentNode) s1.parentNode.removeChild(s1);
-      if (style.parentNode) style.parentNode.removeChild(style);
+      // Clean up scripts when component unmounts
+      if (import.meta.env.VITE_GA_MEASUREMENT_ID) {
+        const gaScript1 = document.querySelector(`script[src*="${import.meta.env.VITE_GA_MEASUREMENT_ID}"]`);
+        if (gaScript1) gaScript1.parentNode.removeChild(gaScript1);
+        
+        const gaScript2 = Array.from(document.querySelectorAll('script')).find(
+          script => script.textContent && script.textContent.includes(`gtag('config', '${import.meta.env.VITE_GA_MEASUREMENT_ID}')`)
+        );
+        if (gaScript2) gaScript2.parentNode.removeChild(gaScript2);
+      }
+      
+      if (import.meta.env.VITE_GSC_VERIFICATION) {
+        const gscMeta = document.querySelector(`meta[name="google-site-verification"][content="${import.meta.env.VITE_GSC_VERIFICATION}"]`);
+        if (gscMeta) gscMeta.parentNode.removeChild(gscMeta);
+      }
+      
+      // Clean up tawk.to script
+      const tawkScript = Array.from(document.querySelectorAll('script')).find(
+        script => script.src && script.src.includes('tawk.to')
+      );
+      if (tawkScript && tawkScript.parentNode) tawkScript.parentNode.removeChild(tawkScript);
+      
+      // Clean up style
+      if (style && style.parentNode) style.parentNode.removeChild(style);
     };
   }, []);
 
@@ -96,54 +145,56 @@ function App() {
       <div className="min-h-screen bg-white relative">
         {!hideMainHeaderFooter && <Header />}
 
-        <ScrollToHash />
+        <main id="main-content" className="main-content">
+          <ScrollToHash />
 
-        <Routes>
-          <Route path="/" element={<SeoManager><HomePage /></SeoManager>} />
-          <Route path="/about/*" element={<SeoManager><AboutUs /></SeoManager>} />
-          <Route path="/ambulance" element={<SeoManager><AmbulancePage /></SeoManager>} />
-          <Route path="/care-center" element={<SeoManager><CareCenter /></SeoManager>} />
-          <Route path="/care-center/:service" element={<SeoManager><CareCenterService /></SeoManager>} />
-          <Route path="/find-doctor" element={<SeoManager><FindADoctorPage /></SeoManager>} />
-          <Route path="/doctor/:doctorId" element={<SeoManager><DoctorDetailsPage /></SeoManager>} />
-          <Route path="/academics" element={<SeoManager><Academics /></SeoManager>} />
-          <Route path="/blog" element={<ProtectedRoute><SeoManager><BlogPage /></SeoManager></ProtectedRoute>} />
-          <Route path="/blog/login" element={<SeoManager><BlogLoginPage /></SeoManager>} />
-          <Route path="/articles" element={<SeoManager><ArticlePage /></SeoManager>} />
+          <Routes>
+            <Route path="/" element={<SeoManager><HomePage /></SeoManager>} />
+            <Route path="/about/*" element={<SeoManager><AboutUs /></SeoManager>} />
+            <Route path="/ambulance" element={<SeoManager><AmbulancePage /></SeoManager>} />
+            <Route path="/care-center" element={<SeoManager><CareCenter /></SeoManager>} />
+            <Route path="/care-center/:service" element={<SeoManager><CareCenterService /></SeoManager>} />
+            <Route path="/find-doctor" element={<SeoManager><FindADoctorPage /></SeoManager>} />
+            <Route path="/doctor/:doctorId" element={<SeoManager><DoctorDetailsPage /></SeoManager>} />
+            <Route path="/academics" element={<SeoManager><Academics /></SeoManager>} />
+            <Route path="/blog" element={<ProtectedRoute><SeoManager><BlogPage /></SeoManager></ProtectedRoute>} />
+            <Route path="/blog/login" element={<SeoManager><BlogLoginPage /></SeoManager>} />
+            <Route path="/articles" element={<SeoManager><ArticlePage /></SeoManager>} />
 
-          {/* Branch routes */}
-          <Route path="/branches/shahpur" element={<SeoManager><ShahpurBranch /></SeoManager>} />
-          <Route path="/branches/khandwa" element={<SeoManager><KhandwaBranch /></SeoManager>} />
-          <Route path="/branches/burhanpur-clinic" element={<SeoManager><BurhanpurClinic /></SeoManager>} />
-          <Route path="/branches/sanawad" element={<SeoManager><SanawadBranch /></SeoManager>} />
-          <Route path="/branches/raver" element={<SeoManager><RaverBranch /></SeoManager>} />
-          <Route path="/branches/khargone" element={<SeoManager><KhargoneBranch /></SeoManager>} />
-          <Route path="/branches/burhanpur" element={<SeoManager><BurhanpurBranch /></SeoManager>} />
-          <Route path="/branches/phopnar" element={<SeoManager><PhopnarBranch /></SeoManager>} />
-          <Route path="/branches/dharni" element={<SeoManager><DharniBranch /></SeoManager>} />
+            {/* Branch routes */}
+            <Route path="/branches/shahpur" element={<SeoManager><ShahpurBranch /></SeoManager>} />
+            <Route path="/branches/khandwa" element={<SeoManager><KhandwaBranch /></SeoManager>} />
+            <Route path="/branches/burhanpur-clinic" element={<SeoManager><BurhanpurClinic /></SeoManager>} />
+            <Route path="/branches/sanawad" element={<SeoManager><SanawadBranch /></SeoManager>} />
+            <Route path="/branches/raver" element={<SeoManager><RaverBranch /></SeoManager>} />
+            <Route path="/branches/khargone" element={<SeoManager><KhargoneBranch /></SeoManager>} />
+            <Route path="/branches/burhanpur" element={<SeoManager><BurhanpurBranch /></SeoManager>} />
+            <Route path="/branches/phopnar" element={<SeoManager><PhopnarBranch /></SeoManager>} />
+            <Route path="/branches/dharni" element={<SeoManager><DharniBranch /></SeoManager>} />
 
-          <Route path="/community-services" element={<SeoManager><CommunityServices /></SeoManager>} />
-          <Route path="/contact-us" element={<SeoManager><ContactUs /></SeoManager>} />
-          <Route path="/certification" element={<SeoManager><CertificationsPage /></SeoManager>} />
-          <Route path="/branches" element={<SeoManager><BranchesPage /></SeoManager>} />
-          <Route path="/privacy" element={<SeoManager><PrivacyPolicy /></SeoManager>} />
-          <Route path="/terms" element={<SeoManager><TermsOfService /></SeoManager>} />
-          <Route path="/careers" element={<SeoManager><Careers /></SeoManager>} />
+            <Route path="/community-services" element={<SeoManager><CommunityServices /></SeoManager>} />
+            <Route path="/contact-us" element={<SeoManager><ContactUs /></SeoManager>} />
+            <Route path="/certification" element={<SeoManager><CertificationsPage /></SeoManager>} />
+            <Route path="/branches" element={<SeoManager><BranchesPage /></SeoManager>} />
+            <Route path="/privacy" element={<SeoManager><PrivacyPolicy /></SeoManager>} />
+            <Route path="/terms" element={<SeoManager><TermsOfService /></SeoManager>} />
+            <Route path="/careers" element={<SeoManager><Careers /></SeoManager>} />
 
-          {/* SEO MANAGEMENT DASHBOARD PAGE - NO GLOBAL HEADER/FOOTER */}
-          <Route
-            path="/seo-management"
-            element={
-              <AdminProvider>
-                <SeoManager>
-                  <SeoManagementPage />
-                </SeoManager>
-              </AdminProvider>
-            }
-          />
+            {/* SEO MANAGEMENT DASHBOARD PAGE - NO GLOBAL HEADER/FOOTER */}
+            <Route
+              path="/seo-management"
+              element={
+                <AdminProvider>
+                  <SeoManager>
+                    <SeoManagementPage />
+                  </SeoManager>
+                </AdminProvider>
+              }
+            />
 
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
 
         {!hideMainHeaderFooter && <Footer />}
 
@@ -151,7 +202,7 @@ function App() {
           <div className="fixed top-[200px] right-0 z-[9999] transform translate-x-1/2 rotate-90 mr-4">
             <a
               href="/ambulance"
-              className="bg-red-600 text-white px-4 py-2 rounded-sm shadow-lg hover:bg-red-700 transition-colors duration-300 whitespace-nowrap text-sm font-bold"
+              className="bg-red-600 text-white px-4 py-2 rounded-sm shadow-lg hover:bg-red-70 transition-colors duration-300 whitespace-nowrap text-sm font-bold"
             >
               EMERGENCY
             </a>
@@ -161,10 +212,10 @@ function App() {
         {!hideMainHeaderFooter && (
           <div className="fixed bottom-24 right-6 z-[9999]">
             <a
-              href="https://wa.me/7697744444"
+              href="https://wa.me/769774444"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 flex items-center justify-center"
+              className="p-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors duration-30 flex items-center justify-center"
               title="Chat on WhatsApp"
             >
               <Phone size={32} className="text-white" />
@@ -173,7 +224,7 @@ function App() {
         )}
       </div>
     </AuthProvider>
-  );
+ );
 }
 
 export default function AppWrapper() {

@@ -183,6 +183,7 @@ const Header = () => {
                             setOpenDropdown(null);
                             setOpenSubDropdown(null);
                           }}
+                          aria-label={`Learn more about ${item.label}`}
                         >
                           {item.label}
                         </Link>
@@ -243,16 +244,16 @@ const Header = () => {
   return (
     <header 
       ref={headerRef}
-      className="w-full bg-white text-[#003366] sticky top-0 z-50 transition-all duration-300 shadow-sm"
+      className="w-full bg-white text-[#003366] sticky top-0 z-[9999] transition-all duration-300 shadow-sm overflow-visible"
     >
       {/* Desktop Navigation (md and up) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hidden md:flex items-center justify-between h-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hidden md:flex items-center justify-center h-24">
         <div className="flex items-center flex-shrink-0">
           <Link to="/" className="flex-shrink-0">
             <SeoImage
               src="/aiwlogo.webp"
               alt="All Is Well Hospital Logo"
-              className="h-12 md:h-16 object-contain cursor-pointer max-w-full"
+              className="h-12 md:h-16 object-contain cursor-pointer max-w-none"
               loading="lazy"
             />
           </Link>
@@ -265,7 +266,7 @@ const Header = () => {
                 <Link
                   key={index}
                   to={item.href}
-                  className="text-xs sm:text-sm font-medium hover:text-[#003366] hover:underline transition-all duration-200 text-[#003366] whitespace-nowrap px-2 py-1"
+                  className="text-xs sm:text-sm font-medium hover:text-[#003366] hover:underline transition-all duration-200 text-[#003366] whitespace-nowrap px-2 py-1 overflow-hidden text-ellipsis"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
@@ -296,7 +297,7 @@ const Header = () => {
                   to={item.href}
                   className={`flex items-center text-xs sm:text-sm font-medium py-2 transition-all duration-200 whitespace-nowrap ${
                     openDropdown === item.label ? 'font-bold' : ''
-                  }`}
+                  } overflow-hidden text-ellipsis`}
                   onClick={(e) => {
                     // For "Care Center" and "Our Branches", allow navigation to main page
                     if (item.label === "Care Center" || item.label === "Our Branches") {
@@ -319,9 +320,9 @@ const Header = () => {
 
                 {openDropdown === item.label && (
                   <div
-                    className={`absolute left-0 mt-2 bg-white shadow-xl rounded-lg z-50 border border-gray-200 transition-all duration-300 hover:shadow-2xl origin-top-left ${
+                    className={`absolute left-0 mt-2 bg-white shadow-xl rounded-lg border border-gray-200 transition-all duration-300 hover:shadow-2xl origin-top-left dropdown-menu z-[10000] ${
                       item.label === "Care Center" 
-                        ? "w-auto min-w-[200px] px-0 py-2"
+                        ? "care-center-dropdown"
                         : "w-fit min-w-[280px] max-w-[400px] py-2"
                     }`}
                   >
@@ -333,7 +334,7 @@ const Header = () => {
                           <Link
                             key={index}
                             to={section.href}
-                            className="block px-4 py-2 text-sm text-[#003366] hover:bg-blue-50 transition-all duration-200 whitespace-nowrap"
+                            className="block px-4 py-2 text-sm text-[#003366] hover:bg-blue-50 transition-all duration-200 whitespace-nowrap overflow-hidden text-ellipsis"
                             onClick={() => setOpenDropdown(null)}
                           >
                             {section.label}
@@ -351,7 +352,7 @@ const Header = () => {
         <div className="flex-shrink-0 ml-1">
           <button
             onClick={() => setIsAppointmentModalOpen(true)}
-            className="bg-[#003366] text-white px-3 py-1 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-medium hover:bg-white hover:text-[#003366] border-[#003366] transition whitespace-nowrap blink"
+            className="bg-[#003366] text-white px-3 py-1 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-medium hover:bg-white hover:text-[#003366] border-[#003366] transition whitespace-nowrap blink overflow-hidden text-ellipsis"
           >
             Book Appointment
           </button>
@@ -359,14 +360,14 @@ const Header = () => {
       </div>
 
       {/* Mobile/Tablet Navigation (md:hidden) */}
-      <div className="md:hidden max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-24">
-          <div className="flex items-center flex-shrink-0">
+      <div className="md:hidden w-full">
+        <div className="flex items-center justify-between h-24 px-4">
+          <div className="flex items-center min-w-0">
             <Link to="/" className="flex-shrink-0">
               <SeoImage
               src="/aiwlogo.webp"
               alt="All Is Well Hospital Logo"
-              className="h-10 object-contain cursor-pointer max-w-full"
+              className="h-8 w-auto max-w-[140px] flex-shrink-0"
               loading="lazy"
               />
             </Link>
@@ -374,13 +375,13 @@ const Header = () => {
           <div className="flex items-center space-x-3">
             <button 
               onClick={() => setIsAppointmentModalOpen(true)}
-              className="bg-[#003366] text-white px-2.5 py-1 rounded-full text-xs font-medium hover:bg-white hover:text-[#003366] border-[#003366] transition whitespace-nowrap blink"
+              className="bg-[#003366] text-white px-2.5 py-1 rounded-full text-xs font-medium hover:bg-white hover:text-[#003366] border-[#003366] transition whitespace-nowrap blink overflow-hidden text-ellipsis"
             >
               Book
             </button>
             <button 
               onClick={toggleMobileMenu}
-              className="text-[#003366] p-2"
+              className="text-[#003366] p-2 flex-shrink-0"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
             >
@@ -391,7 +392,7 @@ const Header = () => {
 
         {isMobileMenuOpen && (
           <div 
-            className="fixed inset-0 z-50 bg-black bg-opacity-50"
+            className="fixed inset-0 z-50 bg-black bg-opacity-50 mobile-dropdown"
             aria-modal="true"
             role="dialog"
           >
@@ -424,7 +425,7 @@ const Header = () => {
                         <Link
                           key={index}
                           to={item.href}
-                          className="block py-3 text-base font-medium text-[#003366] hover:text-[#003366] hover:underline"
+                          className="block py-3 text-base font-medium text-[#003366] hover:text-[#003366] hover:underline overflow-hidden text-ellipsis"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {item.label}
@@ -436,7 +437,7 @@ const Header = () => {
                       <div key={item.label} className="border-b border-gray-200 py-3">
                         <Link
                           to={item.href}
-                          className="flex justify-between items-center w-full text-left text-base font-medium text-[#003366]"
+                          className="flex justify-between items-center w-full text-left text-base font-medium text-[#003366] overflow-hidden text-ellipsis"
                           onClick={(e) => {
                             if (item.label === "Care Center" || item.label === "Our Branches") {
                               // For Care Center and Our Branches, allow navigation to main page but also toggle dropdown
@@ -479,7 +480,7 @@ const Header = () => {
                                   <Link
                                     key={subIndex}
                                     to={subItem.href}
-                                    className="block py-2 text-sm text-[#003366] hover:text-[#003366] hover:underline"
+                                    className="block py-2 text-sm text-[#003366] hover:text-[#003366] hover:underline overflow-hidden text-ellipsis"
                                     onClick={() => {
                                       setIsMobileMenuOpen(false);
                                       setOpenDropdown(null);
@@ -502,7 +503,7 @@ const Header = () => {
                       setIsAppointmentModalOpen(true);
                       setIsMobileMenuOpen(false);
                     }}
-                    className="w-full bg-[#003366] text-white px-4 py-2.5 rounded-full text-base font-medium hover:bg-white hover:text-[#003366] border border-[#003366] transition blink"
+                    className="w-full bg-[#003366] text-white px-4 py-2.5 rounded-full text-base font-medium hover:bg-white hover:text-[#003366] border border-[#003366] transition blink overflow-hidden text-ellipsis"
                   >
                     Book Appointment
                   </button>

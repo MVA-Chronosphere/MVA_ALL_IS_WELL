@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.alliswellhospital.in/sitemap.xml
+
+# Block access to sensitive files
+Disallow: /seo_backend/
+Disallow: /src/
+Disallow: /scripts/
+Disallow: /node_modules/
+
+# Block specific pages that don't need to be indexed
+Disallow: /seo-management/
+Disallow: /blog/login/
+
+# Host declaration
+Host: www.alliswellhospital.in

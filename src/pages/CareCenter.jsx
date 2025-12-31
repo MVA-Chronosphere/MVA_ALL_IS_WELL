@@ -75,12 +75,13 @@ const CareCenter = () => {
                       key={serviceIndex} 
                       className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#d4af37] border border-[#d4af37] hover:shadow-md transition duration-300"
                     >
-                      <h3 className="text-xl font-serif font-bold text-[#002d72] mb-3">{service.label}</h3>
+                      <h3 className="text-lg sm:text-xl font-serif font-bold text-[#002d72] mb-3 text-center break-words leading-tight">{service.label}</h3>
                       <Link 
                         to={service.href} 
                         className="inline-block bg-[#d4af37] text-white px-4 py-2 rounded-md hover:bg-[#b8942c] transition-colors duration-300"
+                        aria-label={`Learn more about ${service.label}`}
                       >
-                        Learn More
+                        Explore {service.label}
                       </Link>
                     </div>
                   ))}

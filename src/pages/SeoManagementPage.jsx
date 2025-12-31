@@ -198,32 +198,62 @@ const SeoManagementPage = () => {
   };
 
   // Load SEO data from API
-  const loadSeoData = async () => {
+ const loadSeoData = async () => {
     if (!isAuthenticated) return;
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/seo_api.php?path=all`);
-      const result = await response.json();
-      if (result.success && Array.isArray(result.data)) {
-        setSeoData(result.data);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/seo_api.php?action=all`);
+      
+      const responseText = await response.text();
+      
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (e) {
+        console.error("Invalid JSON received:", responseText);
+        throw new Error("Server returned invalid JSON");
       }
+
+      if (!response.ok || !data.success) {
+        throw new Error(data?.message || `Request failed (${response.status})`);
+      }
+
+      setSeoData(Array.isArray(data.data) ? data.data : []);
     } catch (error) {
-      console.error('Error loading SEO data:', error);
+      console.error("Error loading SEO data:", error);
+      toast.error(error.message || error.toString());
     }
-  };
+ };
+
 
   // Load image alt data from API
   const loadImageAltData = async () => {
     if (!isAuthenticated) return;
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/seo_api.php?path=image-alt`);
-      const result = await response.json();
-      if (result.success && Array.isArray(result.data)) {
-        setImageAltData(result.data);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/seo_api.php?action=image-alt`);
+      
+      const responseText = await response.text();
+      
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (e) {
+        console.error("Invalid JSON received:", responseText);
+        throw new Error("Server returned invalid JSON");
       }
+
+      if (!response.ok || !data.success) {
+        throw new Error(data?.message || `Request failed (${response.status})`);
+      }
+
+      setImageAltData(Array.isArray(data.data) ? data.data : []);
     } catch (error) {
-      console.error('Error loading image alt data:', error);
+      console.error("Error loading image alt data:", error);
+      toast.error(error.message || error.toString());
     }
   };
+
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -236,7 +266,7 @@ const SeoManagementPage = () => {
     e.preventDefault();
     try {
       const data = await safeJsonFetch(
-        `${import.meta.env.VITE_API_BASE_URL}/seo_api.php/login`,
+        `${import.meta.env.VITE_API_BASE_URL}/seo_api.php?path=login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

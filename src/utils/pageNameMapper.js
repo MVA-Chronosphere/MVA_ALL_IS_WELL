@@ -2,7 +2,26 @@
  * Utility functions to map between user-friendly page names and internal paths
  */
 
-// Define a mapping between route paths and user-friendly names
+/* ===============================
+   NORMALIZE PATH (MATCH BACKEND)
+================================ */
+function normalizePath(path) {
+  if (!path) return "/";
+
+  let p = decodeURIComponent(path).trim();
+
+  if (p === "" || p === "/") return "/";
+
+  if (!p.startsWith("/")) p = "/" + p;
+
+  if (p.length > 1) p = p.replace(/\/+$/, "");
+
+  return p;
+}
+
+/* ===============================
+   PATH → NAME MAP
+================================ */
 const pageNameMap = {
   "/": "Home Page",
   "/about": "About Us",
@@ -21,7 +40,7 @@ const pageNameMap = {
   "/terms": "Terms of Service",
   "/careers": "Careers",
   "/seo-management": "SEO Management",
-  // Branch routes
+
   "/branches/shahpur": "Shahpur Branch",
   "/branches/khandwa": "Khandwa Branch",
   "/branches/burhanpur-clinic": "Burhanpur Clinic",
@@ -31,7 +50,7 @@ const pageNameMap = {
   "/branches/burhanpur": "Burhanpur Branch",
   "/branches/phopnar": "Phopnar Branch",
   "/branches/dharni": "Dharni Branch",
-  // Care center service routes
+
   "/care-center/neuro-spine-surgery": "Neuro Spine Surgery",
   "/care-center/cardiology": "Cardiology",
   "/care-center/cardio-thoracic-surgery": "Cardio Thoracic Surgery",
@@ -56,38 +75,46 @@ const pageNameMap = {
   "/care-center/orthopaedics": "Orthopaedics",
   "/care-center/anaesthesia": "Anaesthesia",
   "/care-center/critical-care": "Critical Care",
-  "/care-center/general-and-minimal-invasive-surgery": "General and Minimal Invasive Surgery"
+  "/care-center/general-and-minimal-invasive-surgery":
+    "General and Minimal Invasive Surgery"
 };
+
+/* ===============================
+   NAME → PATH MAP (FAST LOOKUP)
+================================ */
+const nameToPathMap = Object.entries(pageNameMap).reduce(
+  (acc, [path, name]) => {
+    acc[name] = path;
+    return acc;
+  },
+  {}
+);
+
+/* ===============================
+   API FUNCTIONS
+================================ */
 
 /**
  * Get a user-friendly name for a page path
- * @param {string} path - The internal page path
- * @returns {string} - The user-friendly page name
  */
 export function getPageNameFromPath(path) {
-  if (!path) return "Unknown Page";
-  return pageNameMap[path] || path; // Return the mapped name or the path itself if not found
+  const normalized = normalizePath(path);
+
+  return (
+    pageNameMap[normalized] ||
+    generateFriendlyName(normalized)
+  );
 }
 
 /**
  * Get the internal path from a user-friendly name
- * @param {string} name - The user-friendly page name
- * @returns {string} - The internal page path
  */
 export function getPathFromPageName(name) {
-  // Find the path that corresponds to this name
-  for (const [path, pageName] of Object.entries(pageNameMap)) {
-    if (pageName === name) {
-      return path;
-    }
-  }
-  // If we can't find an exact match, return the name as is (assuming it's already a path)
-  return name;
+  return nameToPathMap[name] || normalizePath(name);
 }
 
 /**
  * Get all available page names and paths
- * @returns {Array} - Array of objects with name and path properties
  */
 export function getAllPageNamesAndPaths() {
   return Object.entries(pageNameMap).map(([path, name]) => ({
@@ -97,24 +124,19 @@ export function getAllPageNamesAndPaths() {
 }
 
 /**
- * Generate a user-friendly name for paths that aren't in our predefined map
- * @param {string} path - The internal page path
- * @returns {string} - A generated user-friendly name
+ * Generate a user-friendly name for unknown paths
  */
 export function generateFriendlyName(path) {
-  if (!path) return "Unknown Page";
-  
-  // Remove leading slash and split by slashes
-  const parts = path.replace(/^\//, '').split('/');
-  
-  // Convert kebab-case to title case
-  const processedParts = parts.map(part => {
-    return part
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-  });
-  
-  // Join with spaces or " / " for nested paths
-  return processedParts.join(' / ');
+  if (!path || path === "/") return "Home Page";
+
+  const parts = path.replace(/^\//, "").split("/");
+
+  return parts
+    .map(part =>
+      part
+        .split("-")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ")
+    )
+    .join(" / ");
 }

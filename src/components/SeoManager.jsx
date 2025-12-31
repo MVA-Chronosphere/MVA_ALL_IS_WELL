@@ -1,84 +1,43 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import SeoService from '../services/SeoService';
+import StructuredData from './StructuredData';
 
 // This component will handle dynamic SEO updates
 // It fetches SEO data from your PHP backend based on the current path
 const SeoManager = ({ children }) => {
   const location = useLocation();
-  const [seoData, setSeoData] = useState({
-    title: "All Is Well Hospital - Best Healthcare Services",
-    description: "All Is Well Hospital provides comprehensive healthcare services including cardiology, orthopedics, neurology, and emergency care. Quality healthcare you can trust.",
-    keywords: "hospital, healthcare, medical services, emergency care, cardiology, orthopedics, neurology",
-    image: '/aiwlogo.webp'
-  });
-
-  useEffect(() => {
-  if (!seoData) return;
-
-  // --- Update <title> ---
-  if (seoData.title) {
-    document.title = seoData.title.trim();
-  }
-
-  const setMeta = (selector, attr, value) => {
-    if (!value) return;
-
-    let tag = document.querySelector(selector);
-    if (!tag) {
-      tag = document.createElement("meta");
-      if (attr === "name") tag.setAttribute("name", selector.replace('meta[name="', '').replace('"]', ''));
-      if (attr === "property") tag.setAttribute("property", selector.replace('meta[property="', '').replace('"]', ''));
-      document.head.appendChild(tag);
-    }
-    tag.setAttribute("content", value);
-  };
-
-  // --- Basic SEO ---
-  setMeta('meta[name="description"]', "name", seoData.description);
-  setMeta('meta[name="keywords"]', "name", seoData.keywords);
-
-  // --- Open Graph (Facebook) ---
-  setMeta('meta[property="og:title"]', "property", seoData.title);
-  setMeta('meta[property="og:description"]', "property", seoData.description);
-  setMeta('meta[property="og:image"]', "property", `${window.location.origin}${seoData.image || seoData.og_image}`);
-  setMeta('meta[property="og:url"]', "property", window.location.href);
-
-  // --- Twitter ---
-  setMeta('meta[name="twitter:title"]', "name", seoData.title);
-  setMeta('meta[name="twitter:description"]', "name", seoData.description);
-  setMeta('meta[name="twitter:image"]', "name", `${window.location.origin}${seoData.image || seoData.twitter_image}`);
-
-}, [seoData]);
+ const [seoData, setSeoData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   
   // Use ref to prevent duplicate requests for the same path
   const currentPathRef = useRef(location.pathname);
   const isInitialMount = useRef(true);
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchSeoData = async () => {
-  if (location.pathname !== currentPathRef.current) {
-    try {
-      const data = await SeoService.getSeoData(location.pathname);
-      setSeoData(data);
-    } catch (error) {
-      console.error('Error fetching SEO data:', error);
-      setSeoData(SeoService.getDefaultSeoData());
-    }
-    currentPathRef.current = location.pathname;
-  }
-};
+      if (location.pathname !== currentPathRef.current) {
+        try {
+          const data = await SeoService.getSeoData(location.pathname);
+          setSeoData(data);
+        } catch (error) {
+          console.error('Error fetching SEO data:', error);
+          setSeoData(SeoService.getDefaultSeoData(location.pathname));
+        }
+        currentPathRef.current = location.pathname;
+      }
+    };
 
 
     // On initial mount, we always fetch, but on subsequent route changes, we check if it's a new path
     if (isInitialMount.current) {
       isInitialMount.current = false;
-      fetchSeoData();
+      fetchSeoData().finally(() => setIsLoading(false));
       currentPathRef.current = location.pathname;
     } else if (location.pathname !== currentPathRef.current) {
-      fetchSeoData();
+      fetchSeoData().finally(() => setIsLoading(false));
     }
   }, [location.pathname]);
 
@@ -90,6 +49,38 @@ const SeoManager = ({ children }) => {
     image: seoImage = '/aiwlogo.webp'
   } = seoData || {};
 
+  // Memoize structured data type to prevent unnecessary re-renders
+  const structuredDataType = useMemo(() => {
+    if (location.pathname.startsWith('/doctor/')) {
+      return 'Doctor';
+    } else if (location.pathname === '/' || location.pathname === '/about') {
+      return 'MedicalOrganization';
+    } else {
+      return 'WebPage';
+    }
+  }, [location.pathname]);
+
+  // Memoize normalized URL to prevent unnecessary re-calculations
+  const canonicalUrl = useMemo(() => {
+    try {
+      const urlObj = new URL(`${window.location.origin}${location.pathname}`);
+      // Only add trailing slash for homepage
+      if (urlObj.pathname === '/') {
+        urlObj.pathname = '/';
+      } else {
+        // Remove trailing slash for all other paths
+        urlObj.pathname = urlObj.pathname.replace(/\/$/, '');
+      }
+      // Remove query parameters and fragments for canonical URL
+      urlObj.search = '';
+      urlObj.hash = '';
+      return urlObj.toString();
+    } catch (e) {
+      // If URL parsing fails, return the original URL
+      return `${window.location.origin}${location.pathname}`;
+    }
+  }, [location.pathname]);
+  
   return (
     <>
       <Helmet>
@@ -97,16 +88,19 @@ const SeoManager = ({ children }) => {
         <meta name="description" content={seoDescription} />
         <meta name="keywords" content={seoKeywords} />
         
+        {/* Canonical URL */}
+        <link rel="canonical" href={canonicalUrl} />
+        
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={window.location.href} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={seoDescription} />
         {seoImage && <meta property="og:image" content={`${window.location.origin}${seoImage}`} />}
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={window.location.href} />
+        <meta property="twitter:url" content={canonicalUrl} />
         <meta property="twitter:title" content={seoTitle} />
         <meta property="twitter:description" content={seoDescription} />
         {seoImage && <meta property="twitter:image" content={`${window.location.origin}${seoImage}`} />}
@@ -115,6 +109,7 @@ const SeoManager = ({ children }) => {
         <meta property="og:site_name" content="All Is Well Hospital" />
         <meta name="robots" content="index, follow" />
       </Helmet>
+      <StructuredData type={structuredDataType} data={seoData} />
       {children}
     </>
   );

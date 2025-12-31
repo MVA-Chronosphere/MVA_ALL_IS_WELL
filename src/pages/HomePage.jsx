@@ -1,5 +1,5 @@
 // HomePage.jsx
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import AppointmentFormModal from '../components/AppointmentFormModal';
 import DoctorInfoCard from '../components/DoctorInfoCard';
@@ -29,6 +29,9 @@ import { motion } from "framer-motion";
 import { VolumeX, Volume2 } from "lucide-react";
 import CardComponent from '../components/CardComponent';
 import SeoImage from '../components/SeoImage';
+import SeoService from '../services/SeoService';
+import YoutubeLazyLoader from '../components/YoutubeLazyLoader';
+
 
 // Helper to extract YouTube video ID
 const getYouTubeVideoId = (url) => {
@@ -601,7 +604,7 @@ const HomePage = () => {
               autoPlay={index === currentIndex} // Autoplay only if it's the current slide
               playsInline
               muted={isMuted}
-              preload={index === currentIndex ? "auto" : "none"} // Only preload current and adjacent slides
+              preload="metadata" // Only preload metadata instead of full video
               className="w-full h-full object-cover min-h-full"
               style={{
                 objectPosition:
@@ -623,6 +626,7 @@ const HomePage = () => {
                   setShouldPauseSlider(false);
                 }
               }}
+              loading="eager" // Load the video eagerly since it's the LCP element
             >
               <source src={slide.video} type="video/webm" />
               Your browser does not support the video tag.
@@ -690,6 +694,7 @@ const HomePage = () => {
                     ? "bg-blue-700 text-white hover:bg-blue-60"
                     : "bg-white text-black hover:bg-gray-100"
                 }`}
+                tabIndex={0}
               >
                 {slide.buttonIcon}
                 {slide.buttonLabel}
@@ -988,9 +993,9 @@ const HomePage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-[#002d72] leading-tight">
-            Welcome to All Is Well Hospital
-          </h1>
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#002d72] leading-tight">
+            Welcome to All Is Well Hospital - Best Healthcare Services.
+          </h2>
           <div className="w-16 h-1 bg-[#d4af37] mx-auto mt-4 rounded"></div>
           
         </div>
@@ -1013,9 +1018,9 @@ const HomePage = () => {
               />
             </div>
             <div className="lg:w-1/2">
-              <h3 className="text-xl sm:text-2xl font-bold text-yellow-600 mb-3 sm:mb-4 font-serif">
+              <h2 className="text-xl sm:text-2xl font-bold text-yellow-600 mb-3 sm:mb-4 font-serif">
                 Advanced Medical Technology
-              </h3>
+              </h2>
               <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 font-sans">
                 Our use of advanced medical technology and dedicated diagnostic
                 services ensures timely and accurate diagnoses for a range of
@@ -1121,9 +1126,9 @@ const HomePage = () => {
             transition={{ duration: 0.5 }}
           >
             <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#002d72] leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#002d72] leading-tight">
             Meet Our Specialists
-          </h1>
+          </h2>
           <div className="w-16 h-1 bg-[#d4af37] mx-auto mt-4 rounded"></div>
           
         </div>
@@ -1220,62 +1225,64 @@ const HomePage = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {patientFeedbacks.map((feedback, index) => (
-                <motion.div
-                  key={`feedback-${feedback.id}`}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  className="group relative rounded-lg overflow-hidden shadow-sm border border-[#d4af37] bg-white p-6"
-                >
-                  {/* Video Thumbnail */}
-                  <div className="relative aspect-video bg-gray-200 mb-4 rounded">
-                    <SeoImage
-                      src={feedback.thumbnail}
-                      alt={feedback.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center group-hover:bg-opacity-40 transition-opacity rounded">
-                      <button
-                        onClick={() => window.open(feedback.videoUrl, "_blank")}
-                        className="bg-red-600 hover:bg-red-70 text-white p-3 rounded-full transition transform group-hover:scale-110"
-                        aria-label={`Watch video: ${feedback.title}`}
-                      >
-                        <Play size={24} />
-                      </button>
-                    </div>
-                  </div>
-                  {/* Video Info */}
-                  <div>
-                    <h3 className="font-serif font-bold text-[#002d72] mb-3 text-lg leading-tight line-clamp-2 sm:line-clamp-3">
-                      {feedback.title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-xs text-[#44] mb-2 font-sans">
-                      <Calendar size={14} />
-                      Admitted Under
-                    </div>
-                    <div className="font-sans font-medium text-[#02d72] mb-2 text-base">
-                      {feedback.doctor}
-                    </div>
-                    <div className="font-sans text-[#444] text-sm leading-tight mb-3">
-                      {feedback.specialty}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          size={14}
-                          className={`${
-                            i < 5 ? "text-[#d4af37] fill-[#d4af37]" : "text-gray-300"
-                          }`}
+              {patientFeedbacks.map((feedback, index) => {
+                const videoId = getYouTubeVideoId(feedback.videoUrl);
+                return (
+                  <motion.div
+                    key={`feedback-${feedback.id}`}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                    className="group relative rounded-lg overflow-hidden shadow-sm border border-[#d4af37] bg-white p-6"
+                  >
+                    {/* Video Player */}
+                    <div className="relative aspect-video bg-gray-200 mb-4 rounded">
+                      {videoId ? (
+                        <YoutubeLazyLoader
+                          videoId={videoId}
+                          title={feedback.title}
+                          className="w-full h-full"
                         />
-                      ))}
+                      ) : (
+                        <SeoImage
+                          src={feedback.thumbnail}
+                          alt={feedback.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded"
+                          loading="lazy"
+                        />
+                      )}
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                    {/* Video Info */}
+                    <div>
+                      <h3 className="font-serif font-bold text-[#002d72] mb-3 text-lg leading-tight line-clamp-2 sm:line-clamp-3">
+                        {feedback.title}
+                      </h3>
+                      <div className="flex items-center gap-2 text-xs text-[#44] mb-2 font-sans">
+                        <Calendar size={14} />
+                        Admitted Under
+                      </div>
+                      <div className="font-sans font-medium text-[#02d72] mb-2 text-base">
+                        {feedback.doctor}
+                      </div>
+                      <div className="font-sans text-[#444] text-sm leading-tight mb-3">
+                        {feedback.specialty}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            size={14}
+                            className={`${
+                              i < 5 ? "text-[#d4af37] fill-[#d4af37]" : "text-gray-300"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>

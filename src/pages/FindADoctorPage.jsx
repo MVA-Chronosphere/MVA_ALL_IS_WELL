@@ -9,7 +9,7 @@ export const doctors = [
     {
       id: 1,
       name: "Dr. Abhishek Sharma",
-      specialty: "Consultant Cosmetic & Plastic Surgeon, Micro-Vascular Surgery (TMC MUMBAI), Specialized Training Cleft Lip/Palate Surgery (Smile Train Surgeon) From USA, Medical Superintendent",
+      specialty: "Consultant Cosmetic & Plastic Surgeon",
       image: "/Doctorphotos/Dr_Abhishek_Sharma.webp",
       location: "All Is Well Super Clinic Burhanpur",
     },
@@ -214,6 +214,13 @@ export const doctors = [
       name: "Dr. Tanishk Shroff",
       specialty: "BDS, MDS (Orthodontics)",
       image: "/Doctorphotos/Dr_Tanishk_Shroff.webp",
+      location: "All Is Well Super Clinic Burhanpur",
+    },
+    {
+      id: 31,
+      name: "Dr. Ankit Atneriya",
+      specialty: "Physiotherapy & Rehabilitation, BPT, MPT (Musculoskeletal)",
+      image: "/Doctorphotos/Dr_Ankit_Atneriya.webp",
       location: "All Is Well Super Clinic Burhanpur",
     },
     

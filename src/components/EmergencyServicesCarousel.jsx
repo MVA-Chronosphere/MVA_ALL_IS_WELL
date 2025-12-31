@@ -58,7 +58,12 @@ const EmergencyServicesCarousel = () => {
         {/* Slides */}
         <div className="absolute inset-0 w-full h-full flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
           {services.map((service, index) => (
-            <div key={service.id} className="w-full h-full flex-shrink-0 relative" style={{ width: '100%', height: '500px' }}>
+            <div 
+              key={service.id} 
+              className="w-full h-full flex-shrink-0 relative" 
+              style={{ width: '100%', height: '500px' }}
+              aria-hidden={index !== currentSlide}
+            >
               <SeoImage
                 src={service.image}
                 alt={service.alt}
@@ -107,7 +112,7 @@ const EmergencyServicesCarousel = () => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-4 h-4 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#d4af37] ${
                 index === currentSlide ? "bg-[#d4af37] w-6" : "bg-gray-300"
               }`}
               aria-label={`Go to slide ${index + 1}`}

@@ -69,3 +69,28 @@
 .care-center-banner-mobile-hidden {
   @apply hidden md:block;
 }
+
+/* Fix for header dropdown visibility */
+.header-dropdown {
+  @apply z-50;
+}
+
+/* Ensure dropdowns appear above other content */
+.dropdown-container {
+  @apply relative;
+}
+
+/* Improve dropdown positioning */
+.dropdown-menu {
+  @apply absolute top-full left-0 w-full min-w-max bg-white shadow-lg rounded-md z-50;
+}
+
+/* Fix for Care Center dropdown specifically */
+.care-center-dropdown {
+  @apply w-auto min-w-[200px] px-0 py-2;
+}
+
+/* Fix for mobile dropdown positioning */
+.mobile-dropdown {
+  @apply fixed inset-0 z-50 bg-black bg-opacity-50;
+}

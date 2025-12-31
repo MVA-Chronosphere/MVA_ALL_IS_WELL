@@ -107,6 +107,7 @@ const DepartmentsCarousel = () => {
                         <Link
                           to={`/care-center/${key}`}
                           className="bg-[#002d72] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-800 transition-colors flex items-center gap-2"
+                          aria-label={`Learn more about ${title}`}
                         >
                           Learn More
                           <ArrowRight size={14} />
@@ -122,9 +123,9 @@ const DepartmentsCarousel = () => {
       </div>
 
       {/* Progress Seeker Bar */}
-      <div className="mt-6 sm:mt-8 h-1 w-full bg-gray-200 rounded-full overflow-hidden">
+      <div className="mt-6 sm:mt-8 h-2 w-full bg-gray-200 rounded-full overflow-hidden">
         <motion.div
-          className="h-1 bg-yellow-600 rounded-full"
+          className="h-2 bg-yellow-600 rounded-full"
           initial={{ width: "0%" }}
           animate={{ width: `${((currentDepartmentIndex + 1) / Math.max(1, Math.ceil(totalDepartments / departmentsPerView))) * 100}%` }}
           transition={{ ease: "easeOut", duration: 0.5 }}
